@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WebApplication1.Areas.Admin.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container" style="background-color: rgb(240,240,240);">
+    <div class="row">
+        <div class="col">
+            <div class="input-group my-2 float-start">
+                <input type="text" class="form-control">
+                <button class="btn btn-outline-secondary fw-bold" type="button" id="button-addon2">Tìm kiếm</button>
+            </div>
+        </div>
+        <div class="col">
+            <a class="btn btn-success float-end my-2" href=""><i class="fa fa-plus-circle" aria-hidden="true"></i><b>Thêm mới sản phẩm</b></a>
+        </div>
+    </div>
+    <table class="table table-hover table-bordered bg-white" style="font-size:small;">
+        <thead class="bg-primary text-white" style="text-align:center;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.productName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.productPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.productDetail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category.categoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Brand.brandName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dateCreate)
+                </th>
+                <th>
+                    Thao tác
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/images/sanpham/mac4.jpg" alt="" width="80" height="80" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productDetail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.categoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brand.brandName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateCreate)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary fa fa-pencil-square-o" href="@Url.Action("", "")"></a>
+                        <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("", "")"></a>
+                        <a class="btn btn-danger fa fa-times-circle-o" href="@Url.Action("", "")"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

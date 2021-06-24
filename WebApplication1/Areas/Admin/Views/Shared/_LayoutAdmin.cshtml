@@ -4,11 +4,68 @@
     <title>@Page.Title</title>
     @RenderSection("head", required: false)
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/css/sidebars.css" rel="stylesheet" />
-    <script src="~/Areas/Admin/js/sidebars.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/LayoutAdmin.css" rel="stylesheet" />
 </head>
 <body>
-    @RenderBody()
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle btn-light" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="padding:10px">
+                            Sản phẩm
+                        </button>
+                        <div class="dropdown-content" aria-labelledby="dropdownMenuButton1">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Danh mục</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Thương hiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Khuyến mãi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Đơn hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Nguyễn Quang Trường</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <i aria-hidden="true">
+                        <img src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="50" height="50"/>
+                    </i>
+                    <div class="dropdown-content" aria-labelledby="dropdownMenuButton1">
+                        <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="#">Cài đặt</a>
+                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id="main_content">
+        @RenderBody()
+    </section>
+    <footer>
+        <center><b>&copy; @DateTime.Now.Year - by THT Store</b></center>
+    </footer>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
