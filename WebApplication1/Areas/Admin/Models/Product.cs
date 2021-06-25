@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("Product")]
     public partial class Product
@@ -30,6 +31,7 @@
         [Required(ErrorMessage = "Vui lòng nhập giá tiền")]
         [Display(Name = "Giá tiền")]
         [Column(TypeName = "money")]
+        [Range(1000, 1000000000, ErrorMessage = "Vui lòng nhập giá trị từ 1000")]
         public decimal productPrice { get; set; }
 
         [Display(Name = "Chi tiết sản phẩm")]
@@ -46,6 +48,9 @@
         public virtual Brand Brand { get; set; }
 
         public virtual Category Category { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageUpload { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

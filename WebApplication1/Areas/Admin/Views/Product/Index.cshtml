@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="col">
-            <a class="btn btn-success float-end my-2" href=""><i class="fa fa-plus-circle" aria-hidden="true"></i><b>Thêm mới sản phẩm</b></a>
+            <a class="btn btn-success float-end my-2" href="@Url.Action("Create","Product")"><i class="fa fa-plus-circle" aria-hidden="true"></i><b>Thêm mới sản phẩm</b></a>
         </div>
     </div>
     <table class="table table-hover table-bordered bg-white" style="font-size:small;">
@@ -51,7 +51,7 @@
             {
                 <tr>
                     <td>
-                        <img src="~/images/sanpham/mac4.jpg" alt="" width="80" height="80" />
+                        <img src="~/images/sanpham/@item.image" alt="" width="80" height="80" />
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.productName)
