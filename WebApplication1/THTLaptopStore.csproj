@@ -149,7 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\css\LayoutAdmin.css" />
-    <Content Include="Areas\js\LayoutAdmin.js" />
+    <Content Include="Areas\Admin\js\LayoutAdmin.js" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
