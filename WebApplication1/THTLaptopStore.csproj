@@ -144,18 +144,19 @@
     <Compile Include="Areas\Admin\Models\sysdiagram.cs" />
     <Compile Include="Areas\Admin\Models\User.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\css\LayoutAdmin.css" />
-    <Content Include="Areas\Admin\js\LayoutAdmin.js" />
+    <Content Include="Public\CSS\LayoutAdmin.css" />
+    <Content Include="Public\js\LayoutAdmin.js" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="CSS\style.css" />
+    <Content Include="Public\CSS\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -165,6 +166,7 @@
     <Content Include="images\bia\bia4.PNG" />
     <Content Include="images\bia\bia5.PNG" />
     <Content Include="images\bia\bia7.png" />
+    <Content Include="images\bia\login.jpg" />
     <Content Include="images\brand_icon\apple.png" />
     <Content Include="images\brand_icon\asus.png" />
     <Content Include="images\brand_icon\dell.png" />
@@ -206,6 +208,9 @@
     <Content Include="images\user\employee\JoeyTribbiani.jpg" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -239,6 +244,7 @@
     <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

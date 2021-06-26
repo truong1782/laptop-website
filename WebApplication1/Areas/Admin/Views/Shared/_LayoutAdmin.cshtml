@@ -5,7 +5,7 @@
     @RenderSection("head", required: false)
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/css/LayoutAdmin.css" rel="stylesheet" />
+    <link href="~/Public/css/LayoutAdmin.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -66,9 +66,10 @@
     <footer>
         <center><b>&copy; @DateTime.Now.Year - by THT Store</b></center>
     </footer>
+    @RenderSection("scripts", required: false)
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
-    <script src="~/Areas/Admin/js/LayoutAdmin.js"></script>
+    <script src="~/Public/js/LayoutAdmin.js"></script>
 </body>
 </html>

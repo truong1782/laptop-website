@@ -7,7 +7,7 @@
 }
 
 <div class="container">
-    @using (Html.BeginForm("createProduct", "Product",FormMethod.Post, new {enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("createProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
@@ -90,3 +90,6 @@
     }
 </div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
