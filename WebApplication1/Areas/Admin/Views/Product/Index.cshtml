@@ -71,10 +71,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.dateCreate)
                     </td>
-                    <td>
-                        <a class="btn btn-primary fa fa-pencil-square-o" href="@Url.Action("", "")"></a>
+                    <td style="white-space:nowrap;">
+                        <a class="btn btn-primary fa fa-pencil-square-o" href="@Url.Action("Edit", "Product", new {id = item.productID })"></a>
                         <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("", "")"></a>
-                        <a class="btn btn-danger fa fa-times-circle-o" href="@Url.Action("", "")"></a>
+                        <a class="btn btn-danger fa fa-times-circle-o" href="@Url.Action("Delete", "Product", new {id = item.productID })" onclick="return confirmAction()"></a>
                     </td>
                 </tr>
             }

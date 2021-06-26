@@ -3,6 +3,8 @@
 <head>
     <title>@Page.Title</title>
     @RenderSection("head", required: false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Areas/Admin/css/LayoutAdmin.css" rel="stylesheet" />
@@ -69,6 +71,9 @@
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
-    <script src="~/Areas/js/LayoutAdmin.js"></script>
+    <script src="~/Areas/Admin/js/LayoutAdmin.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

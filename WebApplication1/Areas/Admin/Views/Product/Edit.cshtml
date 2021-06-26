@@ -1,21 +1,21 @@
-﻿@using WebApplication1.Areas.Admin.Models
-@model Product
+﻿@model WebApplication1.Areas.Admin.Models.Product
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <div class="container">
-    @using (Html.BeginForm("createProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
+
         <div class="form-horizontal">
             <a class="btn btn-danger mt-2" href="@Url.Action("Index", "Product")"><i class="fa fa-arrow-circle-left mx-1"></i>Quay lại</a>
-            <h4 class="mt-2">Nhập thông tin sản phẩm</h4>
+            <h4>Cập nhật thông tin sản phẩm</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+            @Html.HiddenFor(model => model.productID)
             <div class="row">
                 <div class="col-md-8">
                     <div class="row">
@@ -29,27 +29,19 @@
                     </div>
                     <div class="row">
                         <div class="form-group mb-3">
-                            @Html.LabelFor(model => model.Category.categoryName, "Loại sản phẩm", htmlAttributes: new { @class = "control-label fw-bold" })
+                            @Html.LabelFor(model => model.categoryID, "Loại sản phẩm", htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
-                                <select class="form-select border-dark" name="categoryID" id="categoryID">
-                                    @foreach (var item in (List<Category>)ViewBag.Category)
-                                    {
-                                        <option value="@item.categoryID">@item.categoryName</option>
-                                    }
-                                </select>
+                                @Html.DropDownList("categoryID", null, htmlAttributes: new { @class = "form-control border-dark" })
+                                @Html.ValidationMessageFor(model => model.categoryID, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group mb-3">
-                            @Html.LabelFor(model => model.Brand.brandName, "Thương hiệu", htmlAttributes: new { @class = "control-label fw-bold" })
+                            @Html.LabelFor(model => model.brandID, "Thương hiệu", htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
-                                <select class="form-select border-dark" name="brandID" id="brandID">
-                                    @foreach (var item in (List<Brand>)ViewBag.Brand)
-                                    {
-                                        <option value="@item.brandID">@item.brandName</option>
-                                    }
-                                </select>
+                                @Html.DropDownList("brandID", null, htmlAttributes: new { @class = "form-control border-dark" })
+                                @Html.ValidationMessageFor(model => model.brandID, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -65,9 +57,11 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label fw-bold" }) <br />
-                        <img class="border border-2 border-dark" src="~/images/sanpham/none.png" alt="none.png" id="output" style="width:290px; height:290px;" /> <br />
-                        <input class="mt-2" title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label fw-bold" })<br />
+                            <img class="border border-2 border-dark" src="~/images/sanpham/@Model.image" alt="none.png" id="output" style="width:290px; height:290px;" /> <br />
+                            <input class="mt-2" title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,7 +69,7 @@
                 <div class="form-group mb-3">
                     @Html.LabelFor(model => model.productDetail, htmlAttributes: new { @class = "control-label fw-bold" })
                     <div class="col-md-12">
-                        <textarea class="form-control border-dark" name="productDetail" id="productDetail" rows="7"></textarea>
+                        <textarea class="form-control border-dark" name="productDetail" id="productDetail" rows="7">@Model.productDetail</textarea>
                         @Html.ValidationMessageFor(model => model.productDetail, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -83,16 +77,15 @@
 
             <div class="form-group mb-3">
                 <div class="col-md-offset-2 col-md-12">
-                    <input type="submit" value="Thêm sản phẩm" class="btn btn-success" />
+                    <input type="submit" value="Cập nhật thông tin sản phẩm" class="btn btn-primary" />
                 </div>
             </div>
         </div>
     }
 </div>
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-
 
