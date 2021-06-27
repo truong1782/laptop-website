@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Areas.Admin.Models
+namespace WebApplication1.Models.Data
 {
     using System;
     using System.Collections.Generic;
@@ -18,7 +18,6 @@
         public int brandID { get; set; }
 
         [Required]
-        [Display(Name = "Tên thương hiệu")]
         [StringLength(20)]
         public string brandName { get; set; }
 
