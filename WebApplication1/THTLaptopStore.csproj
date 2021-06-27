@@ -132,17 +132,17 @@
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
-    <Compile Include="Areas\Admin\Models\Brand.cs" />
-    <Compile Include="Areas\Admin\Models\Category.cs" />
-    <Compile Include="Areas\Admin\Models\Contact.cs" />
-    <Compile Include="Areas\Admin\Models\DBContext.cs" />
-    <Compile Include="Areas\Admin\Models\Discount.cs" />
-    <Compile Include="Areas\Admin\Models\Order.cs" />
-    <Compile Include="Areas\Admin\Models\OrderDetail.cs" />
-    <Compile Include="Areas\Admin\Models\Product.cs" />
-    <Compile Include="Areas\Admin\Models\Role.cs" />
-    <Compile Include="Areas\Admin\Models\sysdiagram.cs" />
-    <Compile Include="Areas\Admin\Models\User.cs" />
+    <Compile Include="Models\Data\Brand.cs" />
+    <Compile Include="Models\Data\Category.cs" />
+    <Compile Include="Models\Data\Contact.cs" />
+    <Compile Include="Models\Data\DBContext.cs" />
+    <Compile Include="Models\Data\Discount.cs" />
+    <Compile Include="Models\Data\Order.cs" />
+    <Compile Include="Models\Data\OrderDetail.cs" />
+    <Compile Include="Models\Data\Product.cs" />
+    <Compile Include="Models\Data\Role.cs" />
+    <Compile Include="Models\Data\sysdiagram.cs" />
+    <Compile Include="Models\Data\User.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
@@ -227,7 +227,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\user\customer\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\web.config" />
