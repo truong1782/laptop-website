@@ -12,7 +12,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         DBContext db = new DBContext();
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.User.ToList());
         }
     }
 }
