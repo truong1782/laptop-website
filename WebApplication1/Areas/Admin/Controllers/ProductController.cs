@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using WebApplication1.Models.Data;
+using System.Web;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
@@ -25,16 +26,16 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult createProduct(Product productInfo)
+        public ActionResult createProduct(Product productInfo, HttpPostedFileBase ImageUpload)
         {
             productInfo.dateCreate = DateTime.Now;
-            if (productInfo.ImageUpload != null)
+            if (ImageUpload != null)
             {
-                string fileName = Path.GetFileNameWithoutExtension(productInfo.ImageUpload.FileName);
-                string extension = Path.GetExtension(productInfo.ImageUpload.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
                 productInfo.image = fileName;
-                productInfo.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
                 db.Products.Add(productInfo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -57,16 +58,16 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product productInfo)
+        public ActionResult Edit(Product productInfo, HttpPostedFileBase ImageUpload)
         {
             productInfo.dateCreate = DateTime.Now;
-            if (productInfo.ImageUpload != null)
+            if (ImageUpload != null)
             {
-                string fileName = Path.GetFileNameWithoutExtension(productInfo.ImageUpload.FileName);
-                string extension = Path.GetExtension(productInfo.ImageUpload.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
                 productInfo.image = fileName;
-                productInfo.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
             }
             db.Entry(productInfo).State = EntityState.Modified;
             db.SaveChanges();
