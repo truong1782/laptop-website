@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace WebApplication1.Areas.Admin.Models
+namespace WebApplication1.Models.Data
 {
     public partial class DBContext : DbContext
     {
         public DBContext()
-            : base("name=DBContext")
+            : base("name=DBContext1")
         {
         }
 

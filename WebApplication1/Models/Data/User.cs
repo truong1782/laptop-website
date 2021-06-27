@@ -1,4 +1,4 @@
-namespace WebApplication1.Areas.Admin.Models
+namespace WebApplication1.Models.Data
 {
     using System;
     using System.Collections.Generic;

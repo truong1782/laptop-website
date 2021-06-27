@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Areas.Admin.Models
+namespace WebApplication1.Models.Data
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,6 @@
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "Tên loại sản phẩm")]
         public string categoryName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
