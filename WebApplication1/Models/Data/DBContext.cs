@@ -20,7 +20,6 @@ namespace WebApplication1.Models.Data
         public virtual DbSet<OrderDetail> OrderDetail { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
