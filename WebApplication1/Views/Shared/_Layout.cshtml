@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="~/Public/css/style.css" rel="stylesheet" />
+    <link href="~/Public/css/productDetail.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -48,10 +49,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav" style="margin: 5px auto 0px auto ">
                         <li class="nav-item">
-                            <a class="nav-link active" style="color:white" href="@Url.Action("Home","Home")"><b>TRANG CHỦ</b></a>
+                            <a class="nav-link active" style="color:white" href="@Url.Action("Index","Home")"><b>TRANG CHỦ</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>SẢN PHẨM</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("Index","Product")"><b>SẢN PHẨM</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>LINH KIỆN</b></a>

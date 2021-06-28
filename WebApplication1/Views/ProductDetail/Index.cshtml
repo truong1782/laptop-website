@@ -1,105 +1,111 @@
-﻿
+﻿@using WebApplication1.Models.Data
+@model Product
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
-    <h4 class="pt-4"><b>Macbook Air 13 Late 2020 - M1 16GB SSD 512GB (CORE I5/8GB/128GB SSD/13.3 INCH LIKE NEW)</b></h4>
-</div>
-
-<div class="pt-2">
-    <div class="container mb-3 border border-1 shadow rounded rounded-3">
-
-        <div class="row">
-
-            <div class="col-md-auto col-sm-auto col-12 border border-white">
-                <img class="img-fluid" src="~/images/sanpham/mac1.png" style="height:500px; width:500px;" />
-            </div>
-
-            <div class="col-md-auto col-sm-au col-12" style="margin-left:30px">
-                <div class="pt-3    ">
-
-
-                    <div class="pt-2">
-                        <div class="border border-1  rounded rounded-3">
-                            <div class="p-2" style="margin-left:10px">
-                                <p><b>THÔNG TIN SẢN PHẨM</b></p>
-
-                                <div class="row">
-                                    <table style="width:100%">
-                                        <tr>
-                                            <th style="color:Highlight">Model:</th>
-                                            <td>Macbook Air 13 Late 2020</td>
-                                        </tr>
-                                        <tr>
-                                            <th style="color:Highlight">Bảo hành:</th>
-                                            <td>Bảo hành 12 tháng</td>
-                                        </tr>
-                                        <tr>
-                                            <th style="color:Highlight">Tình trạng:</th>
-                                            <td>Còn hàng</td>
-                                        </tr>
-                                        <tr>
-                                            <th style="color:Highlight">CPU:</th>
-                                            <td>i5-4265U</td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-3">
-                        <div class="border border-1  rounded rounded-3">
-                            <div style="margin-left:15px">
-                                <p><b>KHUYẾN MÃI</b></p>
-                                <ul>
-                                    <li>Tặng cặp đựng laptop</li>
-                                    <li>Tặng chuột không dây</li>
-                                    <li>Tặng cặp đựng laptop</li>
-                                    <li>Tặng tấm lót chuột</li>
-                                    <li>Tặng phiếu hỗ trợ cài đặt phần mềm</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <h1 class="mt-2" style="color:red;font-size:28px;"><b>36.990.000 VND</b></h1>
-                    <div class="mt-2">
-                        <a href="#" class="btn btn-primary" style="height:auto; width:auto;"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="col-md-3 col-12 pt-3">
-                <div class="mt-2">
-                    <div class=" border border-1  rounded rounded-3 " style="background-color:whitesmoke">
-                        <div class="pt-2" style="margin-left:15px">
-                            <p>Đổi trả trong 30 ngày, thủ tục đơn giản và nhanh chóng</p>
-                            <p>Giao hàng nhanh miễn phí trong nội thành</p>
-                            <p>Bảo hành 12 tháng tận nơi</p>
-                        </div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0" nonce="pNQneTc0"></script>
+<div class="container my-3 border border-1 shadow rounded rounded-3">
+    <div class="row">
+        <div class="col-md-4 col-sm-auto col-12 border border-white">
+            <img class="img-fluid" src="~/images/sanpham/@Model.image" style="height:400px; width:400px;" />
+            <div class="border border-1 pt-2 rounded rounded-3">
+                <div class="p-2" style="margin-left:10px">
+                    <p><b>THÔNG TIN SẢN PHẨM</b></p>
+                    <div class="row">
+                        <table style="width:100%">
+                            <tr>
+                                <th style="color:Highlight">Bảo hành:</th>
+                                <td>Bảo hành 12 tháng</td>
+                            </tr>
+                            <tr>
+                                <th style="color:Highlight">Tình trạng:</th>
+                                <td>Còn hàng</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <div class="pt-3">
-                    <div class=" border border-1  rounded rounded-3 ">
-                        <div class="pt-2">
-                            <center><p><b>Để được hỗ trợ tốt nhất xin hãy gọi</b></p></center>
-                            <center><h1 style="color:red;font-size:28px;"><b>0989.969.919</b></h1></center>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-12 pt-3">
-                    <div style="margin: auto auto auto 37px">
-                        <img src="~/images/quangcao/quangcao4.png" style="height:235px; width:235px;" /> <br /><br />
-                    </div>
-                </div>
-
             </div>
         </div>
 
-    </div>
+        <div class="col-md-4 pt-3">
+            <h3 class="mt-3"><b>@Model.productName</b></h3>
+            <p style="font-size:large">Loại: @Model.Category.categoryName</p>
+            <p style="font-size:large">Thương hiệu: @Model.Brand.brandName</p>
+            <p class="mt-2" style="color:red;font-size:28px;"><b>@Model.productPrice VND</b></p>
+            <a href="#" class="btn border border-primary mt-2 text-primary" style="width:auto;">
+                <i class="fa fa-shopping-cart"></i>
+                <b>Thêm vào giỏ hàng</b>
+            </a>
+            <div class="pt-3">
+                <div class="border border-1  rounded rounded-3">
+                    <div style="margin-left:15px">
+                        <p><b>KHUYẾN MÃI</b></p>
+                        <ul>
+                            <li>Tặng cặp đựng laptop</li>
+                            <li>Tặng chuột không dây</li>
+                            <li>Tặng cặp đựng laptop</li>
+                            <li>Tặng tấm lót chuột</li>
+                            <li>Tặng phiếu hỗ trợ cài đặt phần mềm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 pt-3">
+            <div class="mb-3">
+                <div class=" border border-1  rounded rounded-3 " style="background-color:whitesmoke">
+                    <div class="pt-2" style="margin-left:15px">
+                        <p>Đổi trả trong 30 ngày, thủ tục đơn giản và nhanh chóng</p>
+                        <p>Giao hàng nhanh miễn phí trong nội thành</p>
+                        <p>Bảo hành 12 tháng tận nơi</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class=" border border-1  rounded rounded-3 ">
+                    <div class="pt-2">
+                        <center><p><b>Để được hỗ trợ tốt nhất xin hãy gọi</b></p></center>
+                        <center><h1 style="color:red;font-size:28px;"><b>0989.969.919</b></h1></center>
+                    </div>
+                </div>
+            </div>
+            <div style="margin: auto auto auto auto">
+                <img src="~/images/quangcao/quangcao4.png" style="height:235px; width:100%;" /> <br /><br />
+            </div>
+        </div>
+    </div><!--end row-->
+</div> <!--end container-->
+
+<div class="container my-3 border border-1 shadow rounded rounded-3">
+    <div class="fb-comments" data-href="https://localhost:44354/ProductDetail/index/@Model.productID" data-width="1288" data-numposts="5"></div>
 </div>
 
+<div class="container my-3 border border-1 shadow rounded rounded-3">
+    <h3 class="mt-3"><b>Sản phẩm cùng loại</b></h3>
+    <hr />
+    <div class="row">
+        @{
+            int index = 0;
+            foreach (var item in (List<Product>)ViewBag.Products)
+            {
+                if (item.categoryID == Model.categoryID)
+                {
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-title">@item.productName</p>
+                                <p class="card-text text-danger fw-bold">@item.productPrice VND</p>
+                                <a href="#" class="btn btn-primary">Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                index++;
+            }
+        }
+    </div>
+</div>
