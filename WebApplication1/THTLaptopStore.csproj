@@ -152,6 +152,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\bia\anhbia.jpg" />
     <Content Include="Public\CSS\LayoutAdmin.css" />
     <Content Include="Public\js\LayoutAdmin.js" />
     <Content Include="Content\bootstrap.min.css" />
