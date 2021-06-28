@@ -8,7 +8,7 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="~/CSS/style.css" rel="stylesheet" />
+    <link href="~/Public/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -28,8 +28,13 @@
                     <li class="nav-item">
                         <i class="fa fa-search fa-2x" style="margin-left:170px" aria-hidden="true"></i>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item dropdown">
                         <i class="fa fa-user fa-2x" style="margin-left:20px" aria-hidden="true"></i>
+                        <div class="dropdown-content" aria-labelledby="dropdownMenuButton1">
+                            <a class="dropdown-item" href="@Url.Action("Index","Login")">Đăng nhập</a>
+                            <a class="dropdown-item" href="#">Đăng ký</a>
+                            <a class="dropdown-item" href="#">Thông tin tài khoản</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <i class="fa fa-shopping-cart fa-2x" style="margin-left:20px" aria-hidden="true"></i><b>(0)</b>
@@ -38,13 +43,12 @@
 
             </div>
         </nav>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #363636 ">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #363636">
             <div class="container">
-
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav" style="margin: 5px auto 0px auto ">
                         <li class="nav-item">
-                            <a class="nav-link active" style="color:white" href="#"><b>TRANG CHỦ</b></a>
+                            <a class="nav-link active" style="color:white" href="@Url.Action("Home","Home")"><b>TRANG CHỦ</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>SẢN PHẨM</b></a>
@@ -64,7 +68,6 @@
                         <li class="nav-item">
                             <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>LIÊN HỆ</b></a>
                         </li>
-
                     </ul>
                 </div>
             </div>
