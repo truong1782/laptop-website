@@ -11,7 +11,12 @@ namespace WebApplication1.Models.Data
     {
         public int contactID { get; set; }
 
-        public int userID { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string fullName { get; set; }
+
+        [StringLength(50)]
+        public string email { get; set; }
 
         [Required]
         [StringLength(30)]
@@ -24,7 +29,5 @@ namespace WebApplication1.Models.Data
         public DateTime dateCreate { get; set; }
 
         public bool status { get; set; }
-
-        public virtual User User { get; set; }
     }
 }

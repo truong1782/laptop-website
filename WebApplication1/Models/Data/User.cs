@@ -12,7 +12,6 @@ namespace WebApplication1.Models.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            Contacts = new HashSet<Contact>();
             Orders = new HashSet<Order>();
         }
 
@@ -47,9 +46,6 @@ namespace WebApplication1.Models.Data
         public bool? gender { get; set; }
 
         public DateTime? dateOfBirth { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contact> Contacts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

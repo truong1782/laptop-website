@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
                     <img src="~/images/logo/logotht1.png" style="height:70px; width:290px;" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,15 +26,12 @@
                     <li class="nav-item">
                         <marquee><b>| CUNG CẤP SẢN PHẨM CHẤT LƯỢNG |</b></marquee>
                     </li>
-                    <li class="nav-item">
-                        <i class="fa fa-search fa-2x" style="margin-left:170px" aria-hidden="true"></i>
-                    </li>
                     <li class="nav-item dropdown">
                         <i class="fa fa-user fa-2x" style="margin-left:20px" aria-hidden="true"></i>
                         <div class="dropdown-content" aria-labelledby="dropdownMenuButton1">
-                            <a class="dropdown-item" href="@Url.Action("Index","Login")">Đăng nhập</a>
-                            <a class="dropdown-item" href="#">Đăng ký</a>
-                            <a class="dropdown-item" href="#">Thông tin tài khoản</a>
+                            <a class="dropdown-item" href="@Url.Action("Login","Account")">Đăng nhập</a>
+                            <a class="dropdown-item" href="@Url.Action("SignUp","Account")">Đăng ký</a>
+                            <a class="dropdown-item" href="@Url.Action("CustomerInformation","User")">Thông tin khách hàng</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -52,7 +49,7 @@
                             <a class="nav-link active" style="color:white" href="@Url.Action("Index","Home")"><b>TRANG CHỦ</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("Index","Product")"><b>SẢN PHẨM</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("ProductPage","Product")"><b>SẢN PHẨM</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>LINH KIỆN</b></a>

@@ -10,10 +10,10 @@ namespace WebApplication1.Controllers
     {
         // GET: ProductDetail
         DBContext db = new DBContext();
-        public ActionResult Index(int id)
+        public ActionResult ProductDetailPage(int id)
         {
-            ViewBag.Products = db.Product.Take(4).ToList();
-            return View(db.Product.Find(id));
+            ViewBag.Products = db.Products.Take(4).ToList();
+            return View(db.Products.Find(id));
         }
     }
 }

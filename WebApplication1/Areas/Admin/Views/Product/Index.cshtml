@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<WebApplication1.Models.Data.Product>
-
+@using System.Globalization
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -63,8 +63,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.productName)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.productPrice)
+                    <td style="white-space: nowrap;">
+                        @*@Html.DisplayFor(modelItem => item.productPrice)*@
+                        @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.productDetail)
@@ -78,7 +79,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.dateCreate)
                     </td>
-                    <td>
+                    <td style="white-space: nowrap;">
                         <a class="btn btn-primary fa fa-pencil-square-o" href="@Url.Action("Edit", "Product", new {id = item.productID })"></a>
                         <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("", "")"></a>
                         <a class="btn btn-danger fa fa-times-circle-o" onclick="return confirmAction()" href="@Url.Action("Delete", "Product", new {id = item.productID })"></a>
