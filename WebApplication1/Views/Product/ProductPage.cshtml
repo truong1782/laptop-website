@@ -58,12 +58,11 @@
                     {
 
                         <div class="col-md-3 col-6 mb-3">
-                            <a href="@Url.Action("index","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
+                            <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
                                 <div class="card">
                                     <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
                                     <div class="card-body">
-                                        <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                        <b>@item.productName</b></p>
+                                        <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
                                         <p class="card-text text-danger fw-bold float-start">
                                             @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
                                         </p>

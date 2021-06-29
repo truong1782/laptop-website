@@ -14,36 +14,44 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <nav class="navbar navbar-light bg-white p-0">
             <div class="container">
-                <a class="navbar-brand" href="@Url.Action("Index","Home")">
-                    <img src="~/images/logo/logotht1.png" style="height:70px; width:290px;" />
+                <a class="navbar-brand p-0">
+                    <img src="~/images/logo/logotht.PNG" alt="" style="width:120px; height:50px" />
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <ul class="navbar-nav" style="margin-left:auto;margin-right:auto">
-                    <li class="nav-item">
-                        <marquee><b>| CUNG CẤP SẢN PHẨM CHẤT LƯỢNG |</b></marquee>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <i class="fa fa-user fa-2x" style="margin-left:20px" aria-hidden="true"></i>
-                        <div class="dropdown-content" aria-labelledby="dropdownMenuButton1">
-                            <a class="dropdown-item" href="@Url.Action("Login","Account")">Đăng nhập</a>
-                            <a class="dropdown-item" href="@Url.Action("SignUp","Account")">Đăng ký</a>
-                            <a class="dropdown-item" href="@Url.Action("CustomerInformation","User")">Thông tin khách hàng</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <i class="fa fa-shopping-cart fa-2x" style="margin-left:20px" aria-hidden="true"></i><b>(0)</b>
-                    </li>
-                </ul>
-
+                <div class="nav-item d-inline-flex">
+                    <marquee width="700px"><b>SĐT: 0123456789 - Cam kết chính hãng</b></marquee>
+                </div>
+                <div class="d-flex">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle text-dark" id="dropdownMenuButton1"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"
+                           style="text-decoration:none">
+                            Nguyễn Quang Trường
+                            <img class="border border-dark rounded-3" src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="48" height="48" />
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                    <p style="margin: 0px">
+                        <span>
+                            <i class="fa fa-shopping-cart fa-2x"></i>
+                        </span>
+                        <b>(0)</b>
+                    </p>
+                </div>
             </div>
         </nav>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #363636">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #363636">
             <div class="container">
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav" style="margin: 5px auto 0px auto ">
                         <li class="nav-item">
                             <a class="nav-link active" style="color:white" href="@Url.Action("Index","Home")"><b>TRANG CHỦ</b></a>
@@ -66,6 +74,14 @@
                         <li class="nav-item">
                             <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>LIÊN HỆ</b></a>
                         </li>
+                        <li>
+                            <form class="d-flex">
+                                <input class="form-control me-2  w-100" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-light text-dark" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -78,23 +94,22 @@
 
     <footer>
         <div class="container-fluid" style="background-color: #E8E8E8">
+            <img src="~/images/bia/bia5.PNG" style="width:100%; height:100%" />
             <div class="row">
-                <img  src="~/images/bia/bia5.PNG" style="width:100%; height:100%" />
-                <div class="col-2">
-
-                </div>
-                <div class="col-3 pt-3">
-                    <a class="nav-link active" style="color:black" href="#"><b>CỬA HÀNG</b></a>
+                <div class="col-3">
                     <img src="~/images/logo/logotht.png" style="height:150px; width:350px;" />
                 </div>
-                <div class="col-3 pt-3">
+                <div class="col-md-3 pt-3">
+                    <a class="nav-link active" style="color:black" href="#"><b>CỬA HÀNG</b></a>
+                </div>
+                <div class="col-md-3 pt-3">
                     <a class="nav-link active" style="color:black" href="#"><b>CHÍNH SÁCH</b></a>
                     <a class="nav-link active" style="color:dimgray" href="#">Về chúng tôi</a>
                     <a class="nav-link active" style="color:dimgray" href="#">Chính sách quy định chung</a>
                     <a class="nav-link active" style="color:dimgray" href="#">Điều kiện bảo hành</a>
                     <a class="nav-link active" style="color:dimgray" href="#">Chính sách bảo hành</a>
                 </div>
-                <div class="col-3 pt-3">
+                <div class="col-md-3 pt-3">
                     <a class="nav-link active" style="color:black" href="#"><b>HỖ TRỢ</b></a>
                     <a class="nav-link active" style="color:dimgray" href="#">Tổng đài tư vấn: 0989969919</a>
                     <a class="nav-link active" style="color:dimgray" href="#">Tư vấn mua hàng: 0123456789</a>
@@ -109,7 +124,6 @@
         </div>
     </footer>
 
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>

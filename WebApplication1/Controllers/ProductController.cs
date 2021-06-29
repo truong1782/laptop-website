@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
             ViewBag.Categories = db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
             ViewBag.productTitle = db.Categories.Find(id).categoryName;
-            return View("Index", products);
+            return View("ProductPage", products);
         }
 
         public ActionResult filterByBrand(int id)
@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
             ViewBag.Categories = db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
             ViewBag.productTitle = "Laptop " + db.Brands.Find(id).brandName;
-            return View("Index", products);
+            return View("ProductPage", products);
         }
 
     }
