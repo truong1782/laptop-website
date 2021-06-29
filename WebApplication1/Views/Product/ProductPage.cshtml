@@ -1,0 +1,81 @@
+﻿@using WebApplication1.Models.Data
+@using System.Globalization
+@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <p style="font-size:larger"><b>@ViewBag.productTitle <span>(@Model.ToList().Count)</span></b></p>
+        </div>
+        <div class="col-md-7"></div>
+        <div class="col-md-2">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle btn-light float-end" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="padding:10px">
+                    Bộ lọc
+                </a>
+                <div class="dropdown-content" aria-labelledby="dropdownMenuButton1" style="margin-top:50px;">
+                    <a class="dropdown-item" href="#"><i class="fa fa-angle-down mx-1" aria-hidden="true"></i>Giá giảm dần</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-angle-up mx-1" aria-hidden="true"></i>Giá tăng dần</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 " style="margin-top:10px">
+            <div class="list-group mb-3">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Loại sản phẩm
+                </button>
+                @foreach (var item in (List<Category>)ViewBag.Categories)
+                {
+                    <a class="btn list-group-item list-group-item-action" href="@Url.Action("filterByCategory","Product",new {id = item.categoryID })">@item.categoryName</a>
+                }
+            </div>
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Thương hiệu
+                </button>
+                @foreach (var item in (List<Brand>)ViewBag.Brands)
+                {
+                    <a class="btn list-group-item list-group-item-action" href="@Url.Action("filterByBrand","Product",new {id = item.brandID })">@item.brandName</a>
+                }
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="row my-2">
+                <div class="col-md-10">
+
+                </div>
+                <div class="col-md-2">
+
+                </div>
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col-md-3 col-6 mb-3">
+                            <a href="@Url.Action("index","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
+                                <div class="card">
+                                    <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <b>@item.productName</b></p>
+                                        <p class="card-text text-danger fw-bold float-start">
+                                            @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

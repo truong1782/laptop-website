@@ -14,14 +14,14 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index()
         {
-            var productList = db.Product.ToList();
+            var productList = db.Products.ToList();
             return View(productList);
         }
 
         public ActionResult Create()
         {
-            ViewBag.Category = db.Category.ToList();
-            ViewBag.Brand = db.Brand.ToList();
+            ViewBag.Category = db.Categories.ToList();
+            ViewBag.Brand = db.Brands.ToList();
             return View();
         }
 
@@ -36,13 +36,13 @@ namespace WebApplication1.Areas.Admin.Controllers
                 fileName += extension;
                 productInfo.image = fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
-                db.Product.Add(productInfo);
+                db.Products.Add(productInfo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             else {
                 productInfo.image = "none.png";
-                db.Product.Add(productInfo);
+                db.Products.Add(productInfo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -51,9 +51,9 @@ namespace WebApplication1.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            Product prod = db.Product.Find(id);
-            ViewBag.Category = db.Category.ToList();
-            ViewBag.Brand = db.Brand.ToList();
+            Product prod = db.Products.Find(id);
+            ViewBag.Category = db.Categories.ToList();
+            ViewBag.Brand = db.Brands.ToList();
             return View(prod);
         }
 
@@ -77,8 +77,8 @@ namespace WebApplication1.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            Product pro = db.Product.Find(id);
-            db.Product.Remove(pro);
+            Product pro = db.Products.Find(id);
+            db.Products.Remove(pro);
             db.SaveChanges();
             return RedirectToAction("Index");
 

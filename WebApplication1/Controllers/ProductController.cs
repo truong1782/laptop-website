@@ -10,29 +10,29 @@ namespace WebApplication1.Controllers
     {
         DBContext db = new DBContext();
         // GET: Product
-        public ActionResult Index()
+        public ActionResult ProductPage()
         {
-            ViewBag.Categories = db.Category.ToList();
-            ViewBag.Brands = db.Brand.ToList();
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
             ViewBag.productTitle = "Tất cả sản phẩm";
-            return View(db.Product.ToList());
+            return View(db.Products.ToList());
         }
 
         public ActionResult filterByCategory(int id)
         {
-            List<Product> products = db.Product.Where(p => p.categoryID == id).ToList();
-            ViewBag.Categories = db.Category.ToList();
-            ViewBag.Brands = db.Brand.ToList();
-            ViewBag.productTitle = db.Category.Find(id).categoryName;
+            List<Product> products = db.Products.Where(p => p.categoryID == id).ToList();
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
+            ViewBag.productTitle = db.Categories.Find(id).categoryName;
             return View("Index", products);
         }
 
         public ActionResult filterByBrand(int id)
         {
-            List<Product> products = db.Product.Where(p => p.brandID == id).ToList();
-            ViewBag.Categories = db.Category.ToList();
-            ViewBag.Brands = db.Brand.ToList();
-            ViewBag.productTitle = "Laptop " + db.Brand.Find(id).brandName;
+            List<Product> products = db.Products.Where(p => p.brandID == id).ToList();
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
+            ViewBag.productTitle = "Laptop " + db.Brands.Find(id).brandName;
             return View("Index", products);
         }
 

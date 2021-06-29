@@ -5,7 +5,7 @@ namespace WebApplication1.Models.Data
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    using System.Web;
+
     [Table("Product")]
     public partial class Product
     {
@@ -25,13 +25,12 @@ namespace WebApplication1.Models.Data
         [StringLength(50)]
         public string productName { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal productPrice { get; set; }
+        public int productPrice { get; set; }
 
-        [Column(TypeName = "text")]
+        [StringLength(255)]
         public string productDetail { get; set; }
 
-        [StringLength(55)]
+        [StringLength(200)]
         public string image { get; set; }
 
         public DateTime? dateCreate { get; set; }

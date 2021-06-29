@@ -12,15 +12,15 @@ namespace WebApplication1.Models.Data
         {
         }
 
-        public virtual DbSet<Brand> Brand { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Contact> Contact { get; set; }
-        public virtual DbSet<Discount> Discount { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetail { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -72,14 +72,6 @@ namespace WebApplication1.Models.Data
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Product>()
-                .Property(e => e.productPrice)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Product>()
-                .Property(e => e.productDetail)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Product>()
                 .Property(e => e.image)
                 .IsFixedLength();
 
@@ -117,11 +109,6 @@ namespace WebApplication1.Models.Data
             modelBuilder.Entity<User>()
                 .Property(e => e.image)
                 .IsFixedLength();
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Contacts)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Orders)
