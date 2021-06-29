@@ -16,21 +16,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle btn-light" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="padding:10px">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Sản phẩm
-                        </button>
-                        <div class="dropdown-content" aria-labelledby="dropdownMenuButton1">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Danh mục</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Thương hiệu</a>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Tất cả sản phẩm</a></li>
+                            <li><a class="dropdown-item" href="#">Loại sản phẩm</a></li>
+                            <li><a class="dropdown-item" href="#">Thương hiệu</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Khuyến mãi</a>
@@ -44,18 +38,18 @@
                 </ul>
             </div>
             <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Nguyễn Quang Trường</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <i aria-hidden="true">
-                        <img src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="50" height="50" />
-                    </i>
-                    <div class="dropdown-content" aria-labelledby="dropdownMenuButton1">
-                        <a class="dropdown-item" href="#">Thông tin cá nhân</a>
-                        <a class="dropdown-item" href="#">Cài đặt</a>
-                        <a class="dropdown-item" href="#">Đăng xuất</a>
-                    </div>
+                <li class="dropdown">
+                    <a class="dropdown-toggle text-dark" id="dropdownMenuButton1"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false"
+                       style="text-decoration:none">
+                        <b>Nguyễn Quang Trường</b>
+                        <img class="border border-2 border-dark rounded-3" src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="48" height="48" />
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("","Account")">Thông tin tài khoản</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -67,9 +61,8 @@
         <center><b>&copy; @DateTime.Now.Year - by THT Store</b></center>
     </footer>
     @RenderSection("scripts", required: false)
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Public/js/Admin/LayoutAdmin.js"></script>
 </body>
 </html>

@@ -49,6 +49,9 @@
                     @Html.DisplayNameFor(model => model.dateCreate)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.amount)
+                </th>
+                <th>
                     Thao tác
                 </th>
             </tr>
@@ -78,6 +81,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.dateCreate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount)
                     </td>
                     <td style="white-space: nowrap;">
                         <a class="btn btn-primary fa fa-pencil-square-o" href="@Url.Action("Edit", "Product", new {id = item.productID })"></a>

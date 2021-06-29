@@ -35,6 +35,8 @@ namespace WebApplication1.Models.Data
 
         public DateTime? dateCreate { get; set; }
 
+        public int? amount { get; set; }
+
         public virtual Brand Brand { get; set; }
 
         public virtual Category Category { get; set; }

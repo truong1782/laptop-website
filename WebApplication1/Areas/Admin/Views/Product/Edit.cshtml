@@ -62,6 +62,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label fw-bold" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group mb-3">
