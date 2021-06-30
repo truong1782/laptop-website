@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> THT Laptop Store </title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="~/fonts/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/solid.min.css" rel="stylesheet" />
     <link href="~/Public/css/style.css" rel="stylesheet" />
     <link href="~/Public/css/productDetail.css" rel="stylesheet" />
 </head>
@@ -23,37 +25,41 @@
                     <marquee width="700px"><b>SĐT: 0123456789 - Cam kết chính hãng</b></marquee>
                 </div>
                 <div class="d-flex">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle text-dark" id="dropdownMenuButton1"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false"
-                           style="text-decoration:none">
-                            <b>Nguyễn Quang Trường</b>
-                            <img class="border border-2 border-dark rounded-3" src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="48" height="48" />
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="@Url.Action("SignUp","Account")">Đăng ký</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Login","Account")">Đăng nhập</a></li>
-                            <li><a class="dropdown-item" href="">Đăng xuất</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("","Account")">Thông tin tài khoản</a></li>
-                        </ul>
-                    </div>
-                    <p style="margin: 0px">
-                        <span>
-                            <i class="fa fa-shopping-cart fa-2x"></i>
-                        </span>
+                    @if (Session["userID"] != null)
+                    {
+                        <div class="dropdown">
+                            <div class="btn dropdown-toggle text-dark p-0" id="dropdownMenuButton1"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false"
+                               style="text-decoration:none">
+                                <img class="border border-2 border-dark rounded-circle" src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="48" height="48" />
+                                <b>@Session["fullName"]</b>
+                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="@Url.Action("","Account")">Thông tin tài khoản</a></li>
+                                <li><a class="dropdown-item" href="">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <a class="nav-link px-1 pt-1  text-dark" href="@Url.Action("SignUp","Account")">Đăng ký</a>
+                        <a class="nav-link px-2 pt-1 text-dark" href="@Url.Action("Login","Account")">Đăng nhập</a>
+                    }
+                    <a class="nav-link p-0 text-dark mx-2" href="#">
+                        <i class="fas fa-shopping-cart fa-2x pt-1"></i>
                         <b>(0)</b>
-                    </p>
+                    </a>
                 </div>
             </div>
         </nav>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #363636">
-            <div class="container">
+            <div class="container px-0">
                 <button class="navbar-toggler border-white border-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav" >
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" style="color:white" href="@Url.Action("Index","Home")"><b>TRANG CHỦ</b></a>
                         </li>
@@ -77,7 +83,7 @@
                         </li>
                         <li>
                             <form class="d-flex">
-                                <input class="form-control me-2  w-100" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                                <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 270px">
                                 <button class="btn btn-light text-dark" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>

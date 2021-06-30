@@ -12,20 +12,21 @@
             <p style="font-size:larger"><b>@ViewBag.productTitle <span>(@Model.ToList().Count)</span></b></p>
         </div>
         <div class="col-md-7"></div>
-        <div class="col-md-2">
+        <div class="col-md-2 px-4">
             <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle btn-light float-end" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="padding:10px">
+                <button class="btn btn-primary text-white dropdown-toggle float-end" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Bộ lọc
-                </a>
-                <div class="dropdown-content" aria-labelledby="dropdownMenuButton1" style="margin-top:50px;">
-                    <a class="dropdown-item" href="#"><i class="fa fa-angle-down mx-1" aria-hidden="true"></i>Giá giảm dần</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-angle-up mx-1" aria-hidden="true"></i>Giá tăng dần</a>
-                </div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-chevron-down"></i>Giá giảm dần</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-chevron-up"></i>Giá tăng dần</a></li>
+                    <li><a class="dropdown-item" href="#">Mới nhất</a></li>
+                </ul>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-3 " style="margin-top:10px">
+        <div class="col-md-3" style="margin-top:10px">
             <div class="list-group mb-3">
                 <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
                     Loại sản phẩm
@@ -45,20 +46,14 @@
                 }
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-md-9 px-0">
             <div class="row my-2">
-                <div class="col-md-10">
-
-                </div>
-                <div class="col-md-2">
-
-                </div>
                 <div class="row">
                     @foreach (var item in Model)
                     {
 
                         <div class="col-md-3 col-6 mb-3">
-                            <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
+                            <a href="@Url.Action("ProductDetailPage","ProducctDetail",new {id = item.productID })" style="text-decoration: none;">
                                 <div class="card">
                                     <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
                                     <div class="card-body">
