@@ -20,6 +20,15 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection frm)
         {
+            var userName = frm["userName"];
+            var password = frm["password"];
+            User user=  db.Users.SingleOrDefault(u => u.userName == userName && u.password == password);
+            if (user != null)
+            {
+                Session["userID"] = user.userID;
+                Session["fullName"] = user.fullName;
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
