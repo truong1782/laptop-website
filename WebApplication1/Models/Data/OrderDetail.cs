@@ -21,8 +21,7 @@ namespace WebApplication1.Models.Data
 
         public int quantity { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal amountMoney { get; set; }
+        public int amountMoney { get; set; }
 
         public virtual Order Order { get; set; }
 

@@ -20,6 +20,13 @@ namespace WebApplication1.Areas.Admin
                 new { action = "Index", id = UrlParameter.Optional },
                 new[] { "WebApplication1.Areas.Admin.Controllers" }
             );
+
+            context.MapRoute(
+                "Admin_login",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+                new[] { "WebApplication1.Areas.Admin.Controllers" }
+            );
         }
     }
 }

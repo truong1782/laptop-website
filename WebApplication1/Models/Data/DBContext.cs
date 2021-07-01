@@ -56,21 +56,9 @@ namespace WebApplication1.Models.Data
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.reduceMoney)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Order>()
-                .Property(e => e.totalMoney)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Order>()
                 .HasMany(e => e.OrderDetails)
                 .WithRequired(e => e.Order)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<OrderDetail>()
-                .Property(e => e.amountMoney)
-                .HasPrecision(19, 4);
 
             modelBuilder.Entity<Product>()
                 .Property(e => e.image)
@@ -80,11 +68,6 @@ namespace WebApplication1.Models.Data
                 .HasMany(e => e.OrderDetails)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Role>()
-                .Property(e => e.roleName)
-                .IsFixedLength()
-                .IsUnicode(false);
 
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.Users)
