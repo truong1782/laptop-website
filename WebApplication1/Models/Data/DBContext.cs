@@ -36,24 +36,12 @@ namespace WebApplication1.Models.Data
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Contact>()
-                .Property(e => e.detail)
-                .IsUnicode(false);
+                .Property(e => e.phone)
+                .IsFixedLength();
 
             modelBuilder.Entity<Discount>()
                 .Property(e => e.discountCode)
                 .IsFixedLength();
-
-            modelBuilder.Entity<Discount>()
-                .Property(e => e.value)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Discount>()
-                .Property(e => e.conditionMoney)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Discount>()
-                .Property(e => e.note)
-                .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
                 .HasMany(e => e.OrderDetails)

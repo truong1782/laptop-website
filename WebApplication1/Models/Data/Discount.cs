@@ -15,13 +15,11 @@ namespace WebApplication1.Models.Data
         [StringLength(30)]
         public string discountCode { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal value { get; set; }
+        public int value { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal conditionMoney { get; set; }
+        public int conditionMoney { get; set; }
 
-        [Column(TypeName = "text")]
+        [Column(TypeName = "ntext")]
         public string note { get; set; }
     }
 }
