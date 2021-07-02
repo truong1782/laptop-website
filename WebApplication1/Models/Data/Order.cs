@@ -19,11 +19,9 @@ namespace WebApplication1.Models.Data
 
         public int userID { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal? reduceMoney { get; set; }
+        public int? reduceMoney { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal totalMoney { get; set; }
+        public int totalMoney { get; set; }
 
         public DateTime dateCreate { get; set; }
 

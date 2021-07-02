@@ -4,7 +4,9 @@
     <title>@Page.Title</title>
     @RenderSection("head", required: false)
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/solid.min.css" rel="stylesheet" />
     <link href="~/Public/css/Admin/LayoutAdmin.css" rel="stylesheet" />
 </head>
 <body>
@@ -21,10 +23,13 @@
                             Sản phẩm
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Tất cả sản phẩm</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Product")">Tất cả sản phẩm</a></li>
                             <li><a class="dropdown-item" href="#">Loại sản phẩm</a></li>
                             <li><a class="dropdown-item" href="#">Thương hiệu</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Employee", "Employee")">Nhân viên</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Khuyến mãi</a>
@@ -43,11 +48,11 @@
                        data-bs-toggle="dropdown"
                        aria-expanded="false"
                        style="text-decoration:none">
-                        <b>Nguyễn Quang Trường</b>
+                        <b>@Session["fullname"]</b>
                         <img class="border border-2 border-dark rounded-3" src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="48" height="48" />
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
                         <li><a class="dropdown-item" href="@Url.Action("","Account")">Thông tin tài khoản</a></li>
                     </ul>
                 </li>

@@ -20,7 +20,7 @@ namespace WebApplication1.Models.Data
         public int roleID { get; set; }
 
         [Required]
-        [StringLength(55)]
+        [StringLength(100)]
         public string fullName { get; set; }
 
         [Required]
@@ -37,7 +37,7 @@ namespace WebApplication1.Models.Data
         [StringLength(10)]
         public string phoneNumber { get; set; }
 
-        [StringLength(55)]
+        [StringLength(100)]
         public string address { get; set; }
 
         [StringLength(55)]
@@ -45,6 +45,8 @@ namespace WebApplication1.Models.Data
 
         public bool? gender { get; set; }
 
+        [Column(TypeName = "date")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? dateOfBirth { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

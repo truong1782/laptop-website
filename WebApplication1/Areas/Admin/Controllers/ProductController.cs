@@ -12,6 +12,8 @@ namespace WebApplication1.Areas.Admin.Controllers
     {
         DBContext db = new DBContext();
         // GET: Admin/Product
+
+    
         public ActionResult Index()
         {
             var productList = db.Products.ToList();
