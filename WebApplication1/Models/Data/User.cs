@@ -20,7 +20,7 @@ namespace WebApplication1.Models.Data
         public int roleID { get; set; }
 
         [Required]
-        [StringLength(55)]
+        [StringLength(100)]
         public string fullName { get; set; }
 
         [Required]
@@ -37,7 +37,7 @@ namespace WebApplication1.Models.Data
         [StringLength(10)]
         public string phoneNumber { get; set; }
 
-        [StringLength(55)]
+        [StringLength(100)]
         public string address { get; set; }
 
         [StringLength(55)]

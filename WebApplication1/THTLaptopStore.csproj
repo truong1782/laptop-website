@@ -130,10 +130,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -259,7 +258,6 @@
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
     <Content Include="fonts\webfonts\fa-brands-400.eot" />
     <Content Include="fonts\webfonts\fa-brands-400.ttf" />
     <Content Include="fonts\webfonts\fa-brands-400.woff" />
@@ -273,7 +271,8 @@
     <Content Include="fonts\webfonts\fa-solid-900.woff" />
     <Content Include="fonts\webfonts\fa-solid-900.woff2" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Employee.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Employee.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\insertEmployee.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />

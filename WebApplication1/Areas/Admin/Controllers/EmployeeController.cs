@@ -8,11 +8,27 @@ namespace WebApplication1.Areas.Admin.Controllers
 {
     public class EmployeeController : Controller
     {
-        // GET: Admin/Employee
         DBContext db = new DBContext();
-        public ActionResult Index()
+        // GET: Admin/User
+        public ActionResult Employee()
         {
-            return View(db.Users.ToList());
+            var allEmployee = db.Users.Where(u => u.roleID != 1 && u.roleID != 2).ToList();
+            return View(allEmployee);
+        }
+
+        [HttpGet]
+        public ActionResult insertEmployee()
+        {
+            ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult insertEmployee(User emp)
+        {
+            db.Users.Add(emp);
+            db.SaveChanges();
+            return RedirectToAction("Employee");
         }
     }
 }
