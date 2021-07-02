@@ -12,8 +12,14 @@ namespace WebApplication1.Controllers
         DBContext db = new DBContext();
         public ActionResult ProductDetailPage(int id)
         {
-            ViewBag.Products = db.Products.Take(4).ToList();
-            return View(db.Products.Find(id));
+            var selectedProduct = db.Products.Find(id);
+            ViewBag.relativeProducts = getRelativeProducts(selectedProduct.categoryID);
+            return View(selectedProduct);
+        }
+
+        private List<Product> getRelativeProducts(int categoryID)
+        {
+            return db.Products.Where(p => p.categoryID == categoryID).Take(4).ToList();
         }
     }
 }

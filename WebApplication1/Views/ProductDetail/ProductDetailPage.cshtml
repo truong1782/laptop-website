@@ -1,59 +1,74 @@
 ﻿@using WebApplication1.Models.Data
+@using System.Globalization
 @model Product
-@{
-    ViewBag.Title = "Chi tiết sản phẩm";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0" nonce="pNQneTc0"></script>
+<div class="container">
+    <h3 class="mt-3"><b>@Model.productName</b></h3>
+</div>
+
 <div class="container my-3 border border-1 shadow rounded rounded-3">
     <div class="row">
         <div class="col-md-4 col-sm-auto col-12 border border-white">
-            <img class="img-fluid" src="~/images/sanpham/@Model.image" style="height:400px; width:400px;" />
-            <div class="border border-1 pt-2 rounded rounded-3">
-                <div class="p-2" style="margin-left:10px">
-                    <p><b>THÔNG TIN SẢN PHẨM</b></p>
-                    <div class="row">
-                        <table style="width:100%">
-                            @*<tr>
-                                <th style="color:Highlight">Bảo hành:</th>
-                                <td>Bảo hành 12 tháng</td>
-                            </tr>
-                            <tr>
-                                <th style="color:Highlight">Tình trạng:</th>
-                                <td>Còn hàng</td>
-                            </tr>*@
-                            @Model.productDetail
-                        </table>
-                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <img class="img-fluid" src="~/images/sanpham/@Model.image" style="height:400px; width:400px;" />
+                </div>
+                <div class="col-md-12">
+                    <p class="text-center"><b>Thông số kỹ thuật</b></p>
+                    @Model.productDetail
                 </div>
             </div>
         </div>
 
         <div class="col-md-4 pt-3">
-            <h3 class="mt-3"><b>@Model.productName</b></h3>
-            <p style="font-size:large">Loại: @Model.Category.categoryName</p>
-            <p style="font-size:large">Thương hiệu: @Model.Brand.brandName</p>
-            <p class="mt-2" style="color:red;font-size:28px;"><b>@Model.productPrice VND</b></p>
-            <a href="#" class="btn border border-primary mt-2 text-primary" style="width:auto;">
-                <i class="fa fa-shopping-cart"></i>
-                <b>Thêm vào giỏ hàng</b>
-            </a>
+            <p class="mt-2" style="color:red;font-size:28px;"><b>@string.Format(new CultureInfo("vi-VN"), "{0:c}", Model.productPrice)</b></p>
+            <div class="border border-1  rounded rounded-3">
+                <div class="pt-1" style="margin-left:10px">
+                    <p><b>THÔNG TIN SẢN PHẨM</b></p>
+                    <div class="row">
+                        <table style="width:100%">
+                            <tr>
+                                <th style="color:Highlight">Thương hiệu:</th>
+                                <td style="font-size:large">@Model.Brand.brandName</td>
+                            </tr>
+                            <tr>
+                                <th style="color:Highlight">Loại:</th>
+                                <td style="font-size:large">@Model.Category.categoryName</td>
+                            </tr>
+                            <tr>
+                                <th style="color:Highlight">Bảo hành:</th>
+                                <td style="font-size:large">Bảo hành 12 tháng</td>
+                            </tr>
+                            <tr>
+                                <th style="color:Highlight">Tình trạng:</th>
+                                <td style="font-size:large">Còn hàng</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="pt-3">
                 <div class="border border-1  rounded rounded-3">
-                    <div style="margin-left:15px">
+                    <div class="pt-1" style="margin-left:15px">
                         <p><b>KHUYẾN MÃI</b></p>
                         <ul>
-                            <li>Tặng cặp đựng laptop</li>
-                            <li>Tặng chuột không dây</li>
-                            <li>Tặng cặp đựng laptop</li>
-                            <li>Tặng tấm lót chuột</li>
-                            <li>Tặng phiếu hỗ trợ cài đặt phần mềm</li>
+                            <li style="font-size:large">Tặng cặp đựng laptop</li>
+                            <li style="font-size:large">Tặng chuột không dây</li>
+                            <li style="font-size:large">Tặng cặp đựng laptop</li>
+                            <li style="font-size:large">Tặng tấm lót chuột</li>
+                            <li style="font-size:large">Tặng phiếu hỗ trợ cài đặt phần mềm</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <a href="#" class="btn border border-primary mt-2 text-primary" style="width:auto;">
+                <i class="fa fa-shopping-cart"></i>
+                <b>Thêm vào giỏ hàng</b>
+            </a>
         </div>
         <div class="col-md-4 pt-3">
             <div class="mb-3">
@@ -73,8 +88,10 @@
                     </div>
                 </div>
             </div>
-            <div style="margin: auto auto auto auto">
-                <img src="~/images/quangcao/quangcao4.png" style="height:235px; width:100%;" /> <br /><br />
+            <div class=" pt-3">
+                <div style="margin: auto auto auto auto">
+                    <img src="~/images/logo/tragop.PNG" style="height:235px; width:100%;" /> <br /><br />
+                </div>
             </div>
         </div>
     </div><!--end row-->
@@ -84,29 +101,29 @@
     <div class="fb-comments" data-href="https://localhost:44354/ProductDetail/index/@Model.productID" data-width="1288" data-numposts="5"></div>
 </div>
 
-<div class="container my-3 border border-1 shadow rounded rounded-3">
-    <h3 class="mt-3"><b>Sản phẩm cùng loại</b></h3>
-    <hr />
+<div class="container mb-3 border border-1 shadow rounded rounded-3">
+    <h3 class="text-center"><b>Sản phẩm cùng loại</b></h3>
+
     <div class="row">
         @{
-            int index = 0;
-            foreach (var item in (List<Product>)ViewBag.Products)
+            foreach (var item in (List<Product>)ViewBag.relativeProducts)
             {
-                if (item.categoryID == Model.categoryID)
-                {
-                    <div class="col-md-3">
+
+                <div class="col-md-3">
+                    <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
                         <div class="card">
                             <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <p class="card-title">@item.productName</p>
-                                <p class="card-text text-danger fw-bold">@item.productPrice VND</p>
-                                <a href="#" class="btn btn-primary">Chi tiết</a>
+                                <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
+                                <p class="card-text text-danger fw-bold float-start">
+                                    @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
+                                </p>
                             </div>
                         </div>
-                    </div>
-                }
-                index++;
-            }
+                    </a>
+                </div> 
+            } 
         }
     </div>
+    <hr />
 </div>

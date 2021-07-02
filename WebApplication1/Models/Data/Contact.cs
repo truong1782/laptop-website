@@ -22,12 +22,15 @@ namespace WebApplication1.Models.Data
         [StringLength(30)]
         public string title { get; set; }
 
-        [Column(TypeName = "text")]
+        [Column(TypeName = "ntext")]
         [Required]
         public string detail { get; set; }
 
         public DateTime dateCreate { get; set; }
 
         public bool status { get; set; }
+
+        [StringLength(12)]
+        public string phone { get; set; }
     }
 }
