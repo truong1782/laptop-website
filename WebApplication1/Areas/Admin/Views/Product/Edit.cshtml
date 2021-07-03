@@ -23,7 +23,6 @@
                             @Html.LabelFor(model => model.productName, htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.productName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.productName, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -58,7 +57,6 @@
                             @Html.LabelFor(model => model.productPrice, htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.productPrice, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.productPrice, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -67,7 +65,6 @@
                             @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -87,7 +84,6 @@
                     @Html.LabelFor(model => model.productDetail, htmlAttributes: new { @class = "control-label fw-bold" })
                     <div class="col-md-12">
                         <textarea class="form-control" name="productDetail" id="productDetail" rows="7">@Model.productDetail</textarea>
-                        @Html.ValidationMessageFor(model => model.productDetail, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

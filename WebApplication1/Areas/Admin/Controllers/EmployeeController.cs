@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models.Data;
+
 namespace WebApplication1.Areas.Admin.Controllers
 {
     public class EmployeeController : Controller
@@ -19,7 +20,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             return View(allEmployee);
         }
 
-        [HttpGet]
+        
         public ActionResult insertEmployee()
         {
             ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
@@ -42,7 +43,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
             else
             {
-                emp.image = "none.png";
+                emp.image = "default-employee.jpg";
                 db.Users.Add(emp);
                 db.SaveChanges();
                 return RedirectToAction("Employee");
@@ -77,7 +78,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             var selectedEmp = db.Users.Find(id);
             db.Users.Remove(selectedEmp);
             db.SaveChanges();
-            return RedirectToAction("Employee","Employee");
+            return RedirectToAction("Employee", "Employee");
         }
 
         public ActionResult uploadImage(FormCollection frm, HttpPostedFileBase ImageUpload)
@@ -91,11 +92,11 @@ namespace WebApplication1.Areas.Admin.Controllers
                 user.image = fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/employee"), fileName));
                 db.SaveChanges();
-                return RedirectToAction("editEmployee","Employee",new {id = Int32.Parse(frm["userID"]) });
+                return RedirectToAction("editEmployee", "Employee", new { id = Int32.Parse(frm["userID"]) });
             }
             else
             {
-                user.image = "none.png";
+                user.image = "default-employee.jpg";
                 db.SaveChanges();
                 return RedirectToAction("editEmployee");
             }

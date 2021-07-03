@@ -22,8 +22,7 @@
                         <div class="form-group mb-3">
                             @Html.LabelFor(model => model.productName, htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.productName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.productName, "", new { @class = "text-danger" })
+                                <input class="form-control w-100" type="text" name="productName" required/>
                             </div>
                         </div>
                     </div>
@@ -31,7 +30,7 @@
                         <div class="form-group mb-3">
                             @Html.LabelFor(model => model.Category.categoryName, "Loại sản phẩm", htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
-                                <select class="form-select" name="categoryID" id="categoryID">
+                                <select class="form-select" name="categoryID" id="categoryID" required>
                                     @foreach (var item in (List<Category>)ViewBag.Category)
                                     {
                                         <option value="@item.categoryID">@item.categoryName</option>
@@ -44,7 +43,7 @@
                         <div class="form-group mb-3">
                             @Html.LabelFor(model => model.Brand.brandName, "Thương hiệu", htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
-                                <select class="form-select" name="brandID" id="brandID">
+                                <select class="form-select" name="brandID" id="brandID" required>
                                     @foreach (var item in (List<Brand>)ViewBag.Brand)
                                     {
                                         <option value="@item.brandID">@item.brandName</option>
@@ -57,8 +56,7 @@
                         <div class="form-group mb-3">
                             @Html.LabelFor(model => model.productPrice, htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.productPrice, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.productPrice, "", new { @class = "text-danger" })
+                                <input class="form-control w-100" type="number" name="productPrice" required min="1000"/>
                             </div>
                         </div>
                     </div>
@@ -66,8 +64,7 @@
                         <div class="form-group mb-3">
                             @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label fw-bold" })
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                                <input class="form-control w-100" type="number" name="amount" required min="0" />
                             </div>
                         </div>
                     </div>
@@ -76,7 +73,7 @@
                     <div class="form-group mb-3">
                         @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label fw-bold" }) <br />
                         <img src="~/images/sanpham/none.png" alt="none.png" id="output" style="width:290px; height:290px;" /> <br />
-                        <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
+                        <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" required/>
                     </div>
                 </div>
             </div>
@@ -84,8 +81,7 @@
                 <div class="form-group mb-3">
                     @Html.LabelFor(model => model.productDetail, htmlAttributes: new { @class = "control-label fw-bold" })
                     <div class="col-md-12">
-                        <textarea class="form-control" name="productDetail" id="productDetail" rows="7"></textarea>
-                        @Html.ValidationMessageFor(model => model.productDetail, "", new { @class = "text-danger" })
+                        <textarea class="form-control" name="productDetail" id="productDetail" rows="7" required></textarea>
                     </div>
                 </div>
             </div>
