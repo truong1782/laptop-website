@@ -4,5 +4,72 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SignUp</h2>
+<style>
+    span {
+        color: red
+    }
+</style>
+<div class="container my-3 rounded rounded-3 border border-2" style="width:40%;">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm())
+            {
+                <h3 class="text-center">ĐĂNG KÝ</h3>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Họ tên</label>
+                    <input type="text" class="form-control" id="username" style="width: 100%" name="Hoten">
+                    <span>@ViewData["loi1"]</span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Tài khoản</label>
+                    <input type="text" class="form-control" id="password" style="width: 100%" name="TaiKhoan">
+                    <span>@ViewData["loi2"]</span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" style="width: 100%" name="MatKhau">
+                    <span>@ViewData["loi3"]</span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Nhập lại mật khẩu</label>
+                    <input type="password" class="form-control" id="password" style="width: 100%" name="XacNhanMatKhau">
+                    <span>@ViewData["loi4"]</span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="password" style="width: 100%" name="Email">
+                    <span>@ViewData["loi5"]</span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Sdt</label>
+                    <input type="tel" class="form-control" id="password" style="width: 100%" name="Sdt">
+                    <span>@ViewData["loi6"]</span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Địa chỉ</label>
+                    <input required type="text" class="form-control" id="password" style="width: 100%" name="DiaChi">
+                    <span>@ViewData["loi7"]</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Giới tính</label><br>
+                    <input required type="radio" id="Nam" name="GioiTinh" value="True">
+                    <label for="Nam">Nam</label><br>
+                    <input required type="radio" id="" name="GioiTinh" value="False">
+                    <label for="Nu">Nữ</label><br>
+                    <span>@ViewData["loi8"]</span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Ngày sinh</label>
+                    <input required type="date" id="password" style="width: 100%" name="NgaySinh">
+                    <span>@ViewData["loi9"]</span>
+                </div>
+
+
+                <div class="mb-2 text-center">
+                    <button type="submit" class="btn btn-primary mb-2" style="width:100%"><b>Đăngký</b></button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 
