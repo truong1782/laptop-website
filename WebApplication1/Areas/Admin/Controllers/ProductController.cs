@@ -62,7 +62,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection frm)
         {
-            var editedProd = new Product();
+            var editedProd = db.Products.Find(Int32.Parse(frm["productID"]));
             editedProd.productName = frm["productName"];
             editedProd.categoryID = Int32.Parse(frm["categoryID"]);
             editedProd.brandID = Int32.Parse(frm["brandID"]);
