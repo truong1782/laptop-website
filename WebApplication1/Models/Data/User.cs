@@ -46,7 +46,8 @@ namespace WebApplication1.Models.Data
         public bool? gender { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? dateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime dateOfBirth { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

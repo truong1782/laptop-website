@@ -134,8 +134,8 @@
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Global.asax.cs">
@@ -274,12 +274,13 @@
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Employee.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\insertEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\editEmployee.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\ProductDetail\ProductDetailPage.cshtml" />
     <Content Include="Views\Product\ProductPage.cshtml" />
-    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Customer\SignUp.cshtml" />
     <Content Include="Views\Contact\ContactPage.cshtml" />
   </ItemGroup>
   <PropertyGroup>

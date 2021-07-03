@@ -45,7 +45,14 @@
                             </tr>
                             <tr>
                                 <th style="color:Highlight">Tình trạng:</th>
-                                <td style="font-size:large">Còn hàng</td>
+                                @if (Model.amount > 0)
+                                {
+                                    <td style="font-size:large; color:blue">Còn hàng</td>
+                                 }
+                                else
+                                {
+                                    <td style="font-size:large; color:red;">Hết hàng</td>
+                                }
                             </tr>
                         </table>
                     </div>
@@ -65,11 +72,22 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn border border-primary mt-2 text-primary" style="width:auto;">
-                <i class="fa fa-shopping-cart"></i>
-                <b>Thêm vào giỏ hàng</b>
-            </a>
+            @if (Model.amount > 0)
+            {
+                <a href="#" class="btn border border-primary my-3 text-primary" style="width:auto;">
+                    <i class="fa fa-shopping-cart"></i>
+                    <b>Thêm vào giỏ hàng</b>
+                </a> 
+             }
+             else
+             {
+                <a href="#" class="btn border border-primary my-3 text-primary disabled text-danger" style="width:auto;">
+                    <i class="fa fa-shopping-cart"></i>
+                    <b>Sản phẩm hết hàng</b>
+                </a>            
+            }
         </div>
+
         <div class="col-md-4 pt-3">
             <div class="mb-3">
                 <div class=" border border-1  rounded rounded-3 " style="background-color:whitesmoke">
@@ -105,25 +123,22 @@
     <h3 class="text-center"><b>Sản phẩm cùng loại</b></h3>
 
     <div class="row">
-        @{
-            foreach (var item in (List<Product>)ViewBag.relativeProducts)
+        @{ foreach (var item in (List<Product>)ViewBag.relativeProducts)
             {
 
-                <div class="col-md-3">
-                    <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
-                        <div class="card">
-                            <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
-                                <p class="card-text text-danger fw-bold float-start">
-                                    @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div> 
-            } 
-        }
+<div class="col-md-3">
+    <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
+        <div class="card">
+            <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
+                <p class="card-text text-danger fw-bold float-start">
+                    @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
+                </p>
+            </div>
+        </div>
+    </a>
+</div> } }
     </div>
     <hr />
 </div>

@@ -5,88 +5,90 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-
-<p class="float-end">
-    <a class="btn btn-success" href="@Url.Action("insertEmployee","Employee")">Thêm mới nhân viên</a>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Hình ảnh
-        </th>
-        <th>
-            Chức vụ
-        </th>
-        <th>
-            Họ tên
-        </th>
-        <th>
-            Tài khoản
-        </th>
-        <th>
-            Mật khẩu
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Số điện thoại
-        </th>
-        <th>
-            Địa chỉ
-        </th>
-        <th>
-            Giới tính
-        </th>
-        <th>
-            Ngày sinh
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="container mt-3" style="background-color: rgb(240,240,240);">
+    <p class="float-end">
+        <a class="btn btn-success mt-3" href="@Url.Action("insertEmployee","Employee")">Thêm mới nhân viên</a>
+    </p>
+    <table class="table table-hover table-bordered bg-white" style="font-size:small;">
         <tr>
-            <td>
-                <img src="~/images/user/employee/default-employee.jpg" alt="" width="50" height="50"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role.roleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.userName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.address)
-            </td>
-            <td>
-                @{
-                    var gioitinh = item.gender == true ? "Nam" : "Nữ";
-
-                }
-                @gioitinh
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dateOfBirth)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.userID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.userID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.userID })
-            </td>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Chức vụ
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Mật khẩu
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/images/user/employee/@item.image" alt="" width="50" height="50" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.roleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.userName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @{
+                        var gioitinh = item.gender == true ? "Nam" : "Nữ";
+
+                    }
+                    @gioitinh
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateOfBirth)
+                </td>
+                <td style="white-space: nowrap;">
+                    <a class="btn btn-primary fas fa-edit" href="@Url.Action("editEmployee","Employee", new { id = @item.userID })"></a>
+                    <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("infoEmployee","Employee", new { id = @item.userID })"></a>
+                    <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteEmployee","Employee", new { id = @item.userID })"></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
