@@ -83,7 +83,6 @@ namespace WebApplication1.Areas.Admin.Controllers
             db.Products.Remove(pro);
             db.SaveChanges();
             return RedirectToAction("Index");
-
         }
     }
 }

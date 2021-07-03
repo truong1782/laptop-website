@@ -274,6 +274,7 @@
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Employee.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\insertEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\editEmployee.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />

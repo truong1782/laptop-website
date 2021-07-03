@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -29,6 +32,59 @@ namespace WebApplication1.Areas.Admin.Controllers
             db.Users.Add(emp);
             db.SaveChanges();
             return RedirectToAction("Employee");
+        }
+
+        [HttpGet]
+        public ActionResult editEmployee(int id)
+        {
+            ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
+            return View(db.Users.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult editEmployee(FormCollection frm)
+        {
+            var emp = db.Users.Find(Int32.Parse(frm["userID"]));
+            //emp.userID = Int32.Parse(frm["userID"]);
+            emp.roleID = Int32.Parse(frm["roleID"]);
+            emp.fullName = frm["fullName"];
+            emp.userName = frm["userName"];
+            emp.password = frm["password"];
+            emp.email = frm["email"];
+            emp.phoneNumber = frm["phoneNumber"];
+            emp.address = frm["address"];
+            emp.gender = bool.Parse(frm["gender"]);
+            db.SaveChanges();
+            return RedirectToAction("Employee");
+        }
+
+        public ActionResult deleteEmployee(int id)
+        {
+            var selectedEmp = db.Users.Find(id);
+            db.Users.Remove(selectedEmp);
+            db.SaveChanges();
+            return RedirectToAction("Employee","Employee");
+        }
+
+        public ActionResult uploadImage(FormCollection frm, HttpPostedFileBase ImageUpload)
+        {
+            var user = db.Users.Find(Int32.Parse(frm["userID"]));
+            if (ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                user.image = fileName;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/employee"), fileName));
+                db.SaveChanges();
+                return RedirectToAction("editEmployee","Employee",new {id = Int32.Parse(frm["userID"]) });
+            }
+            else
+            {
+                user.image = "none.png";
+                db.SaveChanges();
+                return RedirectToAction("editEmployee");
+            }
         }
     }
 }

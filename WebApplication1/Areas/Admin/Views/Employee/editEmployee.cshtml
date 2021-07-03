@@ -1,0 +1,139 @@
+﻿@using WebApplication1.Models.Data
+@model User
+
+@{
+    ViewBag.Title = "editEmployee";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    input {
+        width: 100%;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm())
+            {
+                <h5>Thêm nhân viên</h5>
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.HiddenFor(e => e.userID)
+                    <div class="form-group mb-3">
+                        <label>Chức vụ</label>
+                        <div class="col-md-10">
+                            <select class="form-select" name="roleID" id="roleID">
+                                @foreach (var item in (List<Role>)ViewBag.Roles)
+                                {
+                                    <option value="@item.roleID">@item.roleName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.fullName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" name="fullName" required value="@Model.fullName" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" name="userName" required value="@Model.userName" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control" type="password" name="password" required value="@Model.password" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control" type="email" name="email" required value="@Model.email" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.phoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control" type="tel" name="phoneNumber" value="@Model.phoneNumber" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" name="address" required value="@Model.address" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <img src="~/images/user/employee/@Model.image" alt="@Model.image" width="200" height="200" /> <br />
+                            <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Cập nhật ảnh đại diện
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Giới tính</label>
+                        <div class="col-md-10">
+                            <select class="form-select" name="gender" id="gender">
+                                <option value="True">Nam</option>
+                                <option value="False">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.dateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control" type="date" name="dateOfBirth" required value="@Model.dateOfBirth.ToString("yyyy-MM-dd")" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Cập nhật thông tin" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+            @Html.ActionLink("Quay lại danh sách", "Employee")
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Html.BeginForm("uploadImage", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(e => e.userID)
+                <div class="modal-body text-center">
+                    <img src="~/images/user/employee/@Model.image" alt="@Model.image" id="output" style="width:290px; height:290px;" /> <br />
+                    <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
