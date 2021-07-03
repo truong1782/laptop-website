@@ -10,7 +10,7 @@
             <img class="img-fluid" src="~/images/bia/Business_Analytics_02_generated.jpg" />
         </div>
         <div class="col-md-6">
-            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            @using (Html.BeginForm("Login", "Customer", FormMethod.Post))
             {
                 <h3 class="text-center mt-2"><b>Đăng nhập</b></h3>
                 <div class="mb-3">
@@ -22,7 +22,7 @@
                     <input type="password" name="password" class="form-control border-dark" id="password" style="width: 95%">
                 </div>
                 <div class="mb-3">
-                    Bạn chưa có tài khoản ? <span><a href="@Url.Action("SignUp","Account")">Đăng ký</a></span>
+                    Bạn chưa có tài khoản ? <span><a href="@Url.Action("SignUp","Customer")">Đăng ký</a></span>
                 </div>
                 <div class="mb-1 text-center">
                     <button type="submit" class="btn btn-primary w-75 mx-auto text-center"><b>Đăng nhập</b></button>

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using WebApplication1.Models.Data;
 namespace WebApplication1.Controllers
 {
-    public class AccountController : Controller
+    public class CustomerController : Controller
     {
         // GET: Login
         DBContext db = new DBContext();
