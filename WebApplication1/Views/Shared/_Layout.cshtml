@@ -37,7 +37,7 @@
                             </div>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="@Url.Action("","Account")">Thông tin tài khoản</a></li>
-                                <li><a class="dropdown-item" href="">Đăng xuất</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
                             </ul>
                         </div>
                     }
@@ -79,7 +79,7 @@
                             <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>TIN TỨC</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin: 0px 20px" href="#"><b>LIÊN HỆ</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin: 0px 20px" href="@Url.Action("ContactPage","Contact")"><b>LIÊN HỆ</b></a>
                         </li>
                         <li>
                             <form class="d-flex">
