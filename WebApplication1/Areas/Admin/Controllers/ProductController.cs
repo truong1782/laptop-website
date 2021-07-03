@@ -60,18 +60,16 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product productInfo, HttpPostedFileBase ImageUpload)
+        public ActionResult Edit(FormCollection frm)
         {
-            productInfo.dateCreate = DateTime.Now;
-            if (ImageUpload != null)
-            {
-                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
-                string extension = Path.GetExtension(ImageUpload.FileName);
-                fileName += extension;
-                productInfo.image = fileName;
-                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
-            }
-            db.Entry(productInfo).State = EntityState.Modified;
+            var editedProd = new Product();
+            editedProd.productName = frm["productName"];
+            editedProd.categoryID = Int32.Parse(frm["categoryID"]);
+            editedProd.brandID = Int32.Parse(frm["brandID"]);
+            editedProd.productPrice = Int32.Parse(frm["productPrice"]);
+            editedProd.amount = Int32.Parse(frm["amount"]);
+            editedProd.productDetail = frm["productDetail"];
+            editedProd.dateCreate = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("Index");
 
@@ -83,6 +81,27 @@ namespace WebApplication1.Areas.Admin.Controllers
             db.Products.Remove(pro);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult uploadImage(FormCollection frm,HttpPostedFileBase ImageUpload)
+        {
+            var prod = db.Products.Find(Int32.Parse(frm["productID"]));
+            if (ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                prod.image = fileName;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
+                db.SaveChanges();
+                return RedirectToAction("Edit", "Product", new {id = Int32.Parse(frm["productID"])});
+            }
+            else
+            {
+                prod.image = "none.png";
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
     }
 }
