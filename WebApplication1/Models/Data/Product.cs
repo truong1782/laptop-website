@@ -22,12 +22,10 @@ namespace WebApplication1.Models.Data
         public int brandID { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string productName { get; set; }
 
         public int productPrice { get; set; }
 
-        [StringLength(255)]
         public string productDetail { get; set; }
 
         [StringLength(200)]

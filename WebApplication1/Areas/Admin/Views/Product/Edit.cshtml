@@ -33,7 +33,15 @@
                                 <select class="form-select" name="categoryID" id="categoryID">
                                     @foreach (var item in (List<Category>)ViewBag.Category)
                                     {
-                                        <option value="@item.categoryID">@item.categoryName</option>
+                                        if (item.categoryID == Model.categoryID)
+                                        {
+                                            <option value="@item.categoryID" selected>@item.categoryName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.categoryID">@item.categoryName</option>
+                                        }
+                                        
                                     }
                                 </select>
                             </div>
@@ -46,7 +54,14 @@
                                 <select class="form-select" name="brandID" id="brandID">
                                     @foreach (var item in (List<Brand>)ViewBag.Brand)
                                     {
-                                        <option value="@item.brandID">@item.brandName</option>
+                                        if (item.brandID == Model.brandID)
+                                        {
+                                            <option value="@item.brandID" selected>@item.brandName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.brandID">@item.brandName</option>
+                                        }
                                     }
                                 </select>
                             </div>
