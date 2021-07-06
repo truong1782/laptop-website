@@ -12,14 +12,14 @@ namespace WebApplication1.Models.Data
         public int contactID { get; set; }
 
         [Required]
-        [StringLength(30)]
+        [StringLength(255)]
         public string fullName { get; set; }
 
-        [StringLength(50)]
+        [StringLength(255)]
         public string email { get; set; }
 
         [Required]
-        [StringLength(30)]
+        [StringLength(50)]
         public string title { get; set; }
 
         [Column(TypeName = "ntext")]
@@ -30,6 +30,7 @@ namespace WebApplication1.Models.Data
 
         public bool status { get; set; }
 
+        [Required]
         [StringLength(12)]
         public string phone { get; set; }
     }

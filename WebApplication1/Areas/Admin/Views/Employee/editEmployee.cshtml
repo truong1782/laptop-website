@@ -89,8 +89,16 @@
                         <label>Giới tính</label>
                         <div class="col-md-10">
                             <select class="form-select" name="gender" id="gender">
-                                <option value="True">Nam</option>
-                                <option value="False">Nữ</option>
+                                @if (Model.gender == true)
+                                {
+                                    <option value="True" selected>Nam</option>
+                                    <option value="False">Nữ</option>
+                                }
+                                else
+                                {
+                                    <option value="True">Nam</option>
+                                    <option value="False" selected>Nữ</option>
+                                }
                             </select>
                         </div>
                     </div>

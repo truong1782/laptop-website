@@ -1,0 +1,39 @@
+﻿@model WebApplication1.Models.Data.Brand
+
+@{
+    ViewBag.Title = "insertBrand";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Thêm thương hiệu</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.brandName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input class="form-control mb-3" type="text" name="brandName" required maxlength="50"/>
+                    @Html.ValidationMessageFor(model => model.brandName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Quay lại danh sách", "listBrands")
+    </div>
+</div>
+
+

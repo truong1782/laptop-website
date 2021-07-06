@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
-using System.Web.Mvc;
-using System.Data.Entity;
-using WebApplication1.Models.Data;
 using System.Web;
+using System.Web.Mvc;
+using WebApplication1.Models.Data;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
@@ -13,7 +13,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         DBContext db = new DBContext();
         // GET: Admin/Product
 
-    
+
         public ActionResult Index()
         {
             var productList = db.Products.ToList();
@@ -42,7 +42,8 @@ namespace WebApplication1.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            else {
+            else
+            {
                 productInfo.image = "none.png";
                 db.Products.Add(productInfo);
                 db.SaveChanges();
@@ -83,7 +84,13 @@ namespace WebApplication1.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult uploadImage(FormCollection frm,HttpPostedFileBase ImageUpload)
+        public ActionResult Detail(int id)
+        {
+            Product pro = db.Products.Find(id);
+            return View(pro);
+        }
+
+        public ActionResult uploadImage(FormCollection frm, HttpPostedFileBase ImageUpload)
         {
             var prod = db.Products.Find(Int32.Parse(frm["productID"]));
             if (ImageUpload != null)
@@ -93,8 +100,10 @@ namespace WebApplication1.Areas.Admin.Controllers
                 fileName += extension;
                 prod.image = fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
+
                 db.SaveChanges();
-                return RedirectToAction("Edit", "Product", new {id = Int32.Parse(frm["productID"])});
+
+                return RedirectToAction("Edit", "Product", new { id = Int32.Parse(frm["productID"]) });
             }
             else
             {

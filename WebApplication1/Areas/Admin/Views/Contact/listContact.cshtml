@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebApplication1.Models.Data.Contact>
+
+@{
+    ViewBag.Title = "listContact";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>listContact</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateCreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateCreate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.contactID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.contactID })
+        </td>
+    </tr>
+}
+
+</table>

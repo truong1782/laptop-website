@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebApplication1.Models.Data.Brand>
+
+@{
+    ViewBag.Title = "listBrands";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h4>Danh sách thương hiệu</h4>
+    <p>
+        <a class="btn btn-success" href="@Url.Action("insertBrand", "Brand")">Thêm mới</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.brandName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brandName)
+                </td>
+                <td>
+                    <a class="btn btn-primary fas fa-edit" href="@Url.Action("editBrand", "Brand", new {id = item.brandID })"></a>
+                    <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteBrand", "Brand", new {id = item.brandID })"></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
