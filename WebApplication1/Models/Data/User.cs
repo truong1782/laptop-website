@@ -31,22 +31,24 @@ namespace WebApplication1.Models.Data
         [StringLength(55)]
         public string password { get; set; }
 
+        [Required]
         [StringLength(55)]
         public string email { get; set; }
 
-        [StringLength(10)]
+        [Required]
+        [StringLength(12)]
         public string phoneNumber { get; set; }
 
-        [StringLength(100)]
+        [Required]
+        [StringLength(255)]
         public string address { get; set; }
 
-        [StringLength(55)]
+        [StringLength(255)]
         public string image { get; set; }
 
-        public bool? gender { get; set; }
+        public bool gender { get; set; }
 
         [Column(TypeName = "date")]
-        [DataType(DataType.Date)]
         public DateTime dateOfBirth { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

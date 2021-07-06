@@ -86,7 +86,7 @@
                     </td>
                     <td style="white-space: nowrap;">
                         <a class="btn btn-primary fas fa-edit" href="@Url.Action("Edit", "Product", new {id = item.productID })"></a>
-                        <a class="btn btn-info fa fa-info-circle text-white" href="#"></a>
+                        <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("Detail", "Product", new {id = item.productID })"></a>
                         <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("Delete", "Product", new {id = item.productID })"></a>
                     </td>
                 </tr>

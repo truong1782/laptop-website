@@ -1,0 +1,106 @@
+﻿@model WebApplication1.Models.Data.User
+
+@{
+    ViewBag.Title = "employeeDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+    <h4>Thông tin nhân viên</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            <img src="~/images/user/employee/@Model.image" alt="@Model.image" style="width:200px; height:200px;" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.roleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.roleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @if (Model.gender == true)
+            {
+                <p>Nam</p>
+            }
+            else
+            {
+                <p>Nữ</p>
+
+            }
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfBirth)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Cập nhật", "editEmployee", new { id = Model.userID }) |
+        @Html.ActionLink("Quay lại", "Index")
+    </p>
+</div>
+
