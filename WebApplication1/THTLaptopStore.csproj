@@ -286,6 +286,8 @@
     <Content Include="Areas\Admin\Views\Brand\listBrands.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\insertBrand.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\editBrand.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\contactDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\insertEmployee.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />

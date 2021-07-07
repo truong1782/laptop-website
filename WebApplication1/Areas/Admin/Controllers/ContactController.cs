@@ -15,5 +15,24 @@ namespace WebApplication1.Areas.Admin.Controllers
             var listContact = db.Contacts.ToList();
             return View(listContact);
         }
+
+        public ActionResult contactDetails(int id)
+        {
+            var contact = db.Contacts.Find(id);
+            return View(contact);
+        }
+
+        public ActionResult deleteContact(int id)
+        {
+            var contact = db.Contacts.Find(id);
+            db.Contacts.Remove(contact);
+            db.SaveChanges();
+            return RedirectToAction("listContact", "Contact");
+        }
+
+        public ActionResult feedback()
+        {
+            return RedirectToAction("listContact");
+        }
     }
 }

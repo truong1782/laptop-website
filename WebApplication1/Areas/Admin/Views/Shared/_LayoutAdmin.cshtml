@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="@Url.Action("Index", "Product")">Admin</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,7 +38,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Đơn hàng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Liên hệ</a>
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("listContact", "Contact")">Liên hệ</a>
                     </li>
                 </ul>
             </div>
@@ -49,7 +49,7 @@
                        aria-expanded="false"
                        style="text-decoration:none">
                         <b>@Session["fullname"]</b>
-                        <img class="border border-2 border-dark rounded-3" src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="48" height="48" />
+                        <img class="border border-2 border-dark rounded-3" src="~/images/user/employee/@Session["image"]" alt="" width="48" height="48" />
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="@Url.Action("Logout","Account")">Đăng xuất</a></li>

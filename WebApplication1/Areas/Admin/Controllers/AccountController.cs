@@ -28,6 +28,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             {
                 Session["userID"] = user.userID;
                 Session["fullname"] = user.fullName;
+                Session["image"] = user.image;
                 return RedirectToAction("Index", "Product");
             }
             ViewBag.Notice = "Sai tài khoản hoặc mật khẩu";
@@ -38,6 +39,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         {
             Session["userID"] = null;
             Session["fullname"] = null;
+            Session["image"] = null;
             return RedirectToAction("Login");
         }
     }

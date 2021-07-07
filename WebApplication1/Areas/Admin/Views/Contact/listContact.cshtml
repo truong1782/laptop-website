@@ -5,62 +5,99 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>listContact</h2>
+<div class="container" style="font-size:small">
+    <h4>Danh sách liên hệ</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.detail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateCreate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>Thao tác</th>
+        </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.detail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dateCreate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.detail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateCreate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @if (item.status == false)
+                    {
+                        <span style="color:red"><b>Chưa phản hồi</b></span>
+                    }
+                    else
+                    {
+                        <span style="color:green"><b>Đã phản hồi</b></span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-primary fas fa-comment-alt" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                    <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("contactDetails","Contact", new { id = @item.contactID })"></a>
+                    <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteContact","Contact", new { id = @item.contactID })"></a>
+                </td>
+            </tr>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Gửi phản hồi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-2">
+                                <label class="col-form-label">Gửi đến: @item.email</label>
+                            </div>
+                            <div class="mb-2">
+                                <label for="message-text" class="col-form-label">Tiêu đề:</label>
+                                <input type="text" class="form-control" id="message-text" name="title">
+                            </div>
+                            <div class="mb-2">
+                                <label for="message-text" class="col-form-label">Lời nhắn:</label>
+                                <textarea class="form-control" id="message-text" rows="8" name="message"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+                            <a class="btn btn-primary" href="@Url.Action("feedback","Contact", new { id = @item.contactID })">Gửi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </table>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.detail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dateCreate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.contactID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.contactID })
-        </td>
-    </tr>
-}
-
-</table>
