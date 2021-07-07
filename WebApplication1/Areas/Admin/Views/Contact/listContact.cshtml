@@ -10,22 +10,22 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.fullName)
+                Họ tên
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                Tiêu đề
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.detail)
+                Nội dung
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.dateCreate)
+                Ngày gửi
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.phone)
+                Số điện thoại
             </th>
             <th>
                 Trạng thái
@@ -57,46 +57,19 @@
                 <td>
                     @if (item.status == false)
                     {
-                        <span style="color:red"><b>Chưa phản hồi</b></span>
+                        <span style="color:red">Chưa phản hồi</span>
                     }
                     else
                     {
-                        <span style="color:green"><b>Đã phản hồi</b></span>
+                        <span style="color:green">Đã phản hồi</span>
                     }
                 </td>
-                <td>
-                    <a class="btn btn-primary fas fa-comment-alt" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                <td style="white-space: nowrap;">
+                    <a class="btn btn-primary fas fa-comment-alt" href="@Url.Action("feedback","Contact", new { id = @item.contactID })"></a>
                     <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("contactDetails","Contact", new { id = @item.contactID })"></a>
                     <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteContact","Contact", new { id = @item.contactID })"></a>
                 </td>
             </tr>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Gửi phản hồi</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-2">
-                                <label class="col-form-label">Gửi đến: @item.email</label>
-                            </div>
-                            <div class="mb-2">
-                                <label for="message-text" class="col-form-label">Tiêu đề:</label>
-                                <input type="text" class="form-control" id="message-text" name="title">
-                            </div>
-                            <div class="mb-2">
-                                <label for="message-text" class="col-form-label">Lời nhắn:</label>
-                                <textarea class="form-control" id="message-text" rows="8" name="message"></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
-                            <a class="btn btn-primary" href="@Url.Action("feedback","Contact", new { id = @item.contactID })">Gửi</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         }
     </table>
 </div>

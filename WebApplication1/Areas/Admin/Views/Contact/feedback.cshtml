@@ -1,0 +1,31 @@
+﻿@model WebApplication1.Models.Data.Contact
+@{
+    ViewBag.Title = "feedback";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h4 class="mt-2">Phản hồi liên hệ</h4>
+    <div class="row border border-2 border-dark rounded-3 py-3">
+        <div class="col-md-12">
+            @using (Html.BeginForm("feedback", "Contact",new {id = Model.contactID }, FormMethod.Post))
+            {
+                <input name="id" value="@Model.contactID" hidden/>
+                <div class="mb-3">
+                    <label class="form-label">Gửi đến:</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.email" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tiêu đề:</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nội dung:</label>
+                    <textarea class="form-control" name="message" rows="7" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi phản hồi</button>
+            }
+        </div>
+    </div>
+</div>
+
