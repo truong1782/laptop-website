@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DiscountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Models\Data\sysdiagram.cs" />
     <Compile Include="Models\Data\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\css\all.css" />
@@ -288,6 +290,10 @@
     <Content Include="Areas\Admin\Views\Brand\editBrand.cshtml" />
     <Content Include="Areas\Admin\Views\Contact\contactDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\insertEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\feedback.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\listDiscount.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\insertDiscount.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\editDiscount.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
