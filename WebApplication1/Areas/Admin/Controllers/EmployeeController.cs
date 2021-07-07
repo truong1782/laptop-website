@@ -81,6 +81,12 @@ namespace WebApplication1.Areas.Admin.Controllers
             return RedirectToAction("Employee", "Employee");
         }
 
+        public ActionResult employeeDetails(int id)
+        {
+            var selectedEmp = db.Users.Find(id);
+            return View(selectedEmp);
+        }
+
         public ActionResult uploadImage(FormCollection frm, HttpPostedFileBase ImageUpload)
         {
             var user = db.Users.Find(Int32.Parse(frm["userID"]));

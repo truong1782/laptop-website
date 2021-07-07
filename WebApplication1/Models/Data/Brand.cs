@@ -18,7 +18,7 @@ namespace WebApplication1.Models.Data
         public int brandID { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string brandName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,81 @@
+﻿@model WebApplication1.Models.Data.Contact
+
+@{
+    ViewBag.Title = "contactDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+    <h4>Chi tiết liên hệ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ tên người gửi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+        <dt>
+            Ngày gửi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCreate)
+        </dd>
+        <dt>
+            Tiêu đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.detail)
+        </dd>
+
+
+        <dt>
+            Trạng thái
+        </dt>
+
+        <dd>
+            @if (Model.status == false)
+            {
+                <span style="color:red"><b>Chưa phản hồi</b></span>
+            }
+            else
+            {
+                <span style="color:green"><b>Đã phản hồi</b></span>
+            }
+        </dd>
+    </dl>
+    <p>
+        <a class="btn btn-danger" href="@Url.Action("listContact","Contact")">Quay lại danh sách</a>
+        <a class="btn btn-primary" href="@Url.Action("feedback","Contact", new { id = Model.contactID })">Phản hồi ngay</a>
+    </p>
+</div>
+
+
+

@@ -131,6 +131,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
@@ -247,7 +249,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Contact\" />
     <Folder Include="images\user\customer\" />
   </ItemGroup>
   <ItemGroup>
@@ -275,8 +276,18 @@
     <Content Include="fonts\webfonts\fa-solid-900.woff2" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Employee.cshtml" />
-    <Content Include="Areas\Admin\Views\Employee\insertEmployee.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\editEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\listContact.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\employeeDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\listCategories.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\insertCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\editCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\listBrands.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\insertBrand.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\editBrand.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\contactDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\insertEmployee.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />

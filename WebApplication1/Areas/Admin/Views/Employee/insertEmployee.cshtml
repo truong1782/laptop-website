@@ -78,7 +78,7 @@
                         <div class="col-md-10">
                             @*@Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })*@
                             <img src="~/images/sanpham/none.png" alt="none.png" id="output" style="width:290px; height:290px;" /> <br />
-                            <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)"/>
+                            <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
                         </div>
                     </div>
 
@@ -110,6 +110,3 @@
         </div>
     </div>
 </div>
-
-
-
