@@ -10,6 +10,7 @@
     <link href="~/fonts/css/fontawesome.min.css" rel="stylesheet" />
     <link href="~/fonts/css/brands.min.css" rel="stylesheet" />
     <link href="~/fonts/css/solid.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/regular.min.css" rel="stylesheet" />
     <link href="~/Public/css/style.css" rel="stylesheet" />
     <link href="~/Public/css/productDetail.css" rel="stylesheet" />
 </head>
@@ -25,31 +26,8 @@
                     <marquee width="700px"><b>SĐT: 0123456789 - Cam kết chính hãng</b></marquee>
                 </div>
                 <div class="d-flex">
-                    @if (Session["userID"] != null)
-                    {
-                        <div class="dropdown">
-                            <div class="btn dropdown-toggle text-dark p-0" id="dropdownMenuButton1"
-                               data-bs-toggle="dropdown"
-                               aria-expanded="false"
-                               style="text-decoration:none">
-                                <img class="border border-2 border-dark rounded-circle" src="~/images/user/employee/JoeyTribbiani.jpg" alt="" width="48" height="48" />
-                                <b>@Session["fullName"]</b>
-                            </div>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="@Url.Action("","Customer")">Thông tin tài khoản</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Logout","Customer")">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    }
-                    else
-                    {
-                        <a class="nav-link px-1 pt-1  text-dark" href="@Url.Action("SignUp","Customer")">Đăng ký</a>
-                        <a class="nav-link px-2 pt-1 text-dark" href="@Url.Action("Login","Customer")">Đăng nhập</a>
-                    }
-                    <a class="nav-link p-0 text-dark mx-2" href="#">
-                        <i class="fas fa-shopping-cart fa-2x pt-1"></i>
-                        <b>(0)</b>
-                    </a>
+                    @Html.Action("customerPartial", "Customer")
+                    @Html.Action("CartPartial", "Cart")
                 </div>
             </div>
         </nav>
