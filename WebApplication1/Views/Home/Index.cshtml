@@ -1,7 +1,9 @@
 ﻿@using WebApplication1.Models.Data
 @using System.Globalization
 @{ ViewBag.Title = "Trang chủ";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
 
 <div class="container mb-3">
     <div class="row mb-2">
@@ -54,20 +56,20 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
-    <div class="col-md-3 col-12">
-        <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
-            <div class="card">
-                <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
-                    <p class="card-text text-danger fw-bold float-start">
-                        @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
-                    </p>
-                </div>
-            </div>
-        </a>
-        <hr />
-    </div>}
+                    <div class="col-md-3 col-12">
+                        <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
+                            <div class="card">
+                                <img src="~/images/sanpham/@item.image" class="card-img-top" alt="@item.image" style="width:270px; height:270px;">
+                                <div class="card-body">
+                                    <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
+                                    <p class="card-text text-danger fw-bold float-start">
+                                        @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <hr />
+                    </div>}
             </div>
         </div>
 

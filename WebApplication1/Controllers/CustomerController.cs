@@ -17,6 +17,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+
+        public ActionResult customerPartial()
+        {
+            return PartialView();
+        }
+
         [HttpPost]
         public ActionResult Login(FormCollection frm)
         {
@@ -25,8 +31,7 @@ namespace WebApplication1.Controllers
             User user=  db.Users.SingleOrDefault(u => u.userName == userName && u.password == password && u.roleID == 1);
             if (user != null)
             {
-                Session["userID"] = user.userID;
-                Session["fullName"] = user.fullName;
+                Session["User"] = user;
                 return RedirectToAction("Index", "Home");
             }
             return View();
@@ -99,6 +104,7 @@ namespace WebApplication1.Controllers
             }
             return this.SignUp();
         }
+
 
 
     }

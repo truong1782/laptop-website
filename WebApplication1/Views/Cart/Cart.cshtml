@@ -1,0 +1,155 @@
+﻿@model IEnumerable<WebApplication1.Models.Cart>
+@using WebApplication1.Controllers;
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+                <h1 class="h3">Thông Tin Giỏ hàng</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb d-flex justify-content-end">
+                    <li class="breadcrumb-item"><b href="@Url.Action("Index","Home")">Trang chủ</b></li>
+                    <li class="breadcrumb-item active" style="color: #4F4F4F "><b>Giỏ hàng</b></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="content">
+    <div class="container">
+        <div class="row bar">
+            <div class="col-lg-12">
+                <p style="color: #4F4F4F ">Bạn hiện có <span>@ViewBag.TotalQuantity</span> sản phẩm trong giỏ hàng của mình.</p>
+            </div>
+            <div id="basket" class="col-lg-9">
+                <div class="box mt-0 pb-0 no-horizontal-padding">
+                    @using (Html.BeginForm("UpdateCart", "Cart"))
+                    {
+                        <form method="get" action="shop-checkout1.html">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Sản phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Đơn giá</th>
+                                            <th colspan="2">Thành tiền</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td><a href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })"><img src="~/images/sanpham/@item.sImage" style="height:70px; width:70px"></a></td>
+                                            <td><a style="text-decoration: none;" href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })">@item.sProductName</a></td>
+                                            <td>
+                                                <input type="number" name="txtSoluong" value="@item.iSoluong" class="form-control">
+                                            </td>
+                                            <th>@String.Format("{0:0,0}", item.dAmountMoney)đ </th>
+                                            <th>@String.Format("{0:0,0}", item.dThanhTien)đ </th>
+
+                                            <td>
+                                                <a class="btn btn-link " href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                            </td>
+
+                                            <td>
+                                                <a class="btn btn-light " href="@Url.Action("DeleteCart", "Cart", new { @iProductID = item.iProductID })"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr style="border-bottom: none">
+                                            <th colspan="4">Tổng tiền</th>
+                                            <th colspan="4">@String.Format("{0:0,0}", ViewBag.FinalMoney)đ</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+
+                        </form>
+                    }
+                    <div class=" box-footer d-flex justify-content-between align-items">  
+                        <div class="left-col">
+                        <a href="@Url.Action("Index","Home")" class="btn btn-primary rounded mt-0"><i class="fa fa-chevron-left"></i> Quay lại cửa hàng</a>
+                        </div>
+                        <div class="right-col">
+                            <button type="submit" value="Xóa tất cả" class="btn btn-danger rounded" form="DeleteAllCart" formaction="DeleteAllCart"><i class="fa fa-trash" aria-hidden="true"></i> Xoá tất cả</button>
+                            <button type="submit" value="Cập Nhật" class="btn btn-info rounded" formaction="UpdateCart"><i class="fas fa-sync"></i> Cập nhật</button>
+                           
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="box box mt-0 mb-4 p-0">
+                    <div class="box-header mt-0">
+                        <h4>Mã giảm giá</h4>
+                    </div>
+                    <p>Nếu bạn có mã giảm giá, vui lòng nhập mã đó vào ô bên dưới.</p>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control"><span class="input-group-btn">
+                                <button type="button" class="btn btn-template-main"><i class="fa fa-gift"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div id="order-summary" class="box mt-0 mb-4 p-0">
+                    <div class="box-header mt-0">
+                        <h3>Tóm tắt đơn hàng</h3>
+                    </div>
+                    @*<p class="text-muted">Chi phí vận chuyển và chi phí bổ sung được tính dựa trên các giá trị bạn đã nhập.</p>*@
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Tổng số sản phẩm</td>
+                                    <th>@ViewBag.TotalQuantity</th>
+                                </tr>
+                                <tr>
+                                    <td>Giảm giá</td>
+                                    <th>0đ</th>
+                                </tr>
+
+                                <tr class="total">
+                                    <td>Tổng số tiền thanh toán</td>
+                                    <th>@String.Format("{0:0,0}", ViewBag.FinalMoney)đ</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div> 
+                        @if (Session["User"] != null)
+                        {
+                            <a class="btn btn-success rounded" href=@Url.Action("Checkout", "Cart", new {@listCart = Model })>Đi đến đặt hàng <i class="fas fa-arrow-circle-right"></i></a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-success rounded" href=@Url.Action("Login", "Customer")>Đi đến đặt hàng <i class="fas fa-arrow-circle-right"></i></a>
+                            <hr />
+                            <b class="text-danger">Đăng nhập để tiến hành đặt hàng</b>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+
+@***********************************************************@
+

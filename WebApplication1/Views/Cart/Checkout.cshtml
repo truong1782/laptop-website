@@ -1,0 +1,117 @@
+﻿@using WebApplication1.Models.Data
+@using WebApplication1.Models
+@model IEnumerable<Cart>
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = Session["User"] as User;
+}
+
+<style>
+    td {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .col-md-7 {
+        overflow: auto;
+    }
+</style>
+
+@using (Html.BeginForm("Checkout", "Cart", new { userid = user.userID}))
+{
+    <div class="container">
+        <h3 class="mt-2">Đặt hàng</h3>
+        <div class="row">
+            <div class="col-md-5">
+                <!--Thông tin khách hàng -->
+                <h5><u>Thông Tin Khách Hàng</u></h5>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <strong>Họ tên:</strong>
+                        <input type="text" name="ho" class="form-control" value="@user.fullName" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12"><strong>Tài khoản:</strong></div>
+                    <div class="col-md-12">
+                        <input type="text" name="dia_chi" class="form-control" value="@user.userName" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12"><strong>Địa chỉ:</strong></div>
+                    <div class="col-md-12">
+                        <input type="text" name="thanh_pho" class="form-control" value="@user.address" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12"><strong>SDT:</strong></div>
+                    <div class="col-md-12"><input type="text" name="sdt" class="form-control" value="@user.phoneNumber" readonly /></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12"><strong>Email:</strong></div>
+                    <div class="col-md-12"><input type="text" name="email" class="form-control" value="@user.email" readonly /></div>
+                </div>
+                <!---->
+            </div>
+            <div class="col-md-7">
+                <!--sản phẩm thanh toán -->
+                <h5><u>Giỏ hàng</u></h5>
+                <table class="table" style="font-size:small">
+                    <thead>
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th colspan="2">Thành tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><img src="~/images/sanpham/@item.sImage" style="height:50px; width:50px"></td>
+                                <td>@item.sProductName</td>
+                                <td>
+                                    <input type="text" name="txtSoluong" value="@item.iSoluong" class="form-control" readonly>
+                                </td>
+                                <th>@String.Format("{0:0,0}", item.dAmountMoney)đ </th>
+                                <th>@String.Format("{0:0,0}", item.dThanhTien)đ </th>
+
+                                <td>
+                                    <a class="btn btn-link " href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                </td>
+
+                                <td>
+                                    <a class="btn btn-light " href="@Url.Action("DeleteCart", "Cart", new { @iProductID = item.iProductID })"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr style="border-bottom: none">
+                            <th colspan="4">Giảm giá</th>
+                            <th colspan="4">@String.Format("{0:0,0}", 1000)đ</th>
+                        </tr>
+                        <tr style="border-bottom: none">
+                            <th colspan="4">Tổng cộng</th>
+                            <th colspan="4">@String.Format("{0:0,0}", ViewBag.FinalMoney)đ</th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button class="btn btn-danger text-white float-end w-100" type="submit">
+                    <i class="far fa-credit-card"></i>
+                    <b class="mx-2">Đặt mua</b>
+                </button>
+            </div>
+        </div>
+    </div>
+}

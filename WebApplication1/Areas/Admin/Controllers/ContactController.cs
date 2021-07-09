@@ -23,6 +23,8 @@ namespace WebApplication1.Areas.Admin.Controllers
         public ActionResult contactDetails(int id)
         {
             var contact = db.Contacts.Find(id);
+            contact.status = true;
+            db.SaveChanges();
             return View(contact);
         }
 
@@ -48,10 +50,6 @@ namespace WebApplication1.Areas.Admin.Controllers
             string Title = frm["title"];
             string Message = frm["message"];
             emailService.sendEmail(Address, Title, Message);
-
-            var contact = db.Contacts.Find(id);
-            contact.status = true;
-            db.SaveChanges();
 
             return RedirectToAction("listContact", "Contact");
         }
