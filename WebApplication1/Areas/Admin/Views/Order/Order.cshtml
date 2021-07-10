@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication1.Models.Data.Order>
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Tên khách hàng</th>
+                    <th>Tiền giảm</th>
+                    <th>Tổng tiền</th>
+                    <th>Ngày đặt</th>
+                    <th>Ngày giao</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.orderID</td>
+                        <td>@item.User.userName</td>
+                        <td>@item.reduceMoney</td>
+                        <td>@item.totalMoney</td>
+                        <td>@item.dateCreate</td>
+                        <td>@item.dateArrive</td>
+                        <td>@item.status</td>
+                        <td>
+                            <a class="btn" href=""></a>
+                            <a class="btn btn-info" href=""></a>
+                            <a class="btn btn-danger" href=""></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

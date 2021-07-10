@@ -171,12 +171,14 @@ namespace WebApplication1.Controllers
                 db.OrderDetails.Add(ordDetail);
             }
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            Session["GioHang"] = null;
+            return RedirectToAction("Finish", "Cart");
         }
 
         public ActionResult Finish()
         {
-            return View(db.Users.Find(1));
+            User user = Session["User"] as User;
+            return View(db.Users.Find(user.userID));
         }
 
     }
