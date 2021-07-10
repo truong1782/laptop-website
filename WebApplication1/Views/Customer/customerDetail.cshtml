@@ -1,0 +1,87 @@
+﻿@model WebApplication1.Models.Data.User
+@{
+    ViewBag.Title = "customerDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="font-size:small">
+    <h4>Thông tin khách hàng</h4>
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("editInformation", "Customer"))
+            {
+                @Html.HiddenFor(c => c.userID)
+                <div class="mb-1">
+                    <label class="form-label fw-bold">Hình ảnh:</label> <br />
+                    <img src="~/images/user/customer/@Model.image" alt="@Model.image" style="width:200px; height:220px;" /> <br />
+                    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Cập nhật ảnh đại diện
+                    </button>
+                </div>
+                <div class="mb-1">
+                    <label class="form-label fw-bold">Họ tên:</label>
+                    <input type="text" class="form-control" name="fullName" value="@Model.fullName">
+                </div>
+                <div class="mb-1">
+                    <label class="form-label fw-bold">Giới tính:</label>
+                    <select class="form-select" name="gender" id="gender">
+                        @if (Model.gender == true)
+                        {
+                            <option value="True" selected>Nam</option>
+                            <option value="False">Nữ</option>
+                        }
+                        else
+                        {
+                            <option value="True">Nam</option>
+                            <option value="False" selected>Nữ</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-1">
+                    <label class="form-label fw-bold">Email:</label>
+                    <input type="email" class="form-control" name="email" value="@Model.email">
+                </div>
+                <div class="mb-1">
+                    <label class="form-label fw-bold">Số điện thoại:</label>
+                    <input type="tel" class="form-control" name="phoneNumber" value="@Model.phoneNumber">
+                </div>
+                <div class="mb-1">
+                    <label class="form-label fw-bold">Địa chỉ:</label>
+                    <input type="tel" class="form-control" name="address" value="@Model.address">
+                </div>
+                <div class="mb-1">
+                    <label class="form-label fw-bold">Ngày sinh:</label>
+                    <input type="date" class="form-control" name="dateOfBirth" value="@Model.dateOfBirth.ToString("yyyy-MM-dd")">
+                </div>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+            }
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Html.BeginForm("uploadImage", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(c => c.userID)
+                <div class="modal-body text-center">
+                    <img src="~/images/user/customer/@Model.image" alt="@Model.image" id="output" style="width:290px; height:290px;" /> <br />
+                    <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+

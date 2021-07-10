@@ -182,6 +182,7 @@
     <Content Include="fonts\webfonts\fa-solid-900.svg" />
     <Content Include="images\bia\anhbia.jpg" />
     <Content Include="images\bia\Business_Analytics_02_generated.jpg" />
+    <Content Include="images\user\customer\default-employee.jpg" />
     <Content Include="Public\CSS\Admin\LayoutAdmin.css" />
     <Content Include="Public\js\Admin\LayoutAdmin.js" />
     <Content Include="Content\bootstrap.min.css" />
@@ -233,7 +234,7 @@
     <Content Include="images\sanpham\phukien4.PNG" />
     <Content Include="images\sanpham\product-icon.png" />
     <Content Include="images\user\employee\default-employee.jpg" />
-    <Content Include="images\user\employee\JoeyTribbiani.jpg" />
+    <Content Include="Public\js\CustomerDetail.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -254,7 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\user\customer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\web.config" />
@@ -311,6 +311,7 @@
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Customer\customerPartial.cshtml" />
     <Content Include="Views\Cart\Finish.cshtml" />
+    <Content Include="Views\Customer\customerDetail.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
