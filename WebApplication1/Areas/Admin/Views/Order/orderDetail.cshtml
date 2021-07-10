@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication1.Models.Data.OrderDetail>
+@{
+    ViewBag.Title = "orderDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h3 class="mt-2">Chi tiết đơn hàng</h3>
+    <div class="row">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.orderID</td>
+                        <td>@item.Product.productID</td>
+                        <td>
+                            <img src="~/images/sanpham/@item.Product.image" alt="@item.Product.image" style="width:48px; height:48px" />
+                        </td>
+                        <td>
+                            <textarea>@item.Product.productName</textarea>
+                        </td>
+                        <td>@item.quantity</td>
+                        <td>@item.amountMoney</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-danger" href="@Url.Action("Order", "Order")">Quay lại danh sách</a>
+
+</div>

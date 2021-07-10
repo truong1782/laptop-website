@@ -37,9 +37,7 @@ namespace WebApplication1.Areas.Admin.Controllers
 
         public ActionResult Logout()
         {
-            Session["userID"] = null;
-            Session["fullname"] = null;
-            Session["image"] = null;
+            Session.RemoveAll();
             return RedirectToAction("Login");
         }
     }

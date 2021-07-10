@@ -90,17 +90,13 @@ namespace WebApplication1.Controllers
         //Cap nhat Giỏ hàng
         public ActionResult UpdateCart(FormCollection f)
         {
-
-            //Lay gio hang tu Session
             List<Cart> listCart = getCart();
             string[] quantity = f.GetValues("txtSoluong");
-            //Kiem tra sach da co trong Session["Giohang"]
+
             for (int i = 0; i < listCart.Count(); i++)
             {
                 listCart[i].iSoluong = int.Parse(quantity[i]);
             }
-
-            //Neu ton tai thi cho sua Soluong
             return RedirectToAction("Cart");
         }
         public ActionResult DeleteCart(int iProductID)

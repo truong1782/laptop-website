@@ -298,6 +298,7 @@
     <Content Include="Areas\Admin\Views\Discount\insertDiscount.cshtml" />
     <Content Include="Areas\Admin\Views\Discount\editDiscount.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Order.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\orderDetail.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />

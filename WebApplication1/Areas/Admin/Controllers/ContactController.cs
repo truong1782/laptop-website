@@ -44,7 +44,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult feedback(FormCollection frm, int id)
+        public ActionResult feedback(FormCollection frm)
         {
             string Address = frm["address"];
             string Title = frm["title"];

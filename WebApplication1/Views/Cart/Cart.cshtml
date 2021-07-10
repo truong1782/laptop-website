@@ -32,28 +32,27 @@
             </div>
             <div id="basket" class="col-lg-9">
                 <div class="box mt-0 pb-0 no-horizontal-padding">
-                    @using (Html.BeginForm("UpdateCart", "Cart"))
+                    @using (Html.BeginForm("UpdateCart", "Cart",FormMethod.Post))
                     {
-                        <form method="get" action="shop-checkout1.html">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2">Sản phẩm</th>
-                                            <th>Số lượng</th>
-                                            <th>Đơn giá</th>
-                                            <th colspan="2">Thành tiền</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       @foreach (var item in Model)
-                                        {
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Đơn giá</th>
+                                        <th colspan="2">Thành tiền</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
                                         <tr>
                                             <td><a href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })"><img src="~/images/sanpham/@item.sImage" style="height:70px; width:70px"></a></td>
                                             <td><a style="text-decoration: none;" href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })">@item.sProductName</a></td>
                                             <td>
-                                                <input type="number" name="txtSoluong" value="@item.iSoluong" class="form-control">
+                                                <input type="number" name="txtSoluong" value="@item.iSoluong" class="form-control" min="1">
                                             </td>
                                             <th>@String.Format("{0:0,0}", item.dAmountMoney)đ </th>
                                             <th>@String.Format("{0:0,0}", item.dThanhTien)đ </th>
@@ -67,31 +66,26 @@
                                             </td>
                                         </tr>
 
-                                        }
-                                    </tbody>
-                                    <tfoot>
-                                        <tr style="border-bottom: none">
-                                            <th colspan="4">Tổng tiền</th>
-                                            <th colspan="4">@String.Format("{0:0,0}", ViewBag.FinalMoney)đ</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr style="border-bottom: none">
+                                        <th colspan="4">Tổng tiền</th>
+                                        <th colspan="4">@String.Format("{0:0,0}", ViewBag.FinalMoney)đ</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class=" box-footer d-flex justify-content-between align-items">
+                            <div class="left-col">
+                                <a href="@Url.Action("Index","Home")" class="btn btn-primary rounded mt-0"><i class="fa fa-chevron-left"></i> Quay lại cửa hàng</a>
                             </div>
-
-
-                        </form>
+                            <div class="right-col">
+                                <a  value="Xóa tất cả" class="btn btn-danger rounded" href="@Url.Action("DeleteAllCart", "Cart")"><i class="fa fa-trash" aria-hidden="true"></i> Xoá tất cả</a>
+                                <button type="submit" value="Cập Nhật" class="btn btn-info rounded"><i class="fas fa-sync"></i> Cập nhật</button>
+                            </div>
+                        </div>
                     }
-                    <div class=" box-footer d-flex justify-content-between align-items">  
-                        <div class="left-col">
-                        <a href="@Url.Action("Index","Home")" class="btn btn-primary rounded mt-0"><i class="fa fa-chevron-left"></i> Quay lại cửa hàng</a>
-                        </div>
-                        <div class="right-col">
-                            <button type="submit" value="Xóa tất cả" class="btn btn-danger rounded" form="DeleteAllCart" formaction="DeleteAllCart"><i class="fa fa-trash" aria-hidden="true"></i> Xoá tất cả</button>
-                            <button type="submit" value="Cập Nhật" class="btn btn-info rounded" formaction="UpdateCart"><i class="fas fa-sync"></i> Cập nhật</button>
-                           
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
             <div class="col-lg-3">
@@ -132,7 +126,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div> 
+                    <div>
                         @if (Session["User"] != null)
                         {
                             <a class="btn btn-success rounded" href=@Url.Action("Checkout", "Cart", new {@listCart = Model })>Đi đến đặt hàng <i class="fas fa-arrow-circle-right"></i></a>
