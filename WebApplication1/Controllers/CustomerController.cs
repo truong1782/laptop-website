@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -62,6 +63,7 @@ namespace WebApplication1.Controllers
             user.address = collection["DiaChi"];
             user.gender = bool.Parse(collection["GioiTinh"]);
             user.dateOfBirth = DateTime.Parse(collection["NgaySinh"]);
+            user.image = "default-employee.jpg";
             user.roleID = 1;
             if (String.IsNullOrEmpty(user.fullName))
             {
@@ -103,6 +105,48 @@ namespace WebApplication1.Controllers
                 return this.SignUp();
             }
             return this.SignUp();
+        }
+
+        public ActionResult customerDetail(int id)
+        {
+            User user = db.Users.Find(id);
+            return View(user);
+        }
+
+        public ActionResult editInformation(FormCollection frm)
+        {
+            var customer = db.Users.Find(Int32.Parse(frm["userID"]));
+            customer.fullName = frm["fullName"];
+            customer.email = frm["email"];
+            customer.phoneNumber = frm["phoneNumber"];
+            customer.address = frm["address"];
+            customer.gender = bool.Parse(frm["gender"]);
+            customer.dateOfBirth = DateTime.Parse(frm["dateOfBirth"]);
+            db.SaveChanges();
+            Session["User"] = customer;
+            return RedirectToAction("customerDetail", "Customer", new { id = customer.userID });
+        }
+
+        public ActionResult uploadImage(FormCollection frm, HttpPostedFileBase ImageUpload)
+        {
+            var user = db.Users.Find(Int32.Parse(frm["userID"]));
+            if (ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                user.image = fileName;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/customer"), fileName));
+                (Session["User"] as User).image = fileName;
+                db.SaveChanges();
+                return RedirectToAction("customerDetail", "Customer", new { id = Int32.Parse(frm["userID"]) });
+            }
+            else
+            {
+                user.image = "default-employee.jpg";
+                db.SaveChanges();
+                return RedirectToAction("customerDetail", "Customer", new { id = Int32.Parse(frm["userID"]) });
+            }
         }
 
 

@@ -14,6 +14,8 @@ namespace WebApplication1.Controllers
         {
             var selectedProduct = db.Products.Find(id);
             ViewBag.relativeProducts = getRelativeProducts(selectedProduct.categoryID);
+            var request = HttpContext.Request.Url.AbsoluteUri;
+            ViewBag.Url = request;
             return View(selectedProduct);
         }
 

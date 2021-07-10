@@ -23,7 +23,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             var password = frm["password"];
             User user = db.Users.SingleOrDefault(u => u.userName == username &&
                                                  u.password == password &&
-                                                 u.Role.roleName != "Customer");
+                                                 u.Role.roleName != "Khách hàng");
             if (user != null)
             {
                 Session["userID"] = user.userID;
