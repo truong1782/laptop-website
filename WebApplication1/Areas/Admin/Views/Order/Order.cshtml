@@ -5,8 +5,9 @@
 }
 
 <div class="container">
+    <h3 class="mt-2">Danh sách đơn hàng</h3>
     <div class="row">
-        <table class="table">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Mã đơn hàng</th>
@@ -29,11 +30,34 @@
                         <td>@item.totalMoney</td>
                         <td>@item.dateCreate</td>
                         <td>@item.dateArrive</td>
-                        <td>@item.status</td>
+                        @if (item.status == false)
+                        {
+                             <td style="color:red">Chưa xử lý</td>
+                        }
+                        else
+                        {
+                            <td style="color:green"> Đã xử lý </td>
+                        }
                         <td>
-                            <a class="btn" href=""></a>
-                            <a class="btn btn-info" href=""></a>
-                            <a class="btn btn-danger" href=""></a>
+                            @if (item.status == false)
+                            {
+                                <a class="btn btn-danger" href="@Url.Action("changeOrderStatus", "Order",new {id = item.orderID })">
+                                    <i class="fas fa-toggle-off"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-success " href="@Url.Action("changeOrderStatus", "Order",new {id = item.orderID })">
+                                    <i class="fas fa-toggle-on"></i>
+                                </a>
+                            }
+
+                            <a class="btn btn-info text-white" href="@Url.Action("orderDetail", "Order",new {id = item.orderID })">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                            <a class="btn btn-danger" onclick="return confirmAction()" href="@Url.Action("deleteOrder", "Order",new {id = item.orderID })">
+                                <i class="fas fa-times"></i>
+                            </a>
                         </td>
                     </tr>
                 }

@@ -8,7 +8,7 @@
     <h4 class="mt-2">Phản hồi liên hệ</h4>
     <div class="row border border-2 border-dark rounded-3 py-3">
         <div class="col-md-12">
-            @using (Html.BeginForm("feedback", "Contact",new {id = Model.contactID }, FormMethod.Post))
+            @using (Html.BeginForm("feedback", "Contact", FormMethod.Post))
             {
                 <input name="id" value="@Model.contactID" hidden/>
                 <div class="mb-3">

@@ -14,5 +14,64 @@ namespace WebApplication1.Areas.Admin.Controllers
         {
             return View(db.Orders.ToList());
         }
+
+        public ActionResult deleteOrder(int id)
+        {
+            if (String.IsNullOrEmpty(id.ToString()))
+            {
+                return RedirectToAction("Order");
+            }
+            else
+            {
+                deleteOrderDetail(id);
+                Order ord = db.Orders.Find(id);
+                db.Orders.Remove(ord);
+                db.SaveChanges();
+                return RedirectToAction("Order");
+            }
+        }
+
+        public ActionResult orderDetail(int? id)
+        {
+            if (String.IsNullOrEmpty(id.ToString()))
+            {
+                return RedirectToAction("Order");
+            }
+            else
+            {
+                List<OrderDetail> listOrderDetail = (from o in db.OrderDetails
+                                                     where o.orderID == id
+                                                     select o).ToList();
+                return View(listOrderDetail);
+            }
+        }
+
+        public ActionResult changeOrderStatus(int id)
+        {
+            if (String.IsNullOrEmpty(id.ToString()))
+            {
+                return RedirectToAction("Order");
+            }
+            else
+            {
+                Order ord = db.Orders.Find(id);
+                ord.status = !ord.status;
+                db.SaveChanges();
+                return RedirectToAction("Order");
+            }
+        }
+
+        private void deleteOrderDetail(int id)
+        {
+            List<OrderDetail> ordDetail = db.OrderDetails.ToList();
+            foreach (var item in ordDetail)
+            {
+                if (item.orderID == id)
+                {
+                    db.OrderDetails.Remove(item);
+                }
+            }
+            db.SaveChanges();
+        }
     }
 }
