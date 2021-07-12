@@ -36,7 +36,7 @@ namespace WebApplication1.Areas.Admin.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                 string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
-                productInfo.image = "/images/sanpham/" + fileName;
+                productInfo.image = "~/images/sanpham/" + fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
                 db.Products.Add(productInfo);
                 db.SaveChanges();
@@ -44,7 +44,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
             else
             {
-                productInfo.image = "/images/sanpham/none.png";
+                productInfo.image = "~/images/sanpham/none.png";
                 db.Products.Add(productInfo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -98,7 +98,7 @@ namespace WebApplication1.Areas.Admin.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                 string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
-                prod.image = "/images/sanpham/" + fileName; ;
+                prod.image = "~/images/sanpham/" + fileName; ;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/sanpham"), fileName));
 
                 db.SaveChanges();
@@ -107,7 +107,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
             else
             {
-                prod.image = "/images/sanpham/none.png";
+                prod.image = "~/images/sanpham/none.png";
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

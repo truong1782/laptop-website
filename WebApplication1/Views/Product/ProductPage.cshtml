@@ -49,7 +49,7 @@
                             <div class="col-md-4 col-12">
                                 <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
                                     <div class="card">
-                                        <img src="@item.image" class="card-img-top" alt="@item.image">
+                                        <img src="@Url.Content(item.image)" class="card-img-top" alt="@Url.Content(item.image)">
                                         <div class="card-body">
                                             <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
                                             <p class="card-text text-danger fw-bold float-start">

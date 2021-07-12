@@ -49,7 +49,7 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td><a href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })"><img src="~/images/sanpham/@item.sImage" style="height:70px; width:70px"></a></td>
+                                            <td><a href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })"><img src="@Url.Content(item.sImage)" style="height:70px; width:70px"></a></td>
                                             <td><a style="text-decoration: none;" href="@Url.Action("ProductDetailPage", "ProductDetail", new { id = item.iProductID })">@item.sProductName</a></td>
                                             <td>
                                                 <input type="number" name="txtSoluong" value="@item.iSoluong" class="form-control" min="1">

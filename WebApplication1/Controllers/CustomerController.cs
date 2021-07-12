@@ -137,7 +137,7 @@ namespace WebApplication1.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                 string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
-                user.image = "/images/user/customer/" + fileName;
+                user.image = "~/images/user/customer/" + fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/customer"), fileName));
                 (Session["User"] as User).image = fileName;
                 db.SaveChanges();
@@ -145,7 +145,7 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                user.image = "/images/user/customer/default-employee.jpg";
+                user.image = "~/images/user/customer/default-employee.jpg";
                 db.SaveChanges();
                 return RedirectToAction("customerDetail", "Customer", new { id = Int32.Parse(frm["userID"]) });
             }
@@ -173,9 +173,9 @@ namespace WebApplication1.Controllers
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = "189880406480773",
+                client_id = "524881248664035",
 
-                client_secret = "434c4c1006e1439306d57aff2340b2c7",
+                client_secret = "63a6bc58a92cb1af17983c8a7c3d1852",
 
                 redirect_uri = RediredtUri.AbsoluteUri,
 
@@ -189,13 +189,17 @@ namespace WebApplication1.Controllers
         public ActionResult FacebookCallback(string code)
         {
             var fb = new FacebookClient();
+            if (code == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             dynamic result = fb.Post("oauth/access_token", new
 
             {
 
-                client_id = "189880406480773",
+                client_id = "524881248664035",
 
-                client_secret = "434c4c1006e1439306d57aff2340b2c7",
+                client_secret = "63a6bc58a92cb1af17983c8a7c3d1852",
 
                 redirect_uri = RediredtUri.AbsoluteUri,
 
