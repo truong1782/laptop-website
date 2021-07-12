@@ -35,7 +35,7 @@ namespace WebApplication1.Areas.Admin.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                 string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
-                emp.image = fileName;
+                emp.image = "/images/user/employee/" + fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/employee"), fileName));
                 db.Users.Add(emp);
                 db.SaveChanges();
@@ -43,7 +43,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
             else
             {
-                emp.image = "default-employee.jpg";
+                emp.image = "/images/user/employee/default-employee.jpg";
                 db.Users.Add(emp);
                 db.SaveChanges();
                 return RedirectToAction("Employee");
@@ -95,14 +95,14 @@ namespace WebApplication1.Areas.Admin.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                 string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
-                user.image = fileName;
+                user.image = "/images/user/employee/" + fileName; ;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/employee"), fileName));
                 db.SaveChanges();
                 return RedirectToAction("editEmployee", "Employee", new { id = Int32.Parse(frm["userID"]) });
             }
             else
             {
-                user.image = "default-employee.jpg";
+                user.image = "/images/user/employee/default-employee.jpg";
                 db.SaveChanges();
                 return RedirectToAction("editEmployee");
             }

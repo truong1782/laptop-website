@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Facebook;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication1.Models.Data;
+using WebApplication1.DAO;
 namespace WebApplication1.Controllers
 {
     public class CustomerController : Controller
@@ -29,7 +32,7 @@ namespace WebApplication1.Controllers
         {
             var userName = frm["userName"];
             var password = frm["password"];
-            User user=  db.Users.SingleOrDefault(u => u.userName == userName && u.password == password && u.roleID == 1);
+            User user = db.Users.SingleOrDefault(u => u.userName == userName && u.password == password && u.roleID == 1);
             if (user != null)
             {
                 Session["User"] = user;
@@ -40,9 +43,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult Logout()
         {
-            Session["userID"] = null;
-            Session["fullName"] = null;
-            return RedirectToAction("Index","Home");
+            Session["User"] = null;
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -63,7 +65,7 @@ namespace WebApplication1.Controllers
             user.address = collection["DiaChi"];
             user.gender = bool.Parse(collection["GioiTinh"]);
             user.dateOfBirth = DateTime.Parse(collection["NgaySinh"]);
-            user.image = "default-employee.jpg";
+            user.image = "/images/user/customer/default-employee.jpg";
             user.roleID = 1;
             if (String.IsNullOrEmpty(user.fullName))
             {
@@ -135,7 +137,7 @@ namespace WebApplication1.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                 string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
-                user.image = fileName;
+                user.image = "/images/user/customer/" + fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/customer"), fileName));
                 (Session["User"] as User).image = fileName;
                 db.SaveChanges();
@@ -143,13 +145,97 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                user.image = "default-employee.jpg";
+                user.image = "/images/user/customer/default-employee.jpg";
                 db.SaveChanges();
                 return RedirectToAction("customerDetail", "Customer", new { id = Int32.Parse(frm["userID"]) });
             }
         }
 
+        private Uri RediredtUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
 
+                uriBuilder.Query = null;
 
+                uriBuilder.Fragment = null;
+
+                uriBuilder.Path = Url.Action("FacebookCallback");
+
+                return uriBuilder.Uri;
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult Facebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = "189880406480773",
+
+                client_secret = "434c4c1006e1439306d57aff2340b2c7",
+
+                redirect_uri = RediredtUri.AbsoluteUri,
+
+                response_type = "code",
+
+                scope = "email"
+            });
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+
+            {
+
+                client_id = "189880406480773",
+
+                client_secret = "434c4c1006e1439306d57aff2340b2c7",
+
+                redirect_uri = RediredtUri.AbsoluteUri,
+
+                code = code
+            });
+
+            var accessToken = result.access_token;
+
+            Session["AccessToken"] = accessToken;
+
+            fb.AccessToken = accessToken;
+
+            dynamic me = fb.Get("me?fields=link,first_name,currency,last_name,email,gender,locale,timezone,verified,picture,age_range,middle_name,birthday,hometown,location");
+
+            string userName = me.email;
+            var fbUser = new User();
+            var userDao = new UserDao();
+
+            if (userDao.isExisted(userName) == true)
+            {
+                fbUser = db.Users.FirstOrDefault(u => u.userName == userName);
+                Session["User"] = fbUser;
+            }
+            else
+            {
+                fbUser.email = me.email;
+                fbUser.userName = me.email;
+                fbUser.fullName = me.first_name + " " + me.last_name;
+                fbUser.image = me.picture.data.url;
+                fbUser.roleID = 1;
+                fbUser.gender = true;
+                db.Users.Add(fbUser);
+                db.SaveChanges();
+                Session["User"] = fbUser;
+            }
+
+            FormsAuthentication.SetAuthCookie(userName, false);
+            return RedirectToAction("Index", "Home");
+        }
+
+        
     }
 }

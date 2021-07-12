@@ -15,7 +15,7 @@
         <div class="col-md-4 col-sm-auto col-12 border border-white">
             <div class="row">
                 <div class="col-md-12">
-                    <img class="img-fluid" src="~/images/sanpham/@Model.image" style="height:400px; width:400px;" />
+                    <img class="img-fluid" src="@Model.image" style="height:400px; width:400px;" />
                 </div>
                 <div class="col-md-12">
                     <p class="text-center"><b>Thông số kỹ thuật</b></p>
@@ -130,7 +130,7 @@
                 <div class="col-md-3">
                     <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
                         <div class="card">
-                            <img src="~/images/sanpham/@item.image" class="card-img-top" alt="...">
+                            <img src="@item.image" class="card-img-top" alt="@item.image">
                             <div class="card-body">
                                 <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
                                 <p class="card-text text-danger fw-bold float-start">
