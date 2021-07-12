@@ -78,7 +78,7 @@
                     <div class="form-group mb-3">
                         @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <img src="~/images/user/employee/@Model.image" alt="@Model.image" width="200" height="200" /> <br />
+                            <img src="@Model.image" alt="@Model.image" width="200" height="200" /> <br />
                             <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Cập nhật ảnh đại diện
                             </button>
@@ -133,7 +133,7 @@
             {
                 @Html.HiddenFor(e => e.userID)
                 <div class="modal-body text-center">
-                    <img src="~/images/user/employee/@Model.image" alt="@Model.image" id="output" style="width:290px; height:290px;" /> <br />
+                    <img src="@Model.image" alt="@Model.image" id="output" style="width:290px; height:290px;" /> <br />
                     <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
                 </div>
                 <div class="modal-footer">

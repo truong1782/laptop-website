@@ -27,7 +27,7 @@ namespace WebApplication1.Models.Data
         [StringLength(55)]
         public string userName { get; set; }
 
-        [Required]
+        
         [StringLength(55)]
         public string password { get; set; }
 
@@ -35,11 +35,11 @@ namespace WebApplication1.Models.Data
         [StringLength(55)]
         public string email { get; set; }
 
-        [Required]
+        
         [StringLength(12)]
         public string phoneNumber { get; set; }
 
-        [Required]
+        
         [StringLength(255)]
         public string address { get; set; }
 

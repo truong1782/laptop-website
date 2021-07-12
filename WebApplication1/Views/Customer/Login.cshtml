@@ -1,12 +1,11 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Đăng nhập";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container my-3 rounded rounded-3 border border-3 border-dark p-0" style="width:65%;">
-    <div class="row">
-        <div class="col-md-6">
+<div class="container my-3">
+    <div class="row rounded rounded-3 border border-3 border-dark mx-auto" style="width:80%">
+        <div class="col-md-6 p-0">
             <img class="img-fluid" src="~/images/bia/Business_Analytics_02_generated.jpg" />
         </div>
         <div class="col-md-6">
@@ -15,25 +14,30 @@
                 <h3 class="text-center mt-2"><b>Đăng nhập</b></h3>
                 <div class="mb-3">
                     <label for="username" class="form-label">Tài khoản</label>
-                    <input type="text" name="userName" class="form-control border-dark" id="username" style="width: 95%">
+                    <input type="text" name="userName" class="form-control border-dark" id="username" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Mật khẩu</label>
-                    <input type="password" name="password" class="form-control border-dark" id="password" style="width: 95%">
+                    <input type="password" name="password" class="form-control border-dark" id="password" required>
                 </div>
                 <div class="mb-3">
                     Bạn chưa có tài khoản ? <span><a href="@Url.Action("SignUp","Customer")">Đăng ký</a></span>
                 </div>
                 <div class="mb-1 text-center">
-                    <button type="submit" class="btn btn-primary w-75 mx-auto text-center"><b>Đăng nhập</b></button>
+                    <button type="submit" class="btn btn-primary w-100 mx-auto text-center"><b>Đăng nhập</b></button>
                 </div>
-                <div class="mb-2 text-center">
+                <div class="my-3 text-center">
                     Hoặc đăng nhập với
                 </div>
                 <div class="text-center">
-                    <i class="fab fa-facebook fa-2x mx-1 text-primary"></i>
-                    <i class="fab fa-google-plus fa-2x mx-1 text-danger"></i>
+                    <a class="mx-2" href="@Url.Action("Facebook", "Customer")" style="text-decoration:none;">
+                        <i class="fab fa-facebook fa-3x"></i>
+                    </a>
+                    @*<a class="mx-2" href="@Url.Action("", "")" style="text-decoration:none;">
+                        <i class="fab fa-google-plus fa-3x text-danger"></i>
+                    </a>*@
                 </div>
+
             }
         </div>
     </div>
