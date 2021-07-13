@@ -19,7 +19,7 @@ namespace WebApplication1.Models.Data
 
         public int userID { get; set; }
 
-        public int reduceMoney { get; set; }
+        public int? reduceMoney { get; set; }
 
         public int totalMoney { get; set; }
 

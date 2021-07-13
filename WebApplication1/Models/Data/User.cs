@@ -12,6 +12,7 @@ namespace WebApplication1.Models.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            Blogs = new HashSet<Blog>();
             Orders = new HashSet<Order>();
         }
 
@@ -27,7 +28,6 @@ namespace WebApplication1.Models.Data
         [StringLength(55)]
         public string userName { get; set; }
 
-        
         [StringLength(55)]
         public string password { get; set; }
 
@@ -35,11 +35,9 @@ namespace WebApplication1.Models.Data
         [StringLength(55)]
         public string email { get; set; }
 
-        
         [StringLength(12)]
         public string phoneNumber { get; set; }
 
-        
         [StringLength(255)]
         public string address { get; set; }
 
@@ -50,6 +48,9 @@ namespace WebApplication1.Models.Data
 
         [Column(TypeName = "date")]
         public DateTime dateOfBirth { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Blog> Blogs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
