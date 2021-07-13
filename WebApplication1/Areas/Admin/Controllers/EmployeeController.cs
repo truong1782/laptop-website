@@ -16,6 +16,10 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Employee()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var allEmployee = db.Users.Where(u => u.roleID != 1 && u.roleID != 2).ToList();
             return View(allEmployee);
         }
@@ -23,6 +27,10 @@ namespace WebApplication1.Areas.Admin.Controllers
         
         public ActionResult insertEmployee()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
             return View();
         }
@@ -51,8 +59,12 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult editEmployee(int id)
+        public ActionResult editEmployee(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
             return View(db.Users.Find(id));
         }
@@ -73,16 +85,24 @@ namespace WebApplication1.Areas.Admin.Controllers
             return RedirectToAction("Employee");
         }
 
-        public ActionResult deleteEmployee(int id)
+        public ActionResult deleteEmployee(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var selectedEmp = db.Users.Find(id);
             db.Users.Remove(selectedEmp);
             db.SaveChanges();
             return RedirectToAction("Employee", "Employee");
         }
 
-        public ActionResult employeeDetails(int id)
+        public ActionResult employeeDetails(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var selectedEmp = db.Users.Find(id);
             return View(selectedEmp);
         }

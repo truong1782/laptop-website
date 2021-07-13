@@ -16,12 +16,20 @@ namespace WebApplication1.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var productList = db.Products.ToList();
             return View(productList);
         }
 
         public ActionResult Create()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             ViewBag.Category = db.Categories.ToList();
             ViewBag.Brand = db.Brands.ToList();
             return View();
@@ -52,8 +60,12 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             Product prod = db.Products.Find(id);
             ViewBag.Category = db.Categories.ToList();
             ViewBag.Brand = db.Brands.ToList();
@@ -76,16 +88,24 @@ namespace WebApplication1.Areas.Admin.Controllers
 
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
+            if (id == null || Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             Product pro = db.Products.Find(id);
             db.Products.Remove(pro);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int? id)
         {
+            if (id == null || Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             Product pro = db.Products.Find(id);
             return View(pro);
         }

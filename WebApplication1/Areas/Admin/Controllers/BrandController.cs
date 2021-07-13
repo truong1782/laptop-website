@@ -13,12 +13,20 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/Brand
         public ActionResult listBrands()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View(db.Brands.ToList());
         }
 
         [HttpGet]
         public ActionResult insertBrand()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
@@ -31,8 +39,12 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult editBrand(int id)
+        public ActionResult editBrand(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View(db.Brands.Find(id));
         }
 
@@ -44,8 +56,12 @@ namespace WebApplication1.Areas.Admin.Controllers
             return RedirectToAction("listBrands");
         }
 
-        public ActionResult deleteBrand(int id)
+        public ActionResult deleteBrand(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             try
             {
                 var brand = db.Brands.Find(id);

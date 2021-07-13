@@ -16,20 +16,32 @@ namespace WebApplication1.Areas.Admin.Controllers
         EmailService emailService = new EmailService();
         public ActionResult listContact()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var listContact = db.Contacts.ToList();
             return View(listContact);
         }
 
-        public ActionResult contactDetails(int id)
+        public ActionResult contactDetails(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var contact = db.Contacts.Find(id);
             contact.status = true;
             db.SaveChanges();
             return View(contact);
         }
 
-        public ActionResult deleteContact(int id)
+        public ActionResult deleteContact(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var contact = db.Contacts.Find(id);
             db.Contacts.Remove(contact);
             db.SaveChanges();
@@ -37,8 +49,12 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult feedback(int id)
+        public ActionResult feedback(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var contact = db.Contacts.Find(id);
             return View(contact);
         }

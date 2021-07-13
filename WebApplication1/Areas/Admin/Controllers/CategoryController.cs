@@ -13,6 +13,10 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/Category
         public ActionResult listCategories()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var listcate = db.Categories.ToList();
             return View(listcate);
         }
@@ -20,6 +24,10 @@ namespace WebApplication1.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult insertCategory()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
@@ -32,8 +40,12 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult editCategory(int id)
+        public ActionResult editCategory(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View(db.Categories.Find(id));
         }
 
@@ -45,8 +57,12 @@ namespace WebApplication1.Areas.Admin.Controllers
             return RedirectToAction("listCategories");
         }
 
-        public ActionResult removeCategory(int id)
+        public ActionResult removeCategory(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             try
             {
                 var cate = db.Categories.Find(id);
