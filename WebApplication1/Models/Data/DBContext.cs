@@ -12,6 +12,7 @@ namespace WebApplication1.Models.Data
         {
         }
 
+        public virtual DbSet<Blog> Blogs { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
@@ -21,6 +22,7 @@ namespace WebApplication1.Models.Data
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Topic> Topics { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -62,6 +64,11 @@ namespace WebApplication1.Models.Data
                 .WithRequired(e => e.Role)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Topic>()
+                .HasMany(e => e.Blogs)
+                .WithRequired(e => e.Topic)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<User>()
                 .Property(e => e.userName)
                 .IsFixedLength();
@@ -81,6 +88,11 @@ namespace WebApplication1.Models.Data
             modelBuilder.Entity<User>()
                 .Property(e => e.image)
                 .IsFixedLength();
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Blogs)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Orders)
