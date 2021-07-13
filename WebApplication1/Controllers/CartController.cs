@@ -56,6 +56,23 @@ namespace WebApplication1.Controllers
             }
         }
 
+        public ActionResult useDiscount(FormCollection frm)
+        {
+            string code = frm["code"];
+            if (string.IsNullOrEmpty(code))
+            {
+                return RedirectToAction("Cart");
+            }
+            Discount reduceMoney = db.Discounts.FirstOrDefault(d => d.discountCode == code);
+            Session["discountValue"] = reduceMoney.value;
+
+            List<Cart> listCart = getCart();
+            ViewBag.TotalQuantity = TotalQuantity();
+            ViewBag.FinalMoney = FinalMoney();
+
+            return View("Cart", listCart);
+        }
+
 
         //Tong so luong
         private int TotalQuantity()
@@ -73,13 +90,26 @@ namespace WebApplication1.Controllers
         private int FinalMoney()
         {
             int iFinalMoney = 0;
-            List<Cart> listCart = Session["GioHang"] as List<Cart>;
-            if (listCart != null)
+            if (Session["discountValue"] != null)
             {
-                iFinalMoney = listCart.Sum(n => n.dThanhTien);
+                List<Cart> listCart = Session["GioHang"] as List<Cart>;
+                if (listCart != null)
+                {
+                    iFinalMoney = listCart.Sum(n => n.dThanhTien) - Int32.Parse(Session["discountValue"].ToString());
+                }
+            }
+            else
+            {
+                List<Cart> listCart = Session["GioHang"] as List<Cart>;
+                if (listCart != null)
+                {
+                    iFinalMoney = listCart.Sum(n => n.dThanhTien);
+                }
             }
             return iFinalMoney;
         }
+
+
         //Tao Partial view de hien thi thong tin gio hang
         public ActionResult CartPartial()
         {
@@ -109,11 +139,13 @@ namespace WebApplication1.Controllers
             if (product != null)
             {
                 listCart.RemoveAll(n => n.iProductID == iProductID);
+                Session.Remove("discountValue");
                 return RedirectToAction("Cart");
 
             }
             if (listCart.Count == 0)
             {
+                Session.Remove("discountValue");
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Cart");
@@ -124,6 +156,7 @@ namespace WebApplication1.Controllers
             //Lay gio hang tu Session
             List<Cart> listCart = getCart();
             listCart.Clear();
+            Session.Remove("discountValue");
             return RedirectToAction("Index", "Home");
         }
 
