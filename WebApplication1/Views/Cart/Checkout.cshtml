@@ -78,7 +78,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td><img src="~/images/sanpham/@item.sImage" style="height:50px; width:50px"></td>
+                                <td><img src="@Url.Content(item.sImage)" style="height:50px; width:50px"></td>
                                 <td>@item.sProductName</td>
                                 <td>
                                     <input type="text" name="txtSoluong" value="@item.iSoluong" class="form-control" readonly>

@@ -13,7 +13,7 @@
                 @Html.HiddenFor(c => c.userID)
                 <div class="mb-1">
                     <label class="form-label fw-bold">Hình ảnh:</label> <br />
-                    <img src="@Model.image" alt="@Model.image" style="width:200px; height:220px;" /> <br />
+                    <img src="@Url.Content(Model.image)" alt="@Url.Content(Model.image)" style="width:200px; height:220px;" /> <br />
                     <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Cập nhật ảnh đại diện
                     </button>
@@ -71,7 +71,7 @@
             {
                 @Html.HiddenFor(c => c.userID)
                 <div class="modal-body text-center">
-                    <img src="@Model.image" alt="@Model.image" id="output" style="width:290px; height:290px;" /> <br />
+                    <img src="@Url.Content(Model.image)" alt="@Url.Content(Model.image)" id="output" style="width:290px; height:290px;" /> <br />
                     <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
                 </div>
                 <div class="modal-footer">

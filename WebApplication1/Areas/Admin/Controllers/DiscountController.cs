@@ -12,12 +12,20 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/Discount
         public ActionResult listDiscount()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View(db.Discounts.ToList());
         }
 
         [HttpGet]
         public ActionResult insertDiscount()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
@@ -31,8 +39,12 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult editDiscount(int id)
+        public ActionResult editDiscount(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View(db.Discounts.Find(id));
         }
 
@@ -45,8 +57,12 @@ namespace WebApplication1.Areas.Admin.Controllers
             return RedirectToAction("listDiscount");
         }
 
-        public ActionResult deleteDiscount(int id)
+        public ActionResult deleteDiscount(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             Discount discount = db.Discounts.Find(id);
             db.Discounts.Remove(discount);
             db.SaveChanges();

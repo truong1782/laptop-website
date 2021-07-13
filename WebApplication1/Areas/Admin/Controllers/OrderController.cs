@@ -12,11 +12,19 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/Order
         public ActionResult Order()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View(db.Orders.ToList());
         }
 
-        public ActionResult deleteOrder(int id)
+        public ActionResult deleteOrder(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (String.IsNullOrEmpty(id.ToString()))
             {
                 return RedirectToAction("Order");
@@ -33,6 +41,10 @@ namespace WebApplication1.Areas.Admin.Controllers
 
         public ActionResult orderDetail(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (String.IsNullOrEmpty(id.ToString()))
             {
                 return RedirectToAction("Order");
@@ -46,8 +58,12 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult changeOrderStatus(int id)
+        public ActionResult changeOrderStatus(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (String.IsNullOrEmpty(id.ToString()))
             {
                 return RedirectToAction("Order");
@@ -61,7 +77,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
         }
 
-        private void deleteOrderDetail(int id)
+        private void deleteOrderDetail(int? id)
         {
             List<OrderDetail> ordDetail = db.OrderDetails.ToList();
             foreach (var item in ordDetail)

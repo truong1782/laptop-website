@@ -16,6 +16,10 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Employee()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var allEmployee = db.Users.Where(u => u.roleID != 1 && u.roleID != 2).ToList();
             return View(allEmployee);
         }
@@ -23,6 +27,10 @@ namespace WebApplication1.Areas.Admin.Controllers
         
         public ActionResult insertEmployee()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
             return View();
         }
@@ -35,7 +43,7 @@ namespace WebApplication1.Areas.Admin.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                 string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
-                emp.image = "/images/user/employee/" + fileName;
+                emp.image = "~/images/user/employee/" + fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/employee"), fileName));
                 db.Users.Add(emp);
                 db.SaveChanges();
@@ -43,7 +51,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
             else
             {
-                emp.image = "/images/user/employee/default-employee.jpg";
+                emp.image = "~/images/user/employee/default-employee.jpg";
                 db.Users.Add(emp);
                 db.SaveChanges();
                 return RedirectToAction("Employee");
@@ -51,8 +59,12 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult editEmployee(int id)
+        public ActionResult editEmployee(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
             return View(db.Users.Find(id));
         }
@@ -73,16 +85,24 @@ namespace WebApplication1.Areas.Admin.Controllers
             return RedirectToAction("Employee");
         }
 
-        public ActionResult deleteEmployee(int id)
+        public ActionResult deleteEmployee(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var selectedEmp = db.Users.Find(id);
             db.Users.Remove(selectedEmp);
             db.SaveChanges();
             return RedirectToAction("Employee", "Employee");
         }
 
-        public ActionResult employeeDetails(int id)
+        public ActionResult employeeDetails(int? id)
         {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var selectedEmp = db.Users.Find(id);
             return View(selectedEmp);
         }
@@ -95,14 +115,14 @@ namespace WebApplication1.Areas.Admin.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                 string extension = Path.GetExtension(ImageUpload.FileName);
                 fileName += extension;
-                user.image = "/images/user/employee/" + fileName; ;
+                user.image = "~/images/user/employee/" + fileName; ;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/employee"), fileName));
                 db.SaveChanges();
                 return RedirectToAction("editEmployee", "Employee", new { id = Int32.Parse(frm["userID"]) });
             }
             else
             {
-                user.image = "/images/user/employee/default-employee.jpg";
+                user.image = "~/images/user/employee/default-employee.jpg";
                 db.SaveChanges();
                 return RedirectToAction("editEmployee");
             }

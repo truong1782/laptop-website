@@ -61,7 +61,7 @@
             {
                 <tr>
                     <td>
-                        <img src="@item.image" alt="@item.image" width="80" height="80" />
+                        <img src="@Url.Content(item.image)" alt="@Url.Content(item.image)" width="80" height="80" />
                     </td>
                     <td>
                         @Html.TextAreaFor(modelItem => item.productName)
