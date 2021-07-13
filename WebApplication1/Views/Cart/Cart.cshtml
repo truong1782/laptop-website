@@ -32,7 +32,7 @@
             </div>
             <div id="basket" class="col-lg-9">
                 <div class="box mt-0 pb-0 no-horizontal-padding">
-                    @using (Html.BeginForm("UpdateCart", "Cart",FormMethod.Post))
+                    @using (Html.BeginForm("UpdateCart", "Cart", FormMethod.Post))
                     {
                         <div class="table-responsive">
                             <table class="table">
@@ -81,7 +81,7 @@
                                 <a href="@Url.Action("Index","Home")" class="btn btn-primary rounded mt-0"><i class="fa fa-chevron-left"></i> Quay lại cửa hàng</a>
                             </div>
                             <div class="right-col">
-                                <a  value="Xóa tất cả" class="btn btn-danger rounded" href="@Url.Action("DeleteAllCart", "Cart")"><i class="fa fa-trash" aria-hidden="true"></i> Xoá tất cả</a>
+                                <a value="Xóa tất cả" class="btn btn-danger rounded" href="@Url.Action("DeleteAllCart", "Cart")"><i class="fa fa-trash" aria-hidden="true"></i> Xoá tất cả</a>
                                 <button type="submit" value="Cập Nhật" class="btn btn-info rounded"><i class="fas fa-sync"></i> Cập nhật</button>
                             </div>
                         </div>
@@ -94,19 +94,20 @@
                         <h4>Mã giảm giá</h4>
                     </div>
                     <p>Nếu bạn có mã giảm giá, vui lòng nhập mã đó vào ô bên dưới.</p>
-                    <form>
+                    @using (Html.BeginForm("useDiscount", "Cart", FormMethod.Post))
+                    {
                         <div class="input-group">
-                            <input type="text" class="form-control"><span class="input-group-btn">
-                                <button type="button" class="btn btn-template-main"><i class="fa fa-gift"></i></button>
+                            <input type="text" class="form-control" name="code" maxlength="30">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-gift"></i></button>
                             </span>
                         </div>
-                    </form>
+                    }
                 </div>
                 <div id="order-summary" class="box mt-0 mb-4 p-0">
                     <div class="box-header mt-0">
                         <h3>Tóm tắt đơn hàng</h3>
                     </div>
-                    @*<p class="text-muted">Chi phí vận chuyển và chi phí bổ sung được tính dựa trên các giá trị bạn đã nhập.</p>*@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
@@ -116,7 +117,7 @@
                                 </tr>
                                 <tr>
                                     <td>Giảm giá</td>
-                                    <th>0đ</th>
+                                    <th>@String.Format("{0:0,0}", Session["discountValue"])đ</th>
                                 </tr>
 
                                 <tr class="total">
