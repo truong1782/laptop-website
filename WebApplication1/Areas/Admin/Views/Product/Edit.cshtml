@@ -5,7 +5,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+<script src="~/Services/ckeditor/ckeditor.js"></script>
 <div class="container">
     @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -99,6 +99,7 @@
                     @Html.LabelFor(model => model.productDetail, htmlAttributes: new { @class = "control-label fw-bold" })
                     <div class="col-md-12">
                         <textarea class="form-control" name="productDetail" id="productDetail" rows="7">@Model.productDetail</textarea>
+                        <script>CKEDITOR.replace("productDetail");</script>
                     </div>
                 </div>
             </div>

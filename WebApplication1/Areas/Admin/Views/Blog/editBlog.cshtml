@@ -1,0 +1,67 @@
+﻿@using WebApplication1.Models.Data
+@model Blog
+
+@{
+    ViewBag.Title = "editBlog";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Services/ckeditor/ckeditor.js"></script>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <h2>editBlog</h2>
+        <div class="form-horizontal">
+            <h4>Blog</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.IDBlog)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                <textarea class="form-control" name="Content" id="Content" rows="7" required>@Model.Content</textarea>
+                <script>CKEDITOR.replace("Content");</script>
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.IDTopic, "IDTopic", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-select" name="IDTopic" id="IDTopic" required>
+                        @foreach (var item in (List<Topic>)ViewBag.IDTopic)
+                        {
+                            if (item.IDTopic == Model.IDTopic)
+                            {
+                                <option value="@Model.IDTopic" selected>@Model.Topic.NameTopic</option>
+                            }
+                            else
+                            {
+                                <option value="@item.IDTopic">@item.NameTopic</option>
+                            }
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.IDTopic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+

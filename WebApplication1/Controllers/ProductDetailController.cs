@@ -9,9 +9,13 @@ namespace WebApplication1.Controllers
     public class ProductDetailController : Controller
     {
         // GET: ProductDetail
-        DBContext db = new DBContext();
-        public ActionResult ProductDetailPage(int id)
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
+        public ActionResult ProductDetailPage(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var selectedProduct = db.Products.Find(id);
             ViewBag.relativeProducts = getRelativeProducts(selectedProduct.categoryID);
             var request = HttpContext.Request.Url.AbsoluteUri;

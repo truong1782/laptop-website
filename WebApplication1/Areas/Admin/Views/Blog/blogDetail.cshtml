@@ -1,0 +1,61 @@
+﻿@model WebApplication1.Models.Data.Blog
+
+@{
+    ViewBag.Title = "blogDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="container">
+    <h2>blogDetail</h2>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Topic.NameTopic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Topic.NameTopic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.fullName)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IDBlog }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+

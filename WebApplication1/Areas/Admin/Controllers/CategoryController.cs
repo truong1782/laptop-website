@@ -9,7 +9,7 @@ namespace WebApplication1.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         // GET: Admin/Category
         public ActionResult listCategories()
         {

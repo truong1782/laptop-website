@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebApplication1.Models.Data.Blog>
+
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+    <h2>Quản lý bài viết</h2>
+    <p>
+        <a class="btn btn-success float-end" href="@Url.Action("createBlog", "Blog")">Thêm mới bài viết</a>
+    </p>
+    <table id="mytable">
+        <thead>
+            <tr>
+                <th>
+                    Tiêu đề
+                </th>
+                <th>
+                    Nội dung
+                </th>
+                <th>
+                    Ngày viết
+                </th>
+                <th>
+                    Tên chủ đề
+                </th>
+                <th>
+                    Người viết
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <textarea readonly style="border:none; overflow:hidden;">
+                            @item.Title
+                        </textarea>
+                    </td>
+                    <td>
+                        <textarea readonly style="border:none; overflow:hidden;">
+                            @item.Content
+                        </textarea>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topic.NameTopic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.fullName)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary fas fa-edit" href="@Url.Action("editBlog", "Blog", new { id = item.IDBlog })"></a>
+                        <a class="btn btn-info fas fa-info-circle text-white" href="@Url.Action("blogDetail", "Blog", new { id = item.IDBlog })"></a>
+                        <a class="btn btn-danger fas fa-times" href="@Url.Action("deleteBlog", "Blog", new { id = item.IDBlog })"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
+
+<script>
+    jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+</script>

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<WebApplication1.Models.Data.Order>
+@using System.Globalization
 @{
     ViewBag.Title = "Order";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -26,13 +27,17 @@
                     <tr>
                         <td>@item.orderID</td>
                         <td>@item.User.userName</td>
-                        <td>@item.reduceMoney</td>
-                        <td>@item.totalMoney</td>
+                        <td>
+                            @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.reduceMoney)
+                        </td>
+                        <td>
+                            @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.totalMoney)
+                        </td>
                         <td>@item.dateCreate</td>
                         <td>@item.dateArrive</td>
                         @if (item.status == false)
                         {
-                             <td style="color:red">Chưa xử lý</td>
+                            <td style="color:red">Chưa xử lý</td>
                         }
                         else
                         {

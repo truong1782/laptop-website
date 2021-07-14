@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +14,21 @@
     <link href="~/fonts/css/regular.min.css" rel="stylesheet" />
     <link href="~/Public/css/style.css" rel="stylesheet" />
     <link href="~/Public/css/productDetail.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/images/logo/Designbolts-Free-Multimedia-Laptop.ico" />
+
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0" nonce="tSmVt7mb"></script>
     <header>
         <nav class="navbar navbar-light bg-white p-0">
             <div class="container">
                 <a class="navbar-brand p-0" href="@Url.Action("Index","Home")">
-                    <img src="~/images/logo/logotht.PNG" alt="" style="width:120px; height:60px" />
+                    <img src="~/images/logo/213682375_509355140293215_4297729168636508658_n.png" alt="" style="width:290px; height:70px" />
                 </a>
                 <div class="nav-item d-inline-flex">
-                    <marquee width="700px"><b>SĐT: 0123456789 - Cam kết chính hãng</b></marquee>
+                    <marquee width="500px"><b>THT Store - Cam kết chính hãng - Uy tín - Chất lượng - 0989969919</b></marquee>
                 </div>
                 <div class="d-flex">
                     @Html.Action("customerPartial", "Customer")
@@ -38,29 +43,37 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
+
                         <li class="nav-item">
-                            <a class="nav-link active" style="color:white" href="@Url.Action("Index","Home")"><b>TRANG CHỦ</b></a>
+                            <a class="nav-link active" style="color: #F8F8FF; margin-left: 70px" href="@Url.Action("Index","Home")"><b>TRANG CHỦ</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("About","About")"><b>GIỚI THIỆU</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("ProductPage","Product")"><b>SẢN PHẨM</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>LINH KIỆN</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("discountPage","Discount")"><b>KHUYẾN MÃI</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>PHỤ KIỆN</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>KHUYẾN MÃI</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="#"><b>TIN TỨC</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("Blog","Blog")"><b>TIN TỨC</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color: #F8F8FF; margin: 0px 20px" href="@Url.Action("ContactPage","Contact")"><b>LIÊN HỆ</b></a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: #F8F8FF;" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <b>BẢO HÀNH</b>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="@Url.Action("Policy","Policy")">Chính sách quy định chung</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Condition","Policy")">Điều kiện bảo hành</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Warranty","Policy")">Chính sách bảo hành</a></li>
+                            </ul>
+                        </li>
                         <li>
-                            <form class="d-flex">
+                            <form class="d-flex" style="margin-left: 20px">
                                 <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 270px">
                                 <button class="btn btn-light text-dark" type="submit">
                                     <i class="fa fa-search"></i>
@@ -71,40 +84,99 @@
                 </div>
             </div>
         </nav>
+
+        @* Back to top *@
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
+        <style>
+            #myBtn {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 15px;
+                font-size: 20px;
+                border: none;
+                background-color: white;
+                cursor: pointer;
+                border-radius: 30px;
+            }
+
+                #myBtn:hover {
+                    background-color: #0099FF;
+                }
+        </style>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("myBtn").style.display = "block";
+                } else {
+                    document.getElementById("myBtn").style.display = "none";
+                }
+            }
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
     </header><!--END HEADER-->
+
 
     <section id="main_content">
         @RenderBody()
     </section><!--end main_content-->
 
     <footer>
-        <div class="container-fluid" style="background-color: #E8E8E8">
-            <img src="~/images/bia/bia5.PNG" style="width:100%; height:100%" />
-            <div class="row">
-                <div class="col-3">
-                    <img src="~/images/logo/logotht.png" style="height:150px; width:350px;" />
-                </div>
-                <div class="col-md-3 pt-3">
-                    <a class="nav-link active" style="color:black" href="#"><b>CỬA HÀNG</b></a>
-                </div>
-                <div class="col-md-3 pt-3">
-                    <a class="nav-link active" style="color:black" href="#"><b>CHÍNH SÁCH</b></a>
-                    <a class="nav-link active" style="color:dimgray" href="#">Về chúng tôi</a>
-                    <a class="nav-link active" style="color:dimgray" href="#">Chính sách quy định chung</a>
-                    <a class="nav-link active" style="color:dimgray" href="#">Điều kiện bảo hành</a>
-                    <a class="nav-link active" style="color:dimgray" href="#">Chính sách bảo hành</a>
-                </div>
-                <div class="col-md-3 pt-3">
-                    <a class="nav-link active" style="color:black" href="#"><b>HỖ TRỢ</b></a>
-                    <a class="nav-link active" style="color:dimgray" href="#">Tổng đài tư vấn: 0989969919</a>
-                    <a class="nav-link active" style="color:dimgray" href="#">Tư vấn mua hàng: 0123456789</a>
-                    <a class="nav-link active" style="color:dimgray" href="#">Hỗ trợ kỹ thuật: 0163686839</a>
-                    <a class="nav-link active" style="color:dimgray" href="#">Phản hồi, góp ý: 0386969056</a>
-                </div>
+        <img src="~/images/bia/bia5.PNG" style="width:100%; height:100%" />
+        <div class="container-fluid" style="background-color: #111111">
 
-            </div>
-            <div class="pt-3">
-                <center><b>&copy; @DateTime.Now.Year - by THT Store</b></center><br />
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3 pt-3">
+                        <a class="nav-link active" style="color: #F8F8FF"><b>CỬA HÀNG</b></a>
+
+                        <iframe width="300"
+                                height="200"
+                                style="border:0"
+                                loading="lazy"
+                                allowfullscreen
+                                src="https://maps.google.com/maps?width=631&amp;height=665&amp;hl=en&amp;saddr=Đại Học Hutech Khu E, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh,
+                                Vietnam&amp;daddr=Đại Học Hutech Khu E, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh, Vietnam&amp;t=&amp;z=20&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                        </iframe>
+
+
+
+
+                    </div>
+                    <div class="col-md-3 pt-3">
+                        <a class="nav-link active" style="color: #F8F8FF"><b>CHÍNH SÁCH</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("About","About")"><b>Về chúng tôi</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("Policy","Policy")"><b>Chính sách quy định chung</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("Condition","Condition")"><b>Điều kiện bảo hành</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("Warranty","Warranty")"><b>Chính sách bảo hành</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("ContactPage","Contact")"><b>Liên hệ</b></a>
+                    </div>
+                    <div class="col-md-3 pt-3">
+                        <a class="nav-link active" style="color: #F8F8FF"><b>HỖ TRỢ</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB">Tổng đài tư vấn: 0989969919</a>
+                        <a class="nav-link active" style="color: #BBBBBB">Tư vấn mua hàng: 0123456789</a>
+                        <a class="nav-link active" style="color: #BBBBBB">Hỗ trợ kỹ thuật: 0163686839</a>
+                        <a class="nav-link active" style="color: #BBBBBB">Phản hồi, góp ý: 0386969056</a>
+                    </div>
+                    <div class="col-3 pt-3">
+                        <a class="nav-link active" style="color: #F8F8FF"><b>FANPAGE FACEBOOK</b></a>
+                        <div class="fb-page" data-href="https://www.facebook.com/hutechuniversity" data-tabs="timeline" data-width="" data-height="200" data-small-header="false"
+                             data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+                            <blockquote cite="https://www.facebook.com/hutechuniversity"
+                                        class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/hutechuniversity">HUTECH - Đại học Công nghệ Tp.HCM</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <center class="nav-link active"><p>&copy; @DateTime.Now.Year Copyright: THT Store</p></center>
             </div>
         </div>
     </footer>

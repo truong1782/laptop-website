@@ -8,7 +8,7 @@ namespace WebApplication1.DAO
     
     public class UserDao
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
 
         public bool isExisted(string userName)
         {

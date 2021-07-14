@@ -8,12 +8,13 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WebApplication1.Models.Data;
 using WebApplication1.DAO;
+using WebApplication1.Services;
 namespace WebApplication1.Controllers
 {
     public class CustomerController : Controller
     {
         // GET: Login
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
 
         [HttpGet]
         public ActionResult Login()
@@ -31,7 +32,7 @@ namespace WebApplication1.Controllers
         public ActionResult Login(FormCollection frm)
         {
             var userName = frm["userName"];
-            var password = frm["password"];
+            var password = MD5.MD5Hash(frm["password"]);
             User user = db.Users.SingleOrDefault(u => u.userName == userName && u.password == password && u.roleID == 1);
             if (user != null)
             {
@@ -59,7 +60,7 @@ namespace WebApplication1.Controllers
             User user = new User();
             user.fullName = collection["HoTen"];
             user.userName = collection["TaiKhoan"];
-            user.password = collection["MatKhau"];
+            user.password = MD5.MD5Hash(collection["MatKhau"]);
             user.email = collection["Email"];
             user.phoneNumber = collection["Sdt"];
             user.address = collection["DiaChi"];
@@ -156,13 +157,9 @@ namespace WebApplication1.Controllers
             get
             {
                 var uriBuilder = new UriBuilder(Request.Url);
-
                 uriBuilder.Query = null;
-
                 uriBuilder.Fragment = null;
-
                 uriBuilder.Path = Url.Action("FacebookCallback");
-
                 return uriBuilder.Uri;
             }
         }
@@ -174,13 +171,9 @@ namespace WebApplication1.Controllers
             var loginUrl = fb.GetLoginUrl(new
             {
                 client_id = "524881248664035",
-
                 client_secret = "63a6bc58a92cb1af17983c8a7c3d1852",
-
                 redirect_uri = RediredtUri.AbsoluteUri,
-
                 response_type = "code",
-
                 scope = "email"
             });
             return Redirect(loginUrl.AbsoluteUri);
@@ -194,52 +187,40 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index", "Home");
             }
             dynamic result = fb.Post("oauth/access_token", new
-
             {
-
                 client_id = "524881248664035",
-
                 client_secret = "63a6bc58a92cb1af17983c8a7c3d1852",
-
                 redirect_uri = RediredtUri.AbsoluteUri,
-
                 code = code
             });
-
             var accessToken = result.access_token;
-
-            Session["AccessToken"] = accessToken;
-
             fb.AccessToken = accessToken;
-
             dynamic me = fb.Get("me?fields=link,first_name,currency,last_name,email,gender,locale,timezone,verified,picture,age_range,middle_name,birthday,hometown,location");
-
-            string userName = me.email;
+            
             var fbUser = new User();
             var userDao = new UserDao();
+            fbUser.email = me.email;
+            fbUser.userName = me.email;
+            fbUser.fullName = me.first_name + " " + me.last_name;
+            fbUser.image = me.picture.data.url;
+            fbUser.roleID = 1;
+            fbUser.gender = true;
 
-            if (userDao.isExisted(userName) == true)
+            if (userDao.isExisted(fbUser.email) == true)
             {
-                fbUser = db.Users.FirstOrDefault(u => u.userName == userName);
+                fbUser = db.Users.FirstOrDefault(u => u.userName == fbUser.email);
                 Session["User"] = fbUser;
             }
             else
             {
-                fbUser.email = me.email;
-                fbUser.userName = me.email;
-                fbUser.fullName = me.first_name + " " + me.last_name;
-                fbUser.image = me.picture.data.url;
-                fbUser.roleID = 1;
-                fbUser.gender = true;
                 db.Users.Add(fbUser);
                 db.SaveChanges();
                 Session["User"] = fbUser;
             }
 
-            FormsAuthentication.SetAuthCookie(userName, false);
             return RedirectToAction("Index", "Home");
         }
 
-        
+
     }
 }

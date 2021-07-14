@@ -60,7 +60,7 @@
                     @Html.DisplayFor(modelItem => item.userName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.password)
+                    <input type="password" value="@item.password" readonly style="border:none"/>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.email)
@@ -79,7 +79,7 @@
                     @gioitinh
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.dateOfBirth)
+                    @item.dateOfBirth.ToString("dd/MM/yyyy")
                 </td>
                 <td style="white-space: nowrap;">
                     <a class="btn btn-primary fas fa-edit" href="@Url.Action("editEmployee","Employee", new { id = @item.userID })"></a>

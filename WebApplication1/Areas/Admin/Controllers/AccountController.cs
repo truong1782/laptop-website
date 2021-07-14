@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models.Data;
-
+using WebApplication1.Services;
 namespace WebApplication1.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         // GET: Admin/Login
         public ActionResult Login()
         {
@@ -20,7 +20,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         public ActionResult Login(FormCollection frm)
         {
             var username = frm["userName"];
-            var password = frm["password"];
+            var password = MD5.MD5Hash(frm["password"]);
             User user = db.Users.SingleOrDefault(u => u.userName == username &&
                                                  u.password == password &&
                                                  u.Role.roleName != "Khách hàng");

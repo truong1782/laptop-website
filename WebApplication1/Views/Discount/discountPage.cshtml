@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplication1.Models.Data.Discount>
+
+@{
+    ViewBag.Title = "discountPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-3">
+    <h3>Danh sách mã khuyến mãi</h3>
+    <div class="row">
+        <!---->
+        @foreach (var item in Model)
+        {
+            <div class="card mb-3 mx-3 border border-dark" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="~/images/discount/discount-icon2.png" class="img-fluid rounded-start" alt="..." style="height:150px">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.note</h5>
+                            <p class="card-text"><small class="text-muted">Ngày hết hạn: @item.endDate</small></p>
+                            <div class="row">
+                                <div class="col-md-10 p-0">
+                                    <input class="form-control" type="text" name="discountCode" id="@item.discountID" value="@item.discountCode" readonly />
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" id="EpicButton" class="btn btn-warning popover-dismiss" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom" onclick="copyToClipboard(@item.discountID)">
+                                        <i class="fas fa-clipboard"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+<script>
+    function copyToClipboard(id) {
+        /* Get the text field */
+        var copyText = document.getElementById(id);
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+    }
+
+</script>

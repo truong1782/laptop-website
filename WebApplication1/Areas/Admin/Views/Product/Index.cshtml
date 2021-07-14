@@ -64,13 +64,13 @@
                         <img src="@Url.Content(item.image)" alt="@Url.Content(item.image)" width="80" height="80" />
                     </td>
                     <td>
-                        @Html.TextAreaFor(modelItem => item.productName)
+                        @Html.TextAreaFor(modelItem => item.productName, new { @readonly = "readonly" })
                     </td>
                     <td style="white-space: nowrap;">
                         @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
                     </td>
                     <td>
-                        @Html.TextAreaFor(modelItem => item.productDetail)
+                        @Html.TextAreaFor(modelItem => item.productDetail, new { @readonly = "readonly" })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Category.categoryName)

@@ -7,12 +7,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models.Data;
-
+using WebApplication1.Services;
 namespace WebApplication1.Areas.Admin.Controllers
 {
     public class EmployeeController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         // GET: Admin/User
         public ActionResult Employee()
         {
@@ -45,6 +45,8 @@ namespace WebApplication1.Areas.Admin.Controllers
                 fileName += extension;
                 emp.image = "~/images/user/employee/" + fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/employee"), fileName));
+
+                emp.password = MD5.MD5Hash(emp.password);
                 db.Users.Add(emp);
                 db.SaveChanges();
                 return RedirectToAction("Employee");
