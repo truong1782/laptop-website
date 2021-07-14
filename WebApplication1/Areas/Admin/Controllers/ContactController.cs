@@ -12,7 +12,7 @@ namespace WebApplication1.Areas.Admin.Controllers
     public class ContactController : Controller
     {
         // GET: Admin/Contact
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         EmailService emailService = new EmailService();
         public ActionResult listContact()
         {

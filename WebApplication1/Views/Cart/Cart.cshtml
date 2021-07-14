@@ -22,8 +22,6 @@
     </div>
 </div>
 
-
-
 <div id="content">
     <div class="container">
         <div class="row bar">
@@ -70,6 +68,10 @@
                                 </tbody>
                                 <tfoot>
                                     <tr style="border-bottom: none">
+                                        <th colspan="4">Giảm giá</th>
+                                        <th colspan="4">@String.Format("{0:0,0}", Session["discountValue"])đ</th>
+                                    </tr>
+                                    <tr style="border-bottom: none">
                                         <th colspan="4">Tổng tiền</th>
                                         <th colspan="4">@String.Format("{0:0,0}", ViewBag.FinalMoney)đ</th>
                                     </tr>
@@ -98,10 +100,11 @@
                     {
                         <div class="input-group">
                             <input type="text" class="form-control" name="code" maxlength="30">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-gift"></i></button>
+                            <span class="input-group-btn mx-1">
+                                <button type="submit" class="btn btn-primary">Dùng mã</button>
                             </span>
                         </div>
+                        <span style="color:red"><b>@ViewBag.Warning</b></span>
                     }
                 </div>
                 <div id="order-summary" class="box mt-0 mb-4 p-0">
@@ -134,7 +137,7 @@
                         }
                         else
                         {
-                            <a class="btn btn-success rounded" href=@Url.Action("Login", "Customer")>Đi đến đặt hàng <i class="fas fa-arrow-circle-right"></i></a>
+                            <a class="btn btn-success rounded w-100" href=@Url.Action("Login", "Customer")>Đi đến đặt hàng <i class="fas fa-arrow-circle-right"></i></a>
                             <hr />
                             <b class="text-danger">Đăng nhập để tiến hành đặt hàng</b>
                         }

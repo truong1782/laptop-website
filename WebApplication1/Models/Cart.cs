@@ -9,13 +9,12 @@ namespace WebApplication1.Models
 {
     public class Cart
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         public int iProductID { set; get; }
         public string sProductName { set; get; }
         public string sImage { set; get; }
         public int dAmountMoney { set; get; }
         public int iSoluong { set; get; }
-        //public int reducedMoney { set; get; }
         public int dThanhTien
         {
             get { return (iSoluong*dAmountMoney); }
@@ -26,7 +25,6 @@ namespace WebApplication1.Models
             Product product = db.Products.Single(n => n.productID == iProductID);
             sProductName = product.productName;
             sImage = product.image;
-            //reducedMoney = 0;
             dAmountMoney = int.Parse(product.productPrice.ToString());
             iSoluong = 1;
         }

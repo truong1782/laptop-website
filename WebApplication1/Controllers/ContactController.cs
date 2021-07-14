@@ -9,7 +9,7 @@ namespace WebApplication1.Controllers
 {
     public class ContactController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         // GET: Contact
         [HttpPost]
         public ActionResult ContactPage(FormCollection contactForm)

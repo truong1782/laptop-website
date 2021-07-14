@@ -8,7 +8,7 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         private List<Product> newProducts(int count)
         {
             return db.Products.OrderByDescending(a => a.dateCreate).Take(count).ToList();

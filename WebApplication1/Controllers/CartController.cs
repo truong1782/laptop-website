@@ -11,7 +11,7 @@ namespace WebApplication1.Controllers
     public class CartController : Controller
     {
         // GET: Cart
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
 
         //Xay dung trang Gio hang
         public ActionResult Cart()
@@ -59,11 +59,17 @@ namespace WebApplication1.Controllers
         public ActionResult useDiscount(FormCollection frm)
         {
             string code = frm["code"];
-            if (string.IsNullOrEmpty(code))
-            {
-                return RedirectToAction("Cart");
-            }
             Discount reduceMoney = db.Discounts.FirstOrDefault(d => d.discountCode == code);
+
+            if (reduceMoney == null)
+            {
+                ViewBag.Warning = "Mã không hợp lệ";
+                List<Cart> listcart = getCart();
+                ViewBag.TotalQuantity = TotalQuantity();
+                ViewBag.FinalMoney = FinalMoney();
+                return View("Cart", listcart);
+            }
+
             Session["discountValue"] = reduceMoney.value;
 
             List<Cart> listCart = getCart();
@@ -72,7 +78,6 @@ namespace WebApplication1.Controllers
 
             return View("Cart", listCart);
         }
-
 
         //Tong so luong
         private int TotalQuantity()
@@ -183,6 +188,7 @@ namespace WebApplication1.Controllers
         {
             Order order = new Order();
             order.userID = userid;
+            order.reduceMoney = Int32.Parse(Session["discountValue"].ToString());
             order.totalMoney = FinalMoney();
             order.dateCreate = DateTime.Now;
             order.dateArrive = DateTime.Now.AddDays(10);
@@ -206,6 +212,10 @@ namespace WebApplication1.Controllers
 
         public ActionResult Finish()
         {
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             User user = Session["User"] as User;
             return View(db.Users.Find(user.userID));
         }

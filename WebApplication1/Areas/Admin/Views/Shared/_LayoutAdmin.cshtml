@@ -8,6 +8,9 @@
     <link href="~/fonts/css/brands.min.css" rel="stylesheet" />
     <link href="~/fonts/css/solid.min.css" rel="stylesheet" />
     <link href="~/Public/css/Admin/LayoutAdmin.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,13 +35,16 @@
                         <a class="nav-link active" aria-current="page" href="@Url.Action("Employee", "Employee")">Nhân viên</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="@Url.Action("listContact", "Contact")">Liên hệ</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="@Url.Action("listDiscount", "Discount")">Khuyến mãi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="@Url.Action("Order", "Order")">Đơn hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("listContact", "Contact")">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("BlogList", "Blog")">Bài viết</a>
                     </li>
                 </ul>
             </div>
@@ -69,5 +75,6 @@
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Public/js/Admin/LayoutAdmin.js"></script>
+    <script src="~/Services/ckeditor/ckeditor.js"></script>
 </body>
 </html>

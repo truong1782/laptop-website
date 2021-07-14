@@ -10,7 +10,7 @@ namespace WebApplication1.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         // GET: Admin/Product
 
 
@@ -36,6 +36,8 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult createProduct(Product productInfo, HttpPostedFileBase ImageUpload)
         {
             productInfo.dateCreate = DateTime.Now;
@@ -73,6 +75,8 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit(FormCollection frm)
         {
             var editedProd = db.Products.Find(Int32.Parse(frm["productID"]));

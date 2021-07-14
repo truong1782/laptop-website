@@ -8,7 +8,7 @@ namespace WebApplication1.Areas.Admin.Controllers
 {
     public class OrderController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         // GET: Admin/Order
         public ActionResult Order()
         {

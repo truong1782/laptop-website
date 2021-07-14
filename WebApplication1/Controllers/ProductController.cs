@@ -8,7 +8,7 @@ namespace WebApplication1.Controllers
 {
     public class ProductController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         // GET: Product
         public ActionResult ProductPage()
         {

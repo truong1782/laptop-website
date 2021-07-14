@@ -9,7 +9,7 @@ namespace WebApplication1.Areas.Admin.Controllers
 {
     public class BrandController : Controller
     {
-        DBContext db = new DBContext();
+        DBLAPTOPEntities db = new DBLAPTOPEntities();
         // GET: Admin/Brand
         public ActionResult listBrands()
         {
