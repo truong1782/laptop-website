@@ -68,6 +68,7 @@ namespace WebApplication1.Controllers
             user.dateOfBirth = DateTime.Parse(collection["NgaySinh"]);
             user.image = "/images/user/customer/default-employee.jpg";
             user.roleID = 1;
+            user.idSocial = null;
             if (String.IsNullOrEmpty(user.fullName))
             {
                 ViewData["Loi1"] = "Họ tên không được để trống";
@@ -110,8 +111,12 @@ namespace WebApplication1.Controllers
             return this.SignUp();
         }
 
-        public ActionResult customerDetail(int id)
+        public ActionResult customerDetail(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             User user = db.Users.Find(id);
             return View(user);
         }
@@ -152,67 +157,74 @@ namespace WebApplication1.Controllers
             }
         }
 
+
+
+
+        FacebookClient fb = new FacebookClient();
+
         private Uri RediredtUri
         {
             get
             {
                 var uriBuilder = new UriBuilder(Request.Url);
-                uriBuilder.Query = null;
-                uriBuilder.Fragment = null;
-                uriBuilder.Path = Url.Action("FacebookCallback");
+                uriBuilder.Path = Url.Action("FacebookAuthentication", "Customer");
                 return uriBuilder.Uri;
             }
         }
 
-        [AllowAnonymous]
-        public ActionResult Facebook()
+        
+        public ActionResult FacebookLogin()
         {
-            var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = "524881248664035",
-                client_secret = "63a6bc58a92cb1af17983c8a7c3d1852",
+                client_id = "242439230820342",
+                client_secret = "385f181d226b648b0ed8200c5b76288d",
                 redirect_uri = RediredtUri.AbsoluteUri,
                 response_type = "code",
                 scope = "email"
             });
+
             return Redirect(loginUrl.AbsoluteUri);
         }
 
-        public ActionResult FacebookCallback(string code)
+
+
+        public ActionResult FacebookAuthentication(string code)
         {
-            var fb = new FacebookClient();
             if (code == null)
             {
                 return RedirectToAction("Index", "Home");
             }
+
             dynamic result = fb.Post("oauth/access_token", new
             {
-                client_id = "524881248664035",
-                client_secret = "63a6bc58a92cb1af17983c8a7c3d1852",
+                client_id = "242439230820342",
+                client_secret = "385f181d226b648b0ed8200c5b76288d",
                 redirect_uri = RediredtUri.AbsoluteUri,
                 code = code
             });
-            var accessToken = result.access_token;
-            fb.AccessToken = accessToken;
-            dynamic me = fb.Get("me?fields=link,first_name,currency,last_name,email,gender,locale,timezone,verified,picture,age_range,middle_name,birthday,hometown,location");
-            
+
+            fb.AccessToken = result.access_token;
+
+            dynamic me = fb.Get("me?fields=id,first_name,last_name,email,picture");
+
+            string idSocial = me.id;
             var fbUser = new User();
             var userDao = new UserDao();
-            fbUser.email = me.email;
-            fbUser.userName = me.email;
-            fbUser.fullName = me.first_name + " " + me.last_name;
-            fbUser.image = me.picture.data.url;
-            fbUser.roleID = 1;
-            fbUser.gender = true;
-
-            if (userDao.isExisted(fbUser.email) == true)
+            if (userDao.isExisted(idSocial) == true)
             {
-                fbUser = db.Users.FirstOrDefault(u => u.userName == fbUser.email);
+                fbUser = db.Users.FirstOrDefault(u => u.idSocial == idSocial);
                 Session["User"] = fbUser;
             }
             else
             {
+                fbUser.idSocial = me.id;
+                fbUser.email = me.email;
+                fbUser.userName = me.email;
+                fbUser.fullName = me.first_name + " " + me.last_name;
+                fbUser.image = me.picture.data.url;
+                fbUser.roleID = 1;
+                fbUser.gender = true;
                 db.Users.Add(fbUser);
                 db.SaveChanges();
                 Session["User"] = fbUser;

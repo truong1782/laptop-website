@@ -48,7 +48,7 @@
                             <a class="nav-link active" style="color: #F8F8FF; margin-left: 70px" href="@Url.Action("Index","Home")"><b>TRANG CHỦ</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("About","About")"><b>GIỚI THIỆU</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("About","Policy")"><b>GIỚI THIỆU</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="@Url.Action("ProductPage","Product")"><b>SẢN PHẨM</b></a>
@@ -184,5 +184,30 @@
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Public/js/CustomerDetail.js"></script>
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "118931643278743");
+        chatbox.setAttribute("attribution", "biz_inbox");
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v11.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 </html>

@@ -23,6 +23,10 @@
                     <input type="text" class="form-control" name="fullName" value="@Model.fullName">
                 </div>
                 <div class="mb-1">
+                    <label class="form-label fw-bold">Email:</label>
+                    <input type="email" class="form-control" name="email" value="@Model.email">
+                </div>
+                <div class="mb-1">
                     <label class="form-label fw-bold">Giới tính:</label>
                     <select class="form-select" name="gender" id="gender">
                         @if (Model.gender == true)
@@ -37,10 +41,7 @@
                         }
                     </select>
                 </div>
-                <div class="mb-1">
-                    <label class="form-label fw-bold">Email:</label>
-                    <input type="email" class="form-control" name="email" value="@Model.email">
-                </div>
+
                 <div class="mb-1">
                     <label class="form-label fw-bold">Số điện thoại:</label>
                     <input type="tel" class="form-control" name="phoneNumber" value="@Model.phoneNumber">
@@ -53,7 +54,8 @@
                     <label class="form-label fw-bold">Ngày sinh:</label>
                     <input type="date" class="form-control" name="dateOfBirth" value="@Model.dateOfBirth.ToString("yyyy-MM-dd")">
                 </div>
-                <button type="submit" class="btn btn-primary">Cập nhật</button>
+
+                <button type = "submit" class="btn btn-primary">Cập nhật</button>
             }
         </div>
 
@@ -68,7 +70,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             @using (Html.BeginForm("uploadImage", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
+                        {
                 @Html.HiddenFor(c => c.userID)
                 <div class="modal-body text-center">
                     <img src="@Url.Content(Model.image)" alt="@Url.Content(Model.image)" id="output" style="width:290px; height:290px;" /> <br />
@@ -78,7 +80,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     <button type="submit" class="btn btn-primary">Xác nhận</button>
                 </div>
-            }
+}
         </div>
     </div>
 </div>

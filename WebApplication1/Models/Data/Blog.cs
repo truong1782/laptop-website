@@ -20,6 +20,7 @@ namespace WebApplication1.Models.Data
         public Nullable<System.DateTime> DateCreate { get; set; }
         public int IDTopic { get; set; }
         public int UserID { get; set; }
+        public string image { get; set; }
     
         public virtual Topic Topic { get; set; }
         public virtual User User { get; set; }

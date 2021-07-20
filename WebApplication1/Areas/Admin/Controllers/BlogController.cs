@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,13 +34,28 @@ namespace WebApplication1.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult createBlog(Blog blog)
+        public ActionResult createBlog(Blog blog, HttpPostedFileBase ImageUpload)
         {
             blog.DateCreate = DateTime.Now;
             blog.UserID = Int32.Parse(Session["userID"].ToString());
-            db.Blogs.Add(blog);
-            db.SaveChanges();
-            return RedirectToAction("BlogList");
+            if (ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                blog.image = "~/images/blog/" + fileName;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/blog"), fileName));
+                db.Blogs.Add(blog);
+                db.SaveChanges();
+                return RedirectToAction("BlogList");
+            }
+            else
+            {
+                blog.image = "~/images/blog/none.png";
+                db.Blogs.Add(blog);
+                db.SaveChanges();
+                return RedirectToAction("BlogList");
+            }
         }
 
         public ActionResult editBlog(int? id)
@@ -59,7 +75,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         {
             var newBlog = db.Blogs.Find(blog.IDBlog);
             
-            newBlog.UserID = Int32.Parse(Session["userID"].ToString());
+            newBlog.UserID = blog.UserID;
             newBlog.Title = blog.Title;
             newBlog.Content = blog.Content;
             newBlog.DateCreate = DateTime.Now;
@@ -88,6 +104,29 @@ namespace WebApplication1.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Account");
             }
             return View(db.Blogs.Find(id));
+        }
+
+
+        public ActionResult uploadImage(FormCollection frm, HttpPostedFileBase ImageUpload)
+        {
+            var blog = db.Blogs.Find(Int32.Parse(frm["IDBlog"]));
+            if (ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                blog.image = "~/images/blog/" + fileName; ;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/blog/"), fileName));
+
+                db.SaveChanges();
+                return RedirectToAction("editBlog", "Blog", new { id = Int32.Parse(frm["IDBlog"]) });
+            }
+            else
+            {
+                blog.image = "~/images/blog/none.png";
+                db.SaveChanges();
+                return RedirectToAction("BlogList", "Blog");
+            }
         }
     }
 }

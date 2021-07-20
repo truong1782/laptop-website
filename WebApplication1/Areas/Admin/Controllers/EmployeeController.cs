@@ -36,8 +36,17 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult insertEmployee(User emp, HttpPostedFileBase ImageUpload)
+        public ActionResult insertEmployee(FormCollection frm, HttpPostedFileBase ImageUpload)
         {
+            var emp = new User();
+            emp.roleID = Int32.Parse(frm["roleID"]);
+            emp.fullName = frm["fullName"];
+            emp.userName = frm["userName"];
+            emp.password = MD5.MD5Hash(frm["password"].ToString());
+            emp.email = frm["email"];
+            emp.phoneNumber = frm["phoneNumber"];
+            emp.address = frm["address"];
+            emp.gender = bool.Parse(frm["gender"]);
             if (ImageUpload != null)
             {
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
@@ -46,7 +55,6 @@ namespace WebApplication1.Areas.Admin.Controllers
                 emp.image = "~/images/user/employee/" + fileName;
                 ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/images/user/employee"), fileName));
 
-                emp.password = MD5.MD5Hash(emp.password);
                 db.Users.Add(emp);
                 db.SaveChanges();
                 return RedirectToAction("Employee");

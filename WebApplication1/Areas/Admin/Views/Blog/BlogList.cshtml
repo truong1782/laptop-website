@@ -9,11 +9,14 @@
 <div class="container">
     <h2>Quản lý bài viết</h2>
     <p>
-        <a class="btn btn-success float-end" href="@Url.Action("createBlog", "Blog")">Thêm mới bài viết</a>
+        <a class="btn btn-success" href="@Url.Action("createBlog", "Blog")">Thêm mới bài viết</a>
     </p>
     <table id="mytable">
         <thead>
             <tr>
+                <th>
+                    Ảnh bìa
+                </th>
                 <th>
                     Tiêu đề
                 </th>
@@ -38,14 +41,17 @@
             {
                 <tr>
                     <td>
-                        <textarea readonly style="border:none; overflow:hidden;">
-                            @item.Title
-                        </textarea>
+                        <img src="@Url.Content(item.image)" alt="@Url.Content(item.image)" width="80" height="80" />
                     </td>
                     <td>
-                        <textarea readonly style="border:none; overflow:hidden;">
+                        <p readonly style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            @item.Title
+                        </p>
+                    </td>
+                    <td>
+                        <p readonly style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                             @item.Content
-                        </textarea>
+                        </p>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DateCreate)
