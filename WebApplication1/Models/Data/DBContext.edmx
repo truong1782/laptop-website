@@ -11,10 +11,11 @@
           </Key>
           <Property Name="IDBlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" />
-          <Property Name="Content" Type="ntext" />
+          <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="DateCreate" Type="datetime" />
           <Property Name="IDTopic" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="image" Type="ntext" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
@@ -123,14 +124,15 @@
           <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="roleID" Type="int" Nullable="false" />
           <Property Name="fullName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="userName" Type="nchar" MaxLength="55" Nullable="false" />
+          <Property Name="userName" Type="nchar" MaxLength="55" />
           <Property Name="password" Type="nchar" MaxLength="55" />
-          <Property Name="email" Type="nchar" MaxLength="55" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="55" />
           <Property Name="phoneNumber" Type="nchar" MaxLength="12" />
           <Property Name="address" Type="nvarchar" MaxLength="255" />
-          <Property Name="image" Type="nchar" MaxLength="255" />
+          <Property Name="image" Type="nvarchar(max)" />
           <Property Name="gender" Type="bit" Nullable="false" />
           <Property Name="dateOfBirth" Type="date" Nullable="false" />
+          <Property Name="idSocial" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__Order__userID__49C3F6B7">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -290,6 +292,7 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Topic" Relationship="Self.FK_Blog_Topic" FromRole="Blog" ToRole="Topic" />
           <NavigationProperty Name="User" Relationship="Self.FK_Blog_User" FromRole="Blog" ToRole="User" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
@@ -409,17 +412,18 @@
           <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="roleID" Type="Int32" Nullable="false" />
           <Property Name="fullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="userName" Type="String" MaxLength="55" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="55" FixedLength="true" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="55" FixedLength="true" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="55" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="55" FixedLength="true" Unicode="true" />
           <Property Name="phoneNumber" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="image" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="Boolean" Nullable="false" />
           <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Blogs" Relationship="Self.FK_Blog_User" FromRole="User" ToRole="Blog" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Order__userID__49C3F6B7" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Role" Relationship="Self.FK__User__roleID__4CA06362" FromRole="User" ToRole="Role" />
+          <Property Name="idSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Blog_Topic">
           <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
@@ -572,6 +576,7 @@
           <EntitySetMapping Name="Blogs">
             <EntityTypeMapping TypeName="DBLAPTOPModel.Blog">
               <MappingFragment StoreEntitySet="Blog">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="IDBlog" ColumnName="IDBlog" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
@@ -693,6 +698,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DBLAPTOPModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="idSocial" ColumnName="idSocial" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="roleID" ColumnName="roleID" />
                 <ScalarProperty Name="fullName" ColumnName="fullName" />

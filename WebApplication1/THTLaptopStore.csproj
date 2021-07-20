@@ -241,6 +241,7 @@
     <Content Include="images\logo\213682375_509355140293215_4297729168636508658_n.png" />
     <Content Include="images\logo\Designbolts-Free-Multimedia-Laptop.ico" />
     <Content Include="images\logo\tragop.jpg" />
+    <Content Include="images\sanpham\none.png" />
     <Content Include="images\user\customer\default-employee.jpg" />
     <Content Include="Models\Data\DBContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -273,7 +274,7 @@
     <Content Include="images\logo\logolap2.png" />
     <Content Include="images\logo\logotht.PNG" />
     <Content Include="images\logo\logotht1.png" />
-    <Content Include="images\sanpham\none.png" />
+    <Content Include="images\blog\none.png" />
     <Content Include="images\quangcao\google-noi-ve-inova.gif" />
     <Content Include="images\quangcao\hieu-qua.gif" />
     <Content Include="images\quangcao\quangcao1.jpg" />
@@ -814,6 +815,7 @@
     <Content Include="Views\Policy\Condition.cshtml" />
     <Content Include="Views\Policy\Warranty.cshtml" />
     <Content Include="Views\Blog\Blog.cshtml" />
+    <Content Include="Views\Policy\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -7,33 +7,19 @@
 }
 <script src="~/Services/ckeditor/ckeditor.js"></script>
 <div class="container">
-    @using (Html.BeginForm())
+    <h2 class="my-3">Cập nhật bài viết</h2>
+    @using (Html.BeginForm("editBlog", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
-        <h2>editBlog</h2>
+
         <div class="form-horizontal">
-            <h4>Blog</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.IDBlog)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-                <textarea class="form-control" name="Content" id="Content" rows="7" required>@Model.Content</textarea>
-                <script>CKEDITOR.replace("Content");</script>
-                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.IDTopic, "IDTopic", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+            @Html.HiddenFor(Model => Model.IDBlog)
+            @Html.HiddenFor(Model => Model.UserID)
+            <div class="form-group mb-3">
+                Chủ đề
+                <div class="col-md-12">
                     <select class="form-select" name="IDTopic" id="IDTopic" required>
                         @foreach (var item in (List<Topic>)ViewBag.IDTopic)
                         {
@@ -50,18 +36,67 @@
                     @Html.ValidationMessageFor(model => model.IDTopic, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div class="form-group mb-3">
+                Tiêu đề
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
+            <div class="form-group mb-3">
+                <label class="form-label">Ảnh bìa</label>
+                <div class="col-md-12">
+                    <img src="@Url.Content(Model.image)" alt="none.png" id="output" style="width:290px; height:290px;" /> <br />
+                    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Cập nhật ảnh sản phẩm
+                    </button>
+                </div>
+            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group mb-3">
+                Nội dung
+                <div class="col-md-12">
+                    <textarea class="form-control" name="Content" id="Content" required>@Model.Content</textarea>
+                    <script>CKEDITOR.replace("Content");</script>
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Cập nhật bài viết" class="btn btn-primary" />
                 </div>
             </div>
         </div>
     }
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        <a class="btn btn-danger" href="@Url.Action("BlogList", "Blog")">Quay lại danh sách</a>
+    </div>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm ảnh</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Html.BeginForm("uploadImage", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(e => e.IDBlog)
+                <div class="modal-body text-center">
+                    <img src="@Url.Content(Model.image)" alt="@Url.Content(Model.image)" id="output" style="width:290px; height:290px;" /> <br />
+                    <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            }
+        </div>
     </div>
 </div>
 

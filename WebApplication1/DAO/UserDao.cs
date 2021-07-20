@@ -10,9 +10,9 @@ namespace WebApplication1.DAO
     {
         DBLAPTOPEntities db = new DBLAPTOPEntities();
 
-        public bool isExisted(string userName)
+        public bool isExisted(string idSocial)
         {
-            var user = db.Users.FirstOrDefault(u => u.userName == userName);
+            var user = db.Users.FirstOrDefault(u => u.idSocial == idSocial);
             if (user != null)
             {
                 return true;
