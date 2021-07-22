@@ -15,16 +15,10 @@
     </div>
     <div class="row">
         <div class="col">
-            <div class="input-group my-2 float-start">
-                <input type="text" class="form-control">
-                <button class="btn btn-outline-secondary fw-bold" type="button" id="button-addon2">Tìm kiếm</button>
-            </div>
-        </div>
-        <div class="col">
             <a class="btn btn-success float-end my-2" href="@Url.Action("Create","Product")"><i class="fa fa-plus-circle" aria-hidden="true"></i><b>Thêm mới sản phẩm</b></a>
         </div>
     </div>
-    <table class="table table-hover table-bordered bg-white" style="font-size:small;">
+    <table id="mytable">
         <thead class="bg-primary text-white" style="text-align:center;">
             <tr>
                 <th>
@@ -94,3 +88,8 @@
         </tbody>
     </table>
 </div>
+<script>
+    jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+</script>

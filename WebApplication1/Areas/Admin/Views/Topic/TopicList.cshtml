@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebApplication1.Models.Data.Topic>
+
+@{
+    ViewBag.Title = "Topic";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Chủ đề bài viết</h2>
+
+    <p>
+        @Html.ActionLink("Thêm mới", "insertTopic", null, new {@class = "btn btn-success" })
+    </p>
+    <table id="mytable">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NameTopic)
+                </th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameTopic)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "editTopic", new { id = item.IDTopic }, new {@class = "btn btn-primary fas fa-edit" }) |
+                        @Html.ActionLink(" ", "deleteTopic", new { id = item.IDTopic }, new { @class = "btn btn-danger fas fa-times-circle" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+</script>

@@ -7,21 +7,21 @@ using System.Web.Mvc;
 using WebApplication1.Models.Data;
 namespace WebApplication1.Areas.Admin.Controllers
 {
-    public class DiscountController : Controller
+    public class TopicController : Controller
     {
+        // GET: Admin/Topic
         DBLAPTOPEntities db = new DBLAPTOPEntities();
-        // GET: Admin/Discount
-        public ActionResult listDiscount()
+
+        public ActionResult TopicList()
         {
             if (Session["userID"] == null)
             {
                 return RedirectToAction("Login", "Account");
             }
-            return View(db.Discounts.ToList());
+            return View(db.Topics.ToList());
         }
 
-        [HttpGet]
-        public ActionResult insertDiscount()
+        public ActionResult insertTopic()
         {
             if (Session["userID"] == null)
             {
@@ -31,43 +31,48 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult insertDiscount(Discount discount)
+        public ActionResult insertTopic(Topic topic)
         {
-            discount.discountCode = discount.discountCode.ToUpper();
-            db.Discounts.Add(discount);
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            db.Topics.Add(topic);
             db.SaveChanges();
-            return RedirectToAction("listDiscount");
+            return RedirectToAction("TopicList");
         }
 
-        [HttpGet]
-        public ActionResult editDiscount(int? id)
+        public ActionResult editTopic(int? id)
         {
             if (Session["userID"] == null || id == null)
             {
                 return RedirectToAction("Login", "Account");
             }
-            return View(db.Discounts.Find(id));
+            return View(db.Topics.Find(id));
         }
 
         [HttpPost]
-        public ActionResult editDiscount(Discount discount)
+        public ActionResult editTopic(Topic topic)
         {
-            discount.discountCode = discount.discountCode.ToUpper();
-            db.Entry(discount).State = EntityState.Modified;
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            db.Entry(topic).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("listDiscount");
+            return RedirectToAction("TopicList");
         }
 
-        public ActionResult deleteDiscount(int? id)
+        public ActionResult deleteTopic(int? id)
         {
             if (Session["userID"] == null || id == null)
             {
                 return RedirectToAction("Login", "Account");
             }
-            Discount discount = db.Discounts.Find(id);
-            db.Discounts.Remove(discount);
+            var topic = db.Topics.Find(id);
+            db.Topics.Remove(topic);
             db.SaveChanges();
-            return RedirectToAction("listDiscount");
+            return RedirectToAction("TopicList");
         }
     }
 }

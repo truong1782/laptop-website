@@ -148,6 +148,7 @@
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -789,6 +790,9 @@
     <Content Include="Areas\Admin\Views\Blog\createBlog.cshtml" />
     <Content Include="Areas\Admin\Views\Blog\editBlog.cshtml" />
     <Content Include="Areas\Admin\Views\Blog\blogDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\TopicList.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\insertTopic.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\editTopic.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />

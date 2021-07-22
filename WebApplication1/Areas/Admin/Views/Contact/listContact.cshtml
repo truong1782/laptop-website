@@ -7,70 +7,80 @@
 
 <div class="container" style="font-size:small">
     <h4>Danh sách liên hệ</h4>
-    <table class="table">
-        <tr>
-            <th>
-                Họ tên
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Tiêu đề
-            </th>
-            <th>
-                Nội dung
-            </th>
-            <th>
-                Ngày gửi
-            </th>
-            <th>
-                Số điện thoại
-            </th>
-            <th>
-                Trạng thái
-            </th>
-            <th>Thao tác</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <table id="mytable">
+        <thead class="bg-primary text-white">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.detail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dateCreate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.phone)
-                </td>
-                <td>
-                    @if (item.status == false)
-                    {
-                        <span style="color:red">Chưa xem</span>
-                    }
-                    else
-                    {
-                        <span style="color:green">Đã xem</span>
-                    }
-                </td>
-                <td style="white-space: nowrap;">
-                    <a class="btn btn-primary fas fa-comment-alt" href="@Url.Action("feedback","Contact", new { id = @item.contactID })"></a>
-                    <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("contactDetails","Contact", new { id = @item.contactID })"></a>
-                    <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteContact","Contact", new { id = @item.contactID })"></a>
-                </td>
+                <th>
+                    Họ tên
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Tiêu đề
+                </th>
+                <th>
+                    Nội dung
+                </th>
+                <th>
+                    Ngày gửi
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th>Thao tác</th>
             </tr>
-        }
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.detail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateCreate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone)
+                    </td>
+                    <td>
+                        @if (item.status == false)
+                        {
+                            <span style="color:red">Chưa xem</span>
+                        }
+                        else
+                        {
+                            <span style="color:green">Đã xem</span>
+                        }
+                    </td>
+                    <td style="white-space: nowrap;">
+                        <a class="btn btn-primary fas fa-comment-alt" href="@Url.Action("feedback","Contact", new { id = @item.contactID })"></a>
+                        <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("contactDetails","Contact", new { id = @item.contactID })"></a>
+                        <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteContact","Contact", new { id = @item.contactID })"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
     </table>
 </div>
 
+<script>
+    jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+</script>

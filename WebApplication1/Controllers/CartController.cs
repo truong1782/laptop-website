@@ -69,6 +69,14 @@ namespace WebApplication1.Controllers
                 ViewBag.FinalMoney = FinalMoney();
                 return View("Cart", listcart);
             }
+            else if (reduceMoney.conditionMoney >= FinalMoney())
+            {
+                ViewBag.Warning = "Bạn không đủ điều kiện sử dụng mã";
+                List<Cart> listcart = getCart();
+                ViewBag.TotalQuantity = TotalQuantity();
+                ViewBag.FinalMoney = FinalMoney();
+                return View("Cart", listcart);
+            }
 
             Session["discountValue"] = reduceMoney.value;
 
@@ -187,14 +195,28 @@ namespace WebApplication1.Controllers
         public ActionResult Checkout(int userid)
         {
             Order order = new Order();
-            order.userID = userid;
-            order.reduceMoney = Int32.Parse(Session["discountValue"].ToString());
-            order.totalMoney = FinalMoney();
-            order.dateCreate = DateTime.Now;
-            order.dateArrive = DateTime.Now.AddDays(10);
-            order.status = false;
+            if (Session["discountValue"] != null)
+            {
+                order.userID = userid;
+                order.reduceMoney = Int32.Parse(Session["discountValue"].ToString());
+                order.totalMoney = FinalMoney();
+                order.dateCreate = DateTime.Now;
+                order.dateArrive = DateTime.Now.AddDays(10);
+                order.status = false;
+            }
+            else
+            {
+                order.userID = userid;
+                order.reduceMoney = 0;
+                order.totalMoney = FinalMoney();
+                order.dateCreate = DateTime.Now;
+                order.dateArrive = DateTime.Now.AddDays(10);
+                order.status = false;
+            }
             db.Orders.Add(order);
             db.SaveChanges();
+
+
             List<Cart> listCart = getCart();
             foreach (var item in listCart)
             {
