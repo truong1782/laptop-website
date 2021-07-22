@@ -73,12 +73,13 @@
                             </ul>
                         </li>
                         <li>
-                            <form class="d-flex" style="margin-left: 20px">
-                                <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 270px">
+                            @using (Html.BeginForm("Search", "Product", FormMethod.Post, new { @class = "d-flex" }))
+                            {
+                                <input class="form-control me-2" type="search" name="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 270px">
                                 <button class="btn btn-light text-dark" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
-                            </form>
+                            }
                         </li>
                     </ul>
                 </div>
@@ -152,26 +153,27 @@
                     </div>
                     <div class="col-md-3 pt-3">
                         <a class="nav-link active" style="color: #F8F8FF"><b>CHÍNH SÁCH</b></a>
-                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("About","About")"><b>Về chúng tôi</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("About","Policy")"><b>Về chúng tôi</b></a>
                         <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("Policy","Policy")"><b>Chính sách quy định chung</b></a>
-                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("Condition","Condition")"><b>Điều kiện bảo hành</b></a>
-                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("Warranty","Warranty")"><b>Chính sách bảo hành</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("Condition","Policy")"><b>Điều kiện bảo hành</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("Warranty","Policy")"><b>Chính sách bảo hành</b></a>
                         <a class="nav-link active" style="color: #BBBBBB" href="@Url.Action("ContactPage","Contact")"><b>Liên hệ</b></a>
                     </div>
                     <div class="col-md-3 pt-3">
                         <a class="nav-link active" style="color: #F8F8FF"><b>HỖ TRỢ</b></a>
-                        <a class="nav-link active" style="color: #BBBBBB">Tổng đài tư vấn: 0989969919</a>
-                        <a class="nav-link active" style="color: #BBBBBB">Tư vấn mua hàng: 0123456789</a>
-                        <a class="nav-link active" style="color: #BBBBBB">Hỗ trợ kỹ thuật: 0163686839</a>
-                        <a class="nav-link active" style="color: #BBBBBB">Phản hồi, góp ý: 0386969056</a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="tel:0989969919">Tổng đài tư vấn: 0989969919</a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="tel:0123456789">Tư vấn mua hàng: 0123456789</a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="tel:0163686839">Hỗ trợ kỹ thuật: 0163686839</a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="tel:0386969056">Phản hồi, góp ý: 0386969056</a>
+
                     </div>
                     <div class="col-3 pt-3">
                         <a class="nav-link active" style="color: #F8F8FF"><b>FANPAGE FACEBOOK</b></a>
-                        <div class="fb-page" data-href="https://www.facebook.com/hutechuniversity" data-tabs="timeline" data-width="" data-height="200" data-small-header="false"
-                             data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
-                            <blockquote cite="https://www.facebook.com/hutechuniversity"
-                                        class="fb-xfbml-parse-ignore">
-                                <a href="https://www.facebook.com/hutechuniversity">HUTECH - Đại học Công nghệ Tp.HCM</a>
+                        <div class="fb-page" data-href="https://www.facebook.com/Laptop-THT-118931643278743" data-tabs="timeline"
+                             data-width="300" data-height="200" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                             data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/Laptop-THT-118931643278743" class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/Laptop-THT-118931643278743">Laptop THT</a>
                             </blockquote>
                         </div>
                     </div>

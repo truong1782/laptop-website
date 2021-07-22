@@ -1,8 +1,9 @@
 ﻿@using WebApplication1.Models.Data
 @using System.Globalization
+@using PagedList.Mvc;
+@model PagedList.PagedList<Product>
 @{ ViewBag.Title = "Trang chủ";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
 <div class="container mb-3">
@@ -52,78 +53,54 @@
     <div class="row">
         <h4 class="text-center pt-1"><b>LAPTOP MỚI NHẤT</b></h4>
         <hr />
-        <div class="container mb-3 border border-1 shadow rounded rounded-3">
+        <div class="container mb-3 ">
             <div class="row">
                 @foreach (var item in Model)
                 {
-                    <div class="col-md-3 col-12">
-                        <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
-                            <div class="card">
-                                <img src="@Url.Content(item.image)" class="card-img-top" alt="@item.image" style="width:270px; height:270px;">
-                                <div class="card-body">
-                                    <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
-                                    <p class="card-text text-danger fw-bold float-start">
-                                        @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
-                                    </p>
-                                </div>
+                <div class="col-md-3 col-12">
+                    <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
+                        <div class="card my-2">
+                            <img src="@Url.Content(item.image)" class="card-img-top" alt="@item.image" style="width:270px; height:270px;">
+                            <div class="card-body">
+                                <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
+                                <p class="card-text text-danger fw-bold float-start">
+                                    @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
+                                </p>
                             </div>
-                        </a>
-                        <hr />
-                    </div>}
+                        </div>
+                    </a>
+                </div>
+                }
             </div>
         </div>
-
+        <div class="MenuPage">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+        </div>
     </div>
 </div>
 
 
 @* ******************* *@
+<style>
+    .MenuPage li {
+        display: inline;
+        text-align: center;
+    }
 
-<div class="container mb-3 border border-1 shadow rounded rounded-3">
-    <div class="row">
-        <h4 class="text-center pt-1"><b> LINH - PHỤ KIỆN NỔI BẬT</b></h4>
-        <div class="col-md-3 col-sm-6 ">
-            <div class="card">
-                <img src="~/images/sanpham/phukien1.PNG" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-title">Ram DDR4 8GB</p>
-                    <p class="card-text text-danger fw-bold">1.090.000 VND</p>
-                    <a href="#" class="btn btn-primary">Chi tiết</a>
-                </div>
-            </div>
-        </div>
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
 
-        <div class="col-md-3 col-sm-6 ">
-            <div class="card">
-                <img src="~/images/sanpham/phukien2.PNG" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-title">Bộ vệ sinh Laptop</p>
-                    <p class="card-text text-danger fw-bold">50.000 VND</p>
-                    <a href="#" class="btn btn-primary">Chi tiết</a>
-                </div>
-            </div>
-        </div>
+        .pagination a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
 
-        <div class="col-md-3 col-sm-6 ">
-            <div class="card">
-                <img src="~/images/sanpham/phukien3.PNG" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-title">Keo tản nhiệt MX-4</p>
-                    <p class="card-text text-danger fw-bold">149.000 VND</p>
-                    <a href="#" class="btn btn-primary">Chi tiết</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 ">
-            <div class="card">
-                <img src="~/images/sanpham/phukien4.PNG" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-title">Balo Alienware Vindicator V2.0</p>
-                    <p class="card-text text-danger fw-bold">2.199.000 VND</p>
-                    <a href="#" class="btn btn-primary">Chi tiết</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+</style>
