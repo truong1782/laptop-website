@@ -6,7 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+
+
+
 using WebApplication1.Models.Data;
+
+
+
 using WebApplication1.DAO;
 using WebApplication1.Services;
 namespace WebApplication1.Controllers
@@ -177,8 +183,8 @@ namespace WebApplication1.Controllers
         {
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = "242439230820342",
-                client_secret = "385f181d226b648b0ed8200c5b76288d",
+                client_id = "3976925969082352",
+                client_secret = "995c743f772fbb755f8611d75a225bdd",
                 redirect_uri = RediredtUri.AbsoluteUri,
                 response_type = "code",
                 scope = "email"
@@ -198,8 +204,8 @@ namespace WebApplication1.Controllers
 
             dynamic result = fb.Post("oauth/access_token", new
             {
-                client_id = "242439230820342",
-                client_secret = "385f181d226b648b0ed8200c5b76288d",
+                client_id = "3976925969082352",
+                client_secret = "995c743f772fbb755f8611d75a225bdd",
                 redirect_uri = RediredtUri.AbsoluteUri,
                 code = code
             });
@@ -209,7 +215,9 @@ namespace WebApplication1.Controllers
             dynamic me = fb.Get("me?fields=id,first_name,last_name,email,picture");
 
             string idSocial = me.id;
+
             var fbUser = new User();
+
             var userDao = new UserDao();
             if (userDao.isExisted(idSocial) == true)
             {

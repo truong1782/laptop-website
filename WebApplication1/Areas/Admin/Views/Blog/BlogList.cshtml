@@ -49,9 +49,9 @@
                         </p>
                     </td>
                     <td>
-                        <p readonly style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            @item.Content
-                        </p>
+                        <textarea readonly>
+                            @Html.Raw(item.Content)
+                        </textarea>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DateCreate)

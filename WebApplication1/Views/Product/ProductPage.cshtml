@@ -1,8 +1,11 @@
 ﻿@using WebApplication1.Models.Data
 @using System.Globalization
-@model IEnumerable<Product>
+@using PagedList.Mvc;
+@model PagedList.PagedList<Product>
+
 @{ ViewBag.Title = "Sản phẩm";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
 
 <div class="container">
     <div class="row">
@@ -13,7 +16,7 @@
                 </button>
                 @foreach (var item in (List<Category>)ViewBag.Categories)
                 {
-                    <a class="btn list-group-item list-group-item-action" href="@Url.Action("filterByCategory","Product",new {id = item.categoryID })">@item.categoryName</a>
+                    <a class="btn list-group-item list-group-item-action" href="@Url.Action("filterByCategory","Product",new {id = item.categoryID})">@item.categoryName</a>
                 }
             </div>
             <div class="list-group">
@@ -62,9 +65,35 @@
                             </div>
                         }
                     </div>
+                    <div class="MenuPage">
+                        @Html.PagedListPager(Model, page => Url.Action("ProductPage", new { page = page }))
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<style>
+    .MenuPage li {
+        display: inline;
+        text-align: center;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+
+        .pagination a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+</style>

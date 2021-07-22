@@ -1,101 +1,70 @@
-﻿
-@{
-    ViewBag.Title = "Blog";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using WebApplication1.Models.Data
+@using System.Globalization
+@model IEnumerable<Blog>
+@{ ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)
+    }
 }
 
 <div class="container mb-3">
-    <div class="row mb-2">
-        <h2>Blog</h2>
-        <div class="col-md-8 col-sm-12">
-            <div class="bog">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="card" style="width: 440px; height:450px">
-                            <img src="~/images/sanpham/mac2.jpg" class="card-img-top" style="width: 435px; height:350px" alt="...">
-                            <div class="card-body">
-                                <b>Laptop hot...</b>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
+    <div class="row mb-2 ">
+        <h2>Bài viết</h2>
+        <div class="col-md-8 col-sm-12 ">
+            <div class="blog">
+                @foreach (var item in Model)
+                {
+                    <div class="card mb-3" style="width: 880px;">
+                        <a href="@Url.Action("BlogDetail","Blog",new {id = item.IDBlog })" style="text-decoration: none;">
+                            <div class="row g-0" style="color:black">
 
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="card mx-2" style="width: 210px; height:220px">
-                                    <img src="~/images/sanpham/asus1.jpg" class="card-img-top" style="width: 205px; height:165px" alt="...">
-                                    <div class="card-body">
-                                        <b class="card-text">Laptop hot...</b>
-                                    </div>
+                                <div class="col-md-4">
+                                    <img src="@Url.Content(item.image)" class="img-fluid rounded-start" alt="@Url.Content(item.image)">
                                 </div>
-                                <div class="card mx-2 mt-2" style="width: 210px; height:220px">
-                                    <img src="~/images/sanpham/asus2.jpg" class="card-img-top" style="width: 205px; height:165px" alt="...">
+                                <div class="col-md-8">
                                     <div class="card-body">
-                                        <b class="card-text">Laptop hot...</b>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="card mx-2" style="width: 210px; height:220px">
-                                    <img src="~/images/sanpham/asus3.jpg" class="card-img-top" style="width: 205px; height:165px" alt="...">
-                                    <div class="card-body">
-                                        <b class="card-text">Laptop hot...</b>
-                                    </div>
-                                </div>
-                                <div class="card mx-2 mt-2" style="width: 210px; height:220px">
-                                    <img src="~/images/sanpham/asus4.jpg" class="card-img-top" style="width: 205px; height:165px" alt="...">
-                                    <div class="card-body">
-                                        <b class="card-text">Laptop hot...</b>
+                                        <h5 class="card-title">@item.Title</h5>
+                                        <p class="card-text">
+                                            @if (item.Content.Length > 200)
+                                            {
+                                                @Html.Raw(item.Content.Substring(0, 200) + "...");
+                                            }
+                                            else
+                                            { @Html.Raw(item.Content);
+                                        }
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">@item.DateCreate</small>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
-                <hr />
-                <div class="card mb-3" style="width: 880px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="~/images/sanpham/msi1.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mb-3" style="width: 880px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="~/images/sanpham/msi2.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                }
 
             </div>
         </div>
 
-        <div class="col-md-4 col-sm-12 ">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="col-md-4 col-sm-12">
+            <div class="card" style="width: 15rem;">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action active" aria-current="true"><center>Thể loại</center></button>
+                    @foreach (var item in (List<Topic>)ViewBag.Topics)
+                    {
+                        <a class="btn list-group-item list-group-item-action" href="@Url.Action("filterByTopic","Blog",new {id=item.IDTopic})">@item.NameTopic</a>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
+
