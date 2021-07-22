@@ -12,28 +12,39 @@
         <a class="btn btn-success" href="@Url.Action("insertCategory", "Category")">Thêm mới</a>
         <span>@Html.Raw(ViewBag.Alert)</span>
     </p>
-    
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.categoryName)
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
+    <table id="mytable">
+        <thead class="bg-primary text-white">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.categoryName)
-                </td>
-                <td>
-                    <a class="btn btn-primary fas fa-edit" href="@Url.Action("editCategory", "Category", new {id = item.categoryID })"></a>
-                    <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("removeCategory", "Category", new {id = item.categoryID })"></a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.categoryName)
+                </th>
+                <th></th>
             </tr>
-        }
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.categoryName)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary fas fa-edit" href="@Url.Action("editCategory", "Category", new {id = item.categoryID })"></a>
+                        <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("removeCategory", "Category", new {id = item.categoryID })"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
 
     </table>
 
 </div>
+
+<script>
+    jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+</script>

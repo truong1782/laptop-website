@@ -9,59 +9,69 @@
 <div class="container">
     <h4>Danh sách mã khuyến mãi</h4>
     <a class="btn btn-success float-end" href="">Thêm mới</a>
-    <table class="table" style="font-size:small">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.discountCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.value)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.conditionMoney)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.startDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.endDate)
-            </th>
-            <th>
-                Chức năng
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <table id="mytable">
+        <thead class="bg-primary text-white">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.discountCode)
-                </td>
-                <td>
-                    @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.value)
-                </td>
-                <td>
-                    @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.conditionMoney)
-                </td>
-                <td>
-                    @Html.TextAreaFor(modelItem => item.note)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.startDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.endDate)
-                </td>
-                <td style="white-space:nowrap">
-                    <a class="btn btn-info fa fa-edit text-white" href="@Url.Action("editDiscount","Discount", new { id = @item.discountID })"></a>
-                    <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteDiscount","Discount", new { id = @item.discountID })"></a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.discountCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.conditionMoney)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.startDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.endDate)
+                </th>
+                <th>
+                    Chức năng
+                </th>
             </tr>
-        }
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.discountCode)
+                    </td>
+                    <td>
+                        @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.value)
+                    </td>
+                    <td>
+                        @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.conditionMoney)
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(modelItem => item.note)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.startDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.endDate)
+                    </td>
+                    <td style="white-space:nowrap">
+                        <a class="btn btn-info fa fa-edit text-white" href="@Url.Action("editDiscount","Discount", new { id = @item.discountID })"></a>
+                        <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteDiscount","Discount", new { id = @item.discountID })"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
 
     </table>
 </div>
 
+<script>
+    jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+</script>

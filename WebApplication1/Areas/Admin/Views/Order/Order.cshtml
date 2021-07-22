@@ -8,8 +8,8 @@
 <div class="container">
     <h3 class="mt-2">Danh sách đơn hàng</h3>
     <div class="row">
-        <table class="table table-striped table-hover">
-            <thead>
+        <table id="mytable">
+            <thead class="bg-primary text-white">
                 <tr>
                     <th>Mã đơn hàng</th>
                     <th>Tên khách hàng</th>
@@ -71,3 +71,8 @@
     </div>
 </div>
 
+<script>
+    jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+</script>
