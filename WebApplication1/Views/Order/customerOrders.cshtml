@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication1.Models.Data.Order>
+
+@{
+    ViewBag.Title = "customerOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Đơn hàng của tôi</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Khách hàng
+            </th>
+            <th>
+                Tiền giảm
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th>
+                Ngày đặt
+            </th>
+            <th>
+                Ngày giao
+            </th>
+            <th>
+                Trạng thái
+            </th>
+
+            <th>Thao tác</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reduceMoney)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.totalMoney)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateCreate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateArrive)
+                </td>
+                @if (item.status == false)
+                {
+                    <td style="color:red">Chưa xử lý</td>
+                }
+                else
+                {
+                    <td style="color:green"> Đã xử lý </td>
+                }
+
+                <td>
+                    @Html.ActionLink("Chi tiết", "customerOrderDetail", new { id = item.orderID }) |
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

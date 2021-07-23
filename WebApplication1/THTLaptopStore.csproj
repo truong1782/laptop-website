@@ -155,6 +155,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DiscountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PolicyController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
@@ -828,6 +829,8 @@
     <Content Include="Views\Blog\Blog.cshtml" />
     <Content Include="Views\Policy\About.cshtml" />
     <Content Include="Views\Blog\BlogDetail.cshtml" />
+    <Content Include="Views\Order\customerOrders.cshtml" />
+    <Content Include="Views\Order\customerOrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
