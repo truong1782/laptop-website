@@ -1,7 +1,9 @@
-﻿@model IEnumerable<WebApplication1.Models.Data.OrderDetail>
+﻿@using WebApplication1.Models.Data
+@model IEnumerable<OrderDetail>
 @{
     ViewBag.Title = "orderDetail";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentUser = Session["User"] as User;
 }
 
 <div class="container">
@@ -28,7 +30,7 @@
                             <img src="@Url.Content(item.Product.image)" alt="@Url.Content(item.Product.image)" style="width:48px; height:48px" />
                         </td>
                         <td>
-                            <textarea>@item.Product.productName</textarea>
+                            <textarea readonly>@item.Product.productName</textarea>
                         </td>
                         <td>@item.quantity</td>
                         <td>@item.amountMoney</td>
@@ -37,5 +39,5 @@
             </tbody>
         </table>
     </div>
-    <a class="btn btn-danger" href="@Url.Action("customerOrders", "Order")">Quay lại danh sách</a>
+    <a class="btn btn-danger" href="@Url.Action("CustomerOrders", "Order", new {id = currentUser.userID })">Quay lại danh sách</a>
 </div>
