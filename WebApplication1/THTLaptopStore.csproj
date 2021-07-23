@@ -218,6 +218,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\MD5.cs" />
+    <Compile Include="Services\Momo\MoMoSecurity.cs" />
+    <Compile Include="Services\Momo\PaymentRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
@@ -249,6 +251,7 @@
     <Content Include="images\discount\freeship.png" />
     <Content Include="images\logo\213682375_509355140293215_4297729168636508658_n.png" />
     <Content Include="images\logo\Designbolts-Free-Multimedia-Laptop.ico" />
+    <Content Include="images\logo\momo.png" />
     <Content Include="images\logo\tragop.jpg" />
     <Content Include="images\sanpham\none.png" />
     <Content Include="images\user\customer\default-employee.jpg" />

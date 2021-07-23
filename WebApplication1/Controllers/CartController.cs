@@ -1,10 +1,14 @@
-﻿using System;
+﻿
+using MoMo;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Models.Data;
+using WebApplication1.Services.Momo;
 
 namespace WebApplication1.Controllers
 {
@@ -231,6 +235,132 @@ namespace WebApplication1.Controllers
             Session["GioHang"] = null;
             return RedirectToAction("Finish", "Cart");
         }
+
+        public ActionResult Payment(int userid)
+        {
+            //request params need to request to MoMo system
+            string endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+            string partnerCode = "MOMOGYJC20210723";
+            string accessKey = "hDsMbx6WguXjVTOU";
+            string serectkey = "0sbkPWPK8ZF19zQa3HT2gLzLiNNXhcdz";
+            string orderInfo = "Thanh toán trực tuyến";
+            string returnUrl = "https://localhost:44354/Cart/Finish";
+            string notifyurl = "http://ba1adf48beba.ngrok.io/Cart/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+
+            string amount = FinalMoney().ToString();
+            string orderid = DateTime.Now.Ticks.ToString();
+            string requestId = DateTime.Now.Ticks.ToString();
+            string extraData = "";
+
+            //Before sign HMAC SHA256 signature
+            string rawHash = "partnerCode=" +
+                partnerCode + "&accessKey=" +
+                accessKey + "&requestId=" +
+                requestId + "&amount=" +
+                amount + "&orderId=" +
+                orderid + "&orderInfo=" +
+                orderInfo + "&returnUrl=" +
+                returnUrl + "&notifyUrl=" +
+                notifyurl + "&extraData=" +
+                extraData;
+
+            MoMoSecurity crypto = new MoMoSecurity();
+            //sign signature SHA256
+            string signature = crypto.signSHA256(rawHash, serectkey);
+
+            //build body json request
+            JObject message = new JObject
+            {
+                { "partnerCode", partnerCode },
+                { "accessKey", accessKey },
+                { "requestId", requestId },
+                { "amount", amount },
+                { "orderId", orderid },
+                { "orderInfo", orderInfo },
+                { "returnUrl", returnUrl },
+                { "notifyUrl", notifyurl },
+                { "extraData", extraData },
+                { "requestType", "captureMoMoWallet" },
+                { "signature", signature }
+
+            };
+
+            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+
+            JObject jmessage = JObject.Parse(responseFromMomo);
+
+            Order order = new Order();
+            if (Session["discountValue"] != null)
+            {
+                order.userID = userid;
+                order.reduceMoney = Int32.Parse(Session["discountValue"].ToString());
+                order.totalMoney = FinalMoney();
+                order.dateCreate = DateTime.Now;
+                order.dateArrive = DateTime.Now.AddDays(10);
+                order.status = false;
+            }
+            else
+            {
+                order.userID = userid;
+                order.reduceMoney = 0;
+                order.totalMoney = FinalMoney();
+                order.dateCreate = DateTime.Now;
+                order.dateArrive = DateTime.Now.AddDays(10);
+                order.status = false;
+            }
+            db.Orders.Add(order);
+            db.SaveChanges();
+
+
+            List<Cart> listCart = getCart();
+            foreach (var item in listCart)
+            {
+                OrderDetail ordDetail = new OrderDetail();
+                ordDetail.orderID = order.orderID;
+                ordDetail.productID = item.iProductID;
+                ordDetail.quantity = item.iSoluong;
+                ordDetail.amountMoney = item.dThanhTien;
+                db.OrderDetails.Add(ordDetail);
+            }
+            db.SaveChanges();
+            Session["GioHang"] = null;
+            return Redirect(jmessage.GetValue("payUrl").ToString());
+        }
+
+        public ActionResult ConfirmPaymentClient()
+        {
+            //hiển thị thông báo cho người dùng
+            return View();
+        }
+
+        [HttpPost]
+        public void SavePayment()
+        {
+            //cập nhật dữ liệu vào db
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public ActionResult Finish()
         {

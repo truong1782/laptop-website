@@ -107,10 +107,14 @@
                         </tr>
                     </tfoot>
                 </table>
-                <button class="btn btn-danger text-white float-end w-100" type="submit">
-                    <i class="far fa-credit-card"></i>
-                    <b class="mx-2">Đặt mua</b>
+                <button class="btn border-primary text-black" type="submit">
+                    <i class="far fa-credit-card text-primary"></i>
+                    <b>Thanh toán khi nhận hàng</b>
                 </button>
+                <a class="btn  border border-danger" href="@Url.Action("Payment","Cart", new { userid = user.userID})">
+                    <img src="~/images/logo/momo.png" alt="momo.png" style="width:20px; height:20px"/>
+                    <b>Thanh toán qua MOMO</b>
+                </a>
             </div>
         </div>
     </div>
