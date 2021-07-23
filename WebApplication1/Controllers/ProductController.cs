@@ -61,7 +61,37 @@ namespace WebApplication1.Controllers
             return View("ProductPage", products.ToPagedList(pageNum, pageSize));
         }
 
+        public ActionResult sortByDescending(int? page)
+        {
+            int pageNum = (page ?? 1);
+            var products = db.Products.OrderByDescending(p => p.productPrice).ToList();
 
+            ViewBag.productTitle = "Giá giảm dần";
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
+            return View("ProductPage", products.ToPagedList(pageNum, pageSize));
+        }
 
+        public ActionResult sortByIncreasing(int? page)
+        {
+            int pageNum = (page ?? 1);
+            var products = db.Products.OrderBy(p => p.productPrice).ToList();
+
+            ViewBag.productTitle = "Giá tăng dần";
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
+            return View("ProductPage", products.ToPagedList(pageNum, pageSize));
+        }
+
+        public ActionResult lastedProducts(int? page)
+        {
+            int pageNum = (page ?? 1);
+            var products = db.Products.OrderByDescending(p => p.dateCreate).ToList();
+
+            ViewBag.productTitle = "Sản phẩm mới nhất";
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
+            return View("ProductPage", products.ToPagedList(pageNum, pageSize));
+        }
     }
 }
