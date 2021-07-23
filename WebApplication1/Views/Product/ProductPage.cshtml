@@ -38,9 +38,9 @@
                             Bộ lọc
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-chevron-down"></i>Giá giảm dần</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-chevron-up"></i>Giá tăng dần</a></li>
-                            <li><a class="dropdown-item" href="#">Mới nhất</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("sortByDescending", "Product")"><i class="fas fa-chevron-down"></i>Giá giảm dần</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("sortByIncreasing", "Product")"><i class="fas fa-chevron-up"></i>Giá tăng dần</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("lastedProducts", "Product")">Mới nhất</a></li>
                         </ul>
                     </div>
                 </div>
