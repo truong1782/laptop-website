@@ -15,107 +15,61 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 </head>
 <body>
-    <div class="sidebar">
-        <ul class="nav-links">
-            <li>
-                <a>
-                    <i class='bx bx-menu'></i>
-                    <span class="link_name">THT Store</span>
-                </a>
-
-            </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="@Url.Action("Index", "Product")">
-                        <i class='bx bx-collection'></i>
-                        <span class="link_name">Sản phẩm</span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Product")">Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sản phẩm
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Product")">Tất cả sản phẩm</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("listCategories", "Category")">Loại sản phẩm</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("listBrands", "Brand")">Thương hiệu</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Employee", "Employee")">Nhân viên</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("listDiscount", "Discount")">Khuyến mãi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Order", "Order")">Đơn hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("listContact", "Contact")">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("BlogList", "Blog")">Bài viết</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("TopicList", "Topic")">Chủ đề bài viết</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="nav justify-content-end">
+                <li class="dropdown">
+                    <a class="dropdown-toggle text-dark" id="dropdownMenuButton1"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false"
+                       style="text-decoration:none">
+                        <b>@Session["fullname"]</b>
+                        <img class="border border-2 border-dark rounded-3" src="@Url.Content(Session["image"].ToString())" alt="" width="48" height="48" />
                     </a>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="@Url.Action("Index", "Product")">Sản phẩm</a></li>
-                    <li><a href="@Url.Action("listCategories", "Category")">Loại sản phẩm</a></li>
-                    <li><a href="@Url.Action("listBrands", "Brand")">Thương hiệu</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="@Url.Action("Employee", "Employee")">
-                        <i class='bx bx-book-alt'></i>
-                        <span class="link_name">Nhân viên</span>
-                    </a>
-                </div>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="@Url.Action("Employee", "Employee")">Nhân viên</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="@Url.Action("listDiscount", "Discount")">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="link_name">Khuyến mãi</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="@Url.Action("listDiscount", "Discount")">Khuyến mãi</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="@Url.Action("Order", "Order")">
-                    <i class='bx bx-line-chart'></i>
-                    <span class="link_name">Đơn hàng</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="@Url.Action("Order", "Order")">Đơn hàng</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="@Url.Action("listContact", "Contact")">
-                        <i class='bx bx-plug'></i>
-                        <span class="link_name">Liên hệ</span>
-                    </a>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="@Url.Action("listContact", "Contact")">Liên hệ</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="@Url.Action("BlogList", "Blog")">
-                        <i class='bx bx-collection'></i>
-                        <span class="link_name">Bài viết</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="@Url.Action("BlogList", "Blog")">Bài viết</a></li>
-                    <li><a href="@Url.Action("TopicList", "Topic")">Chủ đề bài viết</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="@Url.Action("Logout","Account")">
-                        <i class='bx bx-log-out'></i>
-                        <span class="link_name">Đăng xuất</span>
-                    </a>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="profile-details">
-                    <div class="profile-content">
-                        <img src="@Url.Content(Session["image"].ToString())" alt="profileImg">
-                    </div>
-                    <div class="name-job">
-                        <div class="profile_name" style="font-size:medium; margin-right:10px">@Session["fullname"]</div>
-                    </div>
-
-                </div>
-            </li>
-        </ul>
-    </div>
-    <section class="home-section">
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="main-content">
         @RenderBody()
     </section>
     <footer>
