@@ -77,7 +77,12 @@
                     <i class="fa fa-shopping-cart"></i>
                     <b>Thêm vào giỏ hàng</b>
                 </a>
-                <div class="fb-share-button" data-href="@ViewBag.Url" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@ViewBag.Url" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+                @*<div class="fb-share-button" data-href="@ViewBag.Url" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@ViewBag.Url" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>*@
+                <div class="fb-like"
+                     data-share="true"
+                     data-width="450"
+                     data-show-faces="true">
+                </div>
             }
             else
             {

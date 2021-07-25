@@ -14,13 +14,13 @@ namespace WebApplication1.Controllers
         public ActionResult customerOrders(int? id)
         {
             var orders = db.Orders.Where(o => o.userID == id);
-            return View(orders);
+            return View(orders.ToList());
         }
 
         public ActionResult customerOrderDetail(int? id)
         {
             var orders = db.OrderDetails.Where(o => o.orderID == id);
-            return View(orders);
+            return View(orders.ToList());
         }
     }
 }
