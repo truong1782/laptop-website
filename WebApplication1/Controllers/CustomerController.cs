@@ -163,9 +163,6 @@ namespace WebApplication1.Controllers
             }
         }
 
-
-
-
         FacebookClient fb = new FacebookClient();
 
         private Uri RediredtUri
@@ -178,7 +175,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        
+
         public ActionResult FacebookLogin()
         {
             var loginUrl = fb.GetLoginUrl(new
@@ -240,6 +237,9 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
+
 
 
     }

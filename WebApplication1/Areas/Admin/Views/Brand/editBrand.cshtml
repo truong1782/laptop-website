@@ -16,7 +16,7 @@
             @Html.HiddenFor(model => model.brandID)
 
             <div class="form-group">
-                @Html.LabelFor(model => model.brandName, htmlAttributes: new { @class = "control-label col-md-2" })
+                Tên thương hiệu
                 <div class="col-md-10">
                     <input class="form-control" type="text" name="brandName" value="@Model.brandName" required maxlength="50" />
                     @Html.ValidationMessageFor(model => model.brandName, "", new { @class = "text-danger" })

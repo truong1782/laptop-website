@@ -47,6 +47,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             emp.phoneNumber = frm["phoneNumber"];
             emp.address = frm["address"];
             emp.gender = bool.Parse(frm["gender"]);
+            emp.dateOfBirth = DateTime.Parse(frm["dateOfBirth"]);
             if (ImageUpload != null)
             {
                 string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
@@ -91,6 +92,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             emp.phoneNumber = frm["phoneNumber"];
             emp.address = frm["address"];
             emp.gender = bool.Parse(frm["gender"]);
+            emp.dateOfBirth = DateTime.Parse(frm["dateOfBirth"]);
             db.SaveChanges();
             return RedirectToAction("Employee");
         }
