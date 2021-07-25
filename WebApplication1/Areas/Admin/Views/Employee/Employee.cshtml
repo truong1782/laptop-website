@@ -5,7 +5,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="container mt-3" style="background-color: rgb(240,240,240);">
+<div class="container" style="background-color: rgb(240,240,240);">
+    <h4>Danh sách nhân viên</h4>
     <p class="float-end">
         <a class="btn btn-success mt-3" href="@Url.Action("insertEmployee","Employee")">Thêm mới nhân viên</a>
     </p>
@@ -84,7 +85,7 @@
                     <td>
                         @item.dateOfBirth.ToString("dd/MM/yyyy")
                     </td>
-                    <td style="white-space: nowrap;">
+                    <td >
                         <a class="btn btn-primary fas fa-edit" href="@Url.Action("editEmployee","Employee", new { id = @item.userID })"></a>
                         <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("employeeDetails","Employee", new { id = @item.userID })"></a>
                         <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("deleteEmployee","Employee", new { id = @item.userID })"></a>
