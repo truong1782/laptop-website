@@ -32,49 +32,49 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.fullName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label>Họ tên</label>
                         <div class="col-md-10">
                             <input class="form-control" type="text" name="fullName" required />
                         </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label>Tên tài khoản</label>
                         <div class="col-md-10">
                             <input class="form-control" type="text" name="userName" required />
                         </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label>Mật khẩu</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password" required />
                         </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label>Email</label>
                         <div class="col-md-10">
                             <input class="form-control" type="email" name="email" required />
                         </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.phoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label>Số điện thoại</label>
                         <div class="col-md-10">
                             <input class="form-control" type="tel" name="phoneNumber" />
                         </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label>Địa chỉ</label>
                         <div class="col-md-10">
                             <input class="form-control" type="text" name="address" required />
                         </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label>Hình ảnh</label>
                         <div class="col-md-10">
                             <img src="~/images/sanpham/none.png" alt="none.png" id="output" style="width:290px; height:290px;" /> <br />
                             <input title="Thêm ảnh" type="file" name="ImageUpload" id="ImageUpload" onchange="loadFile(event)" />
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        @Html.LabelFor(model => model.dateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <label>Ngày sinh</label>
                         <div class="col-md-10">
                             <input class="form-control w-25" type="date" name="dateOfBirth" required />
                         </div>

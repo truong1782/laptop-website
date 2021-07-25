@@ -8,27 +8,27 @@
 
 <div class="container">
     <h4>Danh sách mã khuyến mãi</h4>
-    <a class="btn btn-success float-end" href="">Thêm mới</a>
+    <a class="btn btn-success float-end" href="@Url.Action("insertDiscount", "Discount")">Thêm mới</a>
     <table id="mytable">
         <thead class="bg-primary text-white">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.discountCode)
+                    Mã
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.value)
+                    Giá trị
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.conditionMoney)
+                    Tiền điều kiện
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.note)
+                    Ghi chú
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.startDate)
+                    Ngày bắt đầu
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.endDate)
+                    Ngày kết thúc
                 </th>
                 <th>
                     Chức năng

@@ -16,7 +16,7 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.brandName, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.brandName,"Tên thương hiệu", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <input class="form-control mb-3" type="text" name="brandName" required maxlength="50"/>
                     @Html.ValidationMessageFor(model => model.brandName, "", new { @class = "text-danger" })
