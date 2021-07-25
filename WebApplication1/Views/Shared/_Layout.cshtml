@@ -15,13 +15,31 @@
     <link href="~/Public/css/style.css" rel="stylesheet" />
     <link href="~/Public/css/productDetail.css" rel="stylesheet" />
     <link rel="shortcut icon" href="~/images/logo/Designbolts-Free-Multimedia-Laptop.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
 <body>
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0" nonce="tSmVt7mb"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=3976925969082352&autoLogAppEvents=1" nonce="WejoyIci"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '3976925969082352',
+                xfbml: true,
+                version: 'v11.0'
+            });
+            FB.AppEvents.logPageView();
+        };
 
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <header>
         <nav class="navbar navbar-light bg-white p-0">
             <div class="container">
@@ -189,6 +207,7 @@
     <div id="fb-root"></div>
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
+    @RenderSection("scripts", required: false)
     <script>
         var chatbox = document.getElementById('fb-customer-chat');
         chatbox.setAttribute("page_id", "118931643278743");

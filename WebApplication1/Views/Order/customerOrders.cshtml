@@ -10,9 +10,6 @@
     <table class="table">
         <tr>
             <th>
-                Khách hàng
-            </th>
-            <th>
                 Tiền giảm
             </th>
             <th>
@@ -34,9 +31,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.fullName)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.reduceMoney)
                 </td>

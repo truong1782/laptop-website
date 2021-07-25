@@ -48,6 +48,32 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult LoginFB(string idSocial, string fullname, string email, string picture)
+        {
+            var fbUser = new User();
+            var userDao = new UserDao();
+            if (userDao.isExisted(idSocial) == true)
+            {
+                fbUser = db.Users.FirstOrDefault(u => u.idSocial == idSocial);
+                Session["User"] = fbUser;
+            }
+            else
+            {
+                fbUser.idSocial = idSocial;
+                fbUser.email = email;
+                fbUser.userName = email;
+                fbUser.fullName = fullname;
+                fbUser.image = picture;
+                fbUser.roleID = 1;
+                fbUser.gender = true;
+                db.Users.Add(fbUser);
+                db.SaveChanges();
+                Session["User"] = fbUser;
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult Logout()
         {
             Session["User"] = null;
