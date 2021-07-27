@@ -244,8 +244,8 @@ namespace WebApplication1.Controllers
             string accessKey = "hDsMbx6WguXjVTOU";
             string serectkey = "0sbkPWPK8ZF19zQa3HT2gLzLiNNXhcdz";
             string orderInfo = "Thanh toán trực tuyến";
-            string returnUrl = "https://localhost:44354/Cart/Finish";
-            string notifyurl = "http://ba1adf48beba.ngrok.io/Cart/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            string returnUrl = "https://laptoptht.xyz/Cart/Finish";
+            string notifyurl = "https://laptoptht.xyz/Cart/SavePayment/" + userid.ToString(); //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             string amount = FinalMoney().ToString();
             string orderid = DateTime.Now.Ticks.ToString();
@@ -288,7 +288,19 @@ namespace WebApplication1.Controllers
             string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
 
             JObject jmessage = JObject.Parse(responseFromMomo);
+            SavePayment(userid);
+            return Redirect(jmessage.GetValue("payUrl").ToString());
+        }
 
+        public ActionResult ConfirmPaymentClient()
+        {
+            //hiển thị thông báo cho người dùng
+            return View();
+        }
+
+        [HttpPost]
+        public void SavePayment(int userid)
+        {
             Order order = new Order();
             if (Session["discountValue"] != null)
             {
@@ -324,43 +336,7 @@ namespace WebApplication1.Controllers
             }
             db.SaveChanges();
             Session["GioHang"] = null;
-            return Redirect(jmessage.GetValue("payUrl").ToString());
         }
-
-        public ActionResult ConfirmPaymentClient()
-        {
-            //hiển thị thông báo cho người dùng
-            return View();
-        }
-
-        [HttpPost]
-        public void SavePayment()
-        {
-            //cập nhật dữ liệu vào db
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public ActionResult Finish()
         {
